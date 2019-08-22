@@ -1,0 +1,18 @@
+{
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "extends": ["./node_modules/angular-configuration/tslint.json"],
+  "directive-selector": [
+    true,
+    "attribute",
+    "pi",
+    "camelCase"
+  ],
+  "component-selector": [
+    true,
+    "element",
+    "pi",
+    "kebab-case"
+  ]
+}
