@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "plan-it-33ea7": {
+      "hosting": {
+        "frontend": [
+          "plan-it-33ea7"
+        ]
+      }
+    }
+  }
+}
