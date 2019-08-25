@@ -1,32 +1,54 @@
-import { LayoutModule } from '@angular/cdk/layout';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { MainNavComponent } from './main-nav.component';
+import { MainNavComponentDriver } from './main-nav.component.driver';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MockModule } from 'ng-mocks';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { MainNavComponent } from './main-nav.component';
+const componentSetup = (): MainNavComponentDriver => {
+  return componentTestingSetup({
+    componentClass: MainNavComponent,
+    driver: MainNavComponentDriver,
+    imports: [
+      RouterTestingModule,
+      MockModule(MatButtonModule),
+      MockModule(MatIconModule),
+      MockModule(MatListModule),
+      MockModule(MatSidenavModule),
+      MockModule(MatToolbarModule),
+    ],
+  });
+};
 
 describe('MainNavComponent', () => {
-  let component: MainNavComponent;
-  let fixture: ComponentFixture<MainNavComponent>;
+  let driver: MainNavComponentDriver;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [MainNavComponent],
-      imports: [NoopAnimationsModule, LayoutModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MainNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should compile', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+    });
+  });
+
+  describe('Events', () => {
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+      expect(driver.routerOutlet).toBeTruthy();
+    });
   });
 });

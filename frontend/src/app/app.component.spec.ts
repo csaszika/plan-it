@@ -1,32 +1,33 @@
-import { async, TestBed } from '@angular/core/testing';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { AppComponent } from './app.component';
+import { AppComponentDriver } from './app.component.driver';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AppComponent } from './app.component';
+const componentSetup = (): AppComponentDriver => {
+  return componentTestingSetup({
+    componentClass: AppComponent,
+    driver: AppComponentDriver,
+    imports: [RouterTestingModule],
+  });
+};
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
-    }).compileComponents();
-  }));
+  let driver: AppComponentDriver;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it(`should have as title 'frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('frontend');
-  });
+  describe('Initializing', () => {
+    Given(() => {});
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('frontend app is running!');
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+      expect(driver.routerOutlet).toBeTruthy();
+    });
   });
 });

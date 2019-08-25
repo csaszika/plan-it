@@ -1,24 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { componentTestingSetup } from 'angular-unit-component-driver';
 import { ShellComponent } from './shell.component';
+import { ShellComponentDriver } from './shell.component.driver';
+import { MockComponent } from 'ng-mocks';
+import { MainNavComponent } from './main-nav/main-nav.component';
+
+const componentSetup = (): ShellComponentDriver => {
+  return componentTestingSetup({
+    componentClass: ShellComponent,
+    driver: ShellComponentDriver,
+    declarations: [MockComponent(MainNavComponent)],
+  });
+};
 
 describe('ShellComponent', () => {
-  let component: ShellComponent;
-  let fixture: ComponentFixture<ShellComponent>;
+  let driver: ShellComponentDriver;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ShellComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ShellComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    Given(() => {});
+
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+      expect(driver.mainNav).toBeTruthy();
+    });
   });
 });

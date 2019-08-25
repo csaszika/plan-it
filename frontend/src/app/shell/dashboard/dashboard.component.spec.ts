@@ -1,24 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { componentTestingSetup } from 'angular-unit-component-driver';
 import { DashboardComponent } from './dashboard.component';
+import { DashboardComponentDriver } from './dashboard.component.driver';
+
+const componentSetup = (): DashboardComponentDriver => {
+  return componentTestingSetup({
+    componentClass: DashboardComponent,
+    driver: DashboardComponentDriver,
+    imports: [],
+  });
+};
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+  let driver: DashboardComponentDriver;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    Given(() => {});
+
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then(() => {
+      expect(driver.componentInstance).toBeTruthy();
+    });
   });
 });
