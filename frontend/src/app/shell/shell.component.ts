@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { MenuItem } from './types/menu-item.interface';
 
 @Component({

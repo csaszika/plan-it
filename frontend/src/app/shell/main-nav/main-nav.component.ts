@@ -1,7 +1,8 @@
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Component, Input } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { debounceTime, map, share } from 'rxjs/operators';
+
 import { MenuItem } from '../types/menu-item.interface';
 
 @Component({
@@ -14,9 +15,9 @@ export class MainNavComponent {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     debounceTime(1),
-    map((result) => result.matches),
+    map((result: BreakpointState) => result.matches),
     share()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private readonly breakpointObserver: BreakpointObserver) {}
 }

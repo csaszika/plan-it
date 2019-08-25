@@ -1,4 +1,5 @@
 import { componentTestingSetup } from 'angular-unit-component-driver';
+
 import { DashboardComponent } from './dashboard.component';
 import { DashboardComponentDriver } from './dashboard.component.driver';
 

@@ -1,8 +1,9 @@
 import { componentTestingSetup } from 'angular-unit-component-driver';
+import { MockComponent } from 'ng-mocks';
+
+import { MainNavComponent } from './main-nav/main-nav.component';
 import { ShellComponent } from './shell.component';
 import { ShellComponentDriver } from './shell.component.driver';
-import { MockComponent } from 'ng-mocks';
-import { MainNavComponent } from './main-nav/main-nav.component';
 
 const componentSetup = (): ShellComponentDriver => {
   return componentTestingSetup({

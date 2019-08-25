@@ -1,7 +1,8 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { componentTestingSetup } from 'angular-unit-component-driver';
+
 import { AppComponent } from './app.component';
 import { AppComponentDriver } from './app.component.driver';
-import { RouterTestingModule } from '@angular/router/testing';
 
 const componentSetup = (): AppComponentDriver => {
   return componentTestingSetup({
