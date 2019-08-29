@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { MenuItem } from './types/menu-item.interface';
+import { RoutePaths } from '../app-routing.module';
 
 @Component({
   selector: 'pi-shell',
@@ -8,5 +9,9 @@ import { MenuItem } from './types/menu-item.interface';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent {
-  menuItems: MenuItem[] = [{ url: '/create-plan', name: 'Create plan' }, { url: '/my-plans', name: 'My plans' }];
+  menuItems: MenuItem[] = [
+    { url: `/${RoutePaths.dashboard}`, name: 'Dashboard' },
+    { url: `/${RoutePaths.createPlan}`, name: 'Create plan' },
+    { url: `/${RoutePaths.myPlans}`, name: 'My plans' },
+  ];
 }
