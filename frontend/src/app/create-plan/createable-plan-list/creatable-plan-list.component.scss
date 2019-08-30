@@ -1,0 +1,23 @@
+.creatable-plan-list-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  padding: 10px;
+
+  mat-card {
+    width: 170px;
+    margin: 10px;
+    cursor: pointer;
+
+    mat-card-title {
+      text-align: center;
+    }
+
+    mat-card-subtitle {
+      text-align: center;
+      margin: 10px;
+    }
+  }
+
+}

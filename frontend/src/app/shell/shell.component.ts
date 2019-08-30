@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
+import { RoutePaths } from '../app.routes';
 import { MenuItem } from './types/menu-item.interface';
-import { RoutePaths } from '../app-routing.module';
 
 @Component({
   selector: 'pi-shell',
@@ -10,8 +10,8 @@ import { RoutePaths } from '../app-routing.module';
 })
 export class ShellComponent {
   menuItems: MenuItem[] = [
-    { url: `/${RoutePaths.dashboard}`, name: 'Dashboard' },
-    { url: `/${RoutePaths.createPlan}`, name: 'Create plan' },
-    { url: `/${RoutePaths.myPlans}`, name: 'My plans' },
+    { url: `/${RoutePaths.DASHBOARD}`, name: 'Dashboard' },
+    { url: `/${RoutePaths.CREATE_PLAN}`, name: 'Create plan' },
+    { url: `/${RoutePaths.MY_PLANS}`, name: 'My plans' },
   ];
 }

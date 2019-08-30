@@ -8,6 +8,7 @@
     "test": "ng test --code-coverage --watch=false --progress=false --browsers ChromeHeadlessWithoutSandbox",
     "e2e": "ng e2e",
     "lint": "npm run ts-lint && npm run lint-style && npm run prettier",
+    "lint-fix": "npm run ts-lint-fix && npm run lint-style-fix && npm run prettier-fix",
     "ts-lint": "ng lint",
     "ts-lint-fix": "ng lint --fix",
     "lint-style": "stylelint \"src/**/*.ts\"",
