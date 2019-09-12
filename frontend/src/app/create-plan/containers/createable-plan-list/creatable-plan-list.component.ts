@@ -1,19 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
-import { RoutePaths } from '../create-plan.routes';
+import { RoutePaths } from '../../create-plan.routes';
+import { cardListAnimation } from '../../../shared/animations/card-list.animations';
 
 @Component({
-  selector: 'pi-createable-plan-list',
+  selector: 'pi-creatable-plan-list',
   templateUrl: './creatable-plan-list.component.html',
   styleUrls: ['./creatable-plan-list.component.scss'],
+  animations: [cardListAnimation],
 })
 export class CreatablePlanListComponent implements OnInit {
   @Input() planTypes$!: Observable<Array<{ title: string; description: string; url: string }>>;
 
   ngOnInit(): void {
-    const loadingTime = 2000;
     this.planTypes$ = of([
       {
         title: 'Sport',
@@ -25,7 +25,7 @@ export class CreatablePlanListComponent implements OnInit {
         description: 'Create your smart goal',
         url: RoutePaths.CREATE_SMART_GOAL,
       },
-    ]).pipe(delay(loadingTime));
+    ]);
   }
 
   onClickPlanType(url: string): void {

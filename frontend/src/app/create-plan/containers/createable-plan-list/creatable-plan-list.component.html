@@ -1,4 +1,4 @@
-<section class="creatable-plan-list-container">
+<section class="creatable-plan-list-container" [@cardListAnimation]>
 
   <mat-card *ngFor="let planType of planTypes$ | async" (click)="onClickPlanType(planType.url)">
     <mat-card-title>{{planType.title}}</mat-card-title>

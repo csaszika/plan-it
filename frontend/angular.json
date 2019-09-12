@@ -97,7 +97,8 @@
               "**/*.mock.ts",
               "**/*.stub.ts",
               "**/*.testdata.ts",
-              "src/environments/*"
+              "src/environments/*",
+              "**/*.animations.ts"
             ],
             "assets": [
               "src/favicon.ico",
