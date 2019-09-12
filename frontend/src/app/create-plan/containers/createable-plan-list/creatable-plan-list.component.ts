@@ -11,7 +11,7 @@ import { cardListAnimation } from '../../../shared/animations/card-list.animatio
   animations: [cardListAnimation],
 })
 export class CreatablePlanListComponent implements OnInit {
-  @Input() planTypes$!: Observable<Array<{ title: string; description: string; url: string }>>;
+  planTypes$!: Observable<Array<{ title: string; description: string; url: string }>>;
 
   ngOnInit(): void {
     this.planTypes$ = of([
