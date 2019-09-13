@@ -23,10 +23,12 @@ export class MainNavComponent implements OnInit {
     share()
   );
 
+  /* istanbul ignore next */
   navigationEnd$: Observable<NavigationEvent> = this.router.events.pipe(filter((event: NavigationEvent) => event instanceof NavigationEnd));
 
   constructor(private readonly breakpointObserver: BreakpointObserver, private readonly router: Router) {}
 
+  /* istanbul ignore next */
   ngOnInit(): void {
     combineLatest([this.isHandset$, this.navigationEnd$])
       .pipe(
