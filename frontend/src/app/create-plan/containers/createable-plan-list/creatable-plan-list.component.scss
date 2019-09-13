@@ -2,13 +2,13 @@
 
 .creatable-plan-list-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  padding: 8px;
+  padding: 5px;
 
   mat-card {
-    width: 20%;
-    margin-bottom: 10px;
+    width: 29%;
+    margin: 5px 1px 5px 1px;
     cursor: pointer;
 
     mat-card-title {
