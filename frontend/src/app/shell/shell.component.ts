@@ -10,8 +10,8 @@ import { MenuItem } from './types/menu-item.interface';
 })
 export class ShellComponent {
   menuItems: MenuItem[] = [
-    { url: `/${RoutePaths.DASHBOARD}`, name: 'Dashboard' },
-    { url: `/${RoutePaths.CREATE_PLAN}`, name: 'Create plan' },
-    { url: `/${RoutePaths.MY_PLANS}`, name: 'My plans' },
+    { url: `/${RoutePaths.DASHBOARD}`, key: 'NAVBAR.menuItem.dashboard' },
+    { url: `/${RoutePaths.CREATE_PLAN}`, key: 'NAVBAR.menuItem.createPlan' },
+    { url: `/${RoutePaths.MY_PLANS}`, key: 'NAVBAR.menuItem.myPlans' },
   ];
 }

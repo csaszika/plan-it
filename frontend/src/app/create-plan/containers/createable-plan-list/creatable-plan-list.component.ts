@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { RoutePaths } from '../../create-plan.routes';
 import { cardListAnimation } from '../../../shared/animations/card-list.animations';
+import { RoutePaths } from '../../create-plan.routes';
 
 @Component({
   selector: 'pi-creatable-plan-list',

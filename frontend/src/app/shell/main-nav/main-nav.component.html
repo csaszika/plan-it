@@ -6,7 +6,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <ng-container *ngFor="let menuItem of menuItems">
-        <a mat-list-item [routerLink]="[menuItem.url]">{{menuItem.name}}</a>
+        <a mat-list-item [routerLink]="[menuItem.url]" >{{menuItem.key | translate}}</a>
       </ng-container>
       <a mat-list-item [routerLink]="'/logout'">Logout</a>
     </mat-nav-list>
@@ -23,6 +23,19 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>PlanIT</span>
+      <div class="language-buttons-container">
+        <button mat-button
+                class="language-button"
+                name="change-to-hu"
+                [ngClass]="{'active': currentLanguage === langHU}"
+                (click)="onClickHUTranslation()">{{langHU}}</button>
+        <span class="language-divider"></span>
+        <button mat-button
+                class="language-button"
+                name="change-to-en"
+                [ngClass]="{'active': currentLanguage === langEN}"
+                (click)="onClickENTranslation()">{{langEN}}</button>
+      </div>
     </mat-toolbar>
 
     <main class="router-outlet-content">

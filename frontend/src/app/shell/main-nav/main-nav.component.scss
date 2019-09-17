@@ -15,3 +15,23 @@
   top: 0;
   z-index: 1;
 }
+
+.language-buttons-container {
+  margin-right: 0;
+  margin-left: auto;
+
+  .language-button {
+    min-width: 0;
+    color: midnightblue;
+  }
+
+  .active {
+    color: white;
+  }
+
+  .language-divider {
+    border-left: 1px solid white;
+    height: inherit;
+  }
+}
+

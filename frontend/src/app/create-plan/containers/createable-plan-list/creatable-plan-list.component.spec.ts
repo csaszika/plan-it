@@ -1,9 +1,10 @@
-import { componentTestingSetup } from 'angular-unit-component-driver';
-import { CreatablePlanListComponent } from './creatable-plan-list.component';
-import { CreatablePlanListComponentDriver } from './creatable-plan-list.component.driver';
-import { MockModule } from 'ng-mocks';
 import { MatCardModule } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { MockModule } from 'ng-mocks';
+
+import { CreatablePlanListComponent } from './creatable-plan-list.component';
+import { CreatablePlanListComponentDriver } from './creatable-plan-list.component.driver';
 
 const componentSetup = (): CreatablePlanListComponentDriver => {
   return componentTestingSetup({

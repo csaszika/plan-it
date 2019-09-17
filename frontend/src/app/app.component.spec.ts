@@ -1,6 +1,8 @@
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService } from '@ngx-translate/core';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 
+import { TranslateServiceStub } from '../../test-util/stubs/translate.service.stub';
 import { AppComponent } from './app.component';
 import { AppComponentDriver } from './app.component.driver';
 
@@ -9,6 +11,7 @@ const componentSetup = (): AppComponentDriver => {
     componentClass: AppComponent,
     driver: AppComponentDriver,
     imports: [RouterTestingModule],
+    providers: [{ provide: TranslateService, useClass: TranslateServiceStub }],
   });
 };
 
