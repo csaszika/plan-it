@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreatablePlanListComponent } from './containers/createable-plan-list/creatable-plan-list.component';
+import { CreateSportPlanComponent } from './containers/create-sport-plan/create-sport-plan.component';
+import { RoutePaths } from './create-plan.routes';
 
 const routes: Routes = [
   {
     path: '',
     component: CreatablePlanListComponent,
-    children: [],
+  },
+  {
+    path: RoutePaths.CREATE_SPORT_PLAN,
+    component: CreateSportPlanComponent,
   },
 ];
 

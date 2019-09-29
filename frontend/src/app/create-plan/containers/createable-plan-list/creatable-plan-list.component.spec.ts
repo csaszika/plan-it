@@ -5,6 +5,7 @@ import { MockModule } from 'ng-mocks';
 
 import { CreatablePlanListComponent } from './creatable-plan-list.component';
 import { CreatablePlanListComponentDriver } from './creatable-plan-list.component.driver';
+import { RoutePaths } from '../../create-plan.routes';
 
 const componentSetup = (): CreatablePlanListComponentDriver => {
   return componentTestingSetup({
@@ -26,39 +27,12 @@ describe('CreatablePlanListComponent', () => {
       driver.detectChanges();
     });
 
-    Then(() => {
+    Then('should create', () => {
       expect(driver.componentInstance).toBeTruthy();
     });
-  });
 
-  describe('Public methods', () => {
-    const mockUrl = 'url';
-    Given(() => {
-      driver.detectChanges();
-      spyOn(window, 'alert');
-    });
-
-    When(() => {
-      driver.componentInstance.onClickPlanType(mockUrl);
-    });
-
-    Then(() => {
-      expect(window.alert).toHaveBeenCalledWith(mockUrl);
-    });
-  });
-
-  describe('Events', () => {
-    Given(() => {
-      driver.detectChanges();
-      spyOn(driver.componentInstance, 'onClickPlanType');
-    });
-
-    When(() => {
-      driver.firstPlanCard.click();
-    });
-
-    Then(() => {
-      expect(driver.componentInstance.onClickPlanType).toHaveBeenCalledWith('sport');
+    Then('could navigate to route', () => {
+      expect(driver.firstPlanCard.getAttribute('href')).toEqual(RoutePaths.CREATE_SPORT_PLAN);
     });
   });
 });

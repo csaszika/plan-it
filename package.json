@@ -1,7 +1,6 @@
 {
   "name": "plan-it",
   "version": "0.0.0",
-  "license": "MIT",
   "scripts": {
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",

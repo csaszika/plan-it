@@ -25,35 +25,6 @@ export class CreatablePlanListComponent implements OnInit {
         description: 'Create your smart goal',
         url: RoutePaths.CREATE_SMART_GOAL,
       },
-      {
-        title: 'Sport',
-        description: 'Create your own training plan',
-        url: RoutePaths.CREATE_SPORT_PLAN,
-      },
-      {
-        title: 'Smart goal',
-        description: 'Create your smart goal',
-        url: RoutePaths.CREATE_SMART_GOAL,
-      },
-      {
-        title: 'Smart goal',
-        description: 'Create your smart goal',
-        url: RoutePaths.CREATE_SMART_GOAL,
-      },
-      {
-        title: 'Smart goal',
-        description: 'Create your smart goal',
-        url: RoutePaths.CREATE_SMART_GOAL,
-      },
-      {
-        title: 'Smart goal',
-        description: 'Create your smart goal',
-        url: RoutePaths.CREATE_SMART_GOAL,
-      },
     ]);
-  }
-
-  onClickPlanType(url: string): void {
-    alert(url);
   }
 }

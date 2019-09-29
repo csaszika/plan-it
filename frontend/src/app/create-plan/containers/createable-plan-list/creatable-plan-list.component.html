@@ -1,6 +1,6 @@
 <section class="creatable-plan-list-container" [@cardListAnimation]>
 
-  <mat-card *ngFor="let planType of planTypes$ | async" (click)="onClickPlanType(planType.url)">
+  <mat-card *ngFor="let planType of planTypes$ | async" [routerLink]="[planType.url]">
     <mat-card-title>{{planType.title}}</mat-card-title>
     <mat-card-subtitle>{{planType.description}}</mat-card-subtitle>
   </mat-card>
