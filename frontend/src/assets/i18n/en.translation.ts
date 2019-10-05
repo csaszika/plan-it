@@ -39,6 +39,14 @@ export default {
         addNew: 'Add new step',
       },
     },
+    stepper: {
+      plan: {
+        label: 'Plan details',
+      },
+      steps: {
+        label: 'Plan steps',
+      },
+    },
   },
   FORM: {
     optional: {

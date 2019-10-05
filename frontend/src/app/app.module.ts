@@ -9,6 +9,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { from, Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
@@ -19,6 +22,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './shell/dashboard/dashboard.component';
 import { MainNavComponent } from './shell/main-nav/main-nav.component';
 import { ShellComponent } from './shell/shell.component';
+import { metaReducers, reducers } from './store';
 
 // export function HttpLoaderFactory(http: HttpClient) {
 //   return new TranslateHttpLoader(http, '/assets/i18n/', '.translation.ts');
@@ -53,6 +57,15 @@ export class ObjectTranslateLoader implements TranslateLoader {
         deps: [HttpClient],
       },
     }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

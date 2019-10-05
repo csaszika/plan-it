@@ -1,101 +1,112 @@
 <div>
   <h1 class="page-heading">{{'CREATE_SPORT_PLAN.heading' | translate}}</h1>
+
   <form *ngIf="createFormGroup" [formGroup]="createFormGroup" class="create-form-group">
 
-    <mat-form-field>
-      <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
-      <input matInput type="text"
-             formControlName="name"
-             autocomplete="off">
-      <mat-error *ngIf="createFormGroup.get('name').hasError('required') && createFormGroup.get('name').touched">
-        {{'FORM.error.required' | translate}}
-      </mat-error>
-      <mat-error *ngIf="createFormGroup.get('name').hasError('maxlength')">
-        {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planNameMaxLength } }}}
-      </mat-error>
-    </mat-form-field>
-
-    <div class="button-group">
-      <mat-label>{{'CREATE_SPORT_PLAN.form.sportType.label' | translate}}</mat-label>
-      <mat-button-toggle-group formControlName="sportType" #sportTypeButtonGroup [multiple]="false">
-        <mat-button-toggle *ngFor="let item of sportTypes;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.sportType.label' | translate:{level: item} }}">
-          {{ item }}
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-
-    <form formGroupName="details" class="create-form-group-details">
-
-      <mat-form-field>
-        <mat-label>{{'CREATE_SPORT_PLAN.form.details.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
-        <textarea matInput type="text"
-                  formControlName="description" [mat-autosize]="true"
-                  autocomplete="off"></textarea>
-        <mat-error *ngIf="createFormGroup.get('details.description').hasError('maxlength')">
-          {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsDescriptionMaxLength } }}}
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>{{'CREATE_SPORT_PLAN.form.details.goal.label' | translate}}</mat-label>
-        <input matInput type="text"
-               formControlName="goal"
-               autocomplete="off">
-        <mat-error *ngIf="createFormGroup.get('details.goal').hasError('required') && createFormGroup.get('details.goal').touched">
-          {{'FORM.error.required' | translate}}
-        </mat-error>
-        <mat-error *ngIf="createFormGroup.get('details.goal').hasError('maxlength')">
-          {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsGoalMaxLength } }}}
-        </mat-error>
-      </mat-form-field>
-
-      <div class="button-group">
-        <mat-label>{{'CREATE_SPORT_PLAN.form.details.level.label' | translate}}</mat-label>
-        <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
-          <mat-button-toggle *ngFor="let item of levels;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.details.level.label' | translate:{level: item} }}">
-            {{ item }}
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-
-    </form>
-
-    <mat-card formArrayName="steps"
-              class="add-steps-card"
-              *ngFor="let stepGroup of createFormGroup.get('steps').controls, let i = index">
-      <div [formGroupName]="i" class="add-steps-form-group">
+    <mat-vertical-stepper>
+      <mat-step>
+        <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.plan.label' | translate}}</ng-template>
 
         <mat-form-field>
-          <mat-label>{{'CREATE_SPORT_PLAN.form.steps.name.label' | translate}}</mat-label>
+          <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
           <input matInput type="text"
                  formControlName="name"
                  autocomplete="off">
-          <mat-error *ngIf="createFormGroup.get('steps').controls[i].get('name').hasError('required') && createFormGroup.get('steps').controls[i].get('name').touched">
+          <mat-error *ngIf="createFormGroup.get('name').hasError('required') && createFormGroup.get('name').touched">
             {{'FORM.error.required' | translate}}
           </mat-error>
-          <mat-error *ngIf="createFormGroup.get('steps').controls[i].get('name').hasError('maxlength')">
-            {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planStepNameMaxLength } }}}
+          <mat-error *ngIf="createFormGroup.get('name').hasError('maxlength')">
+            {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planNameMaxLength } }}}
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>{{'CREATE_SPORT_PLAN.form.steps.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
-          <textarea matInput type="text"
-                    formControlName="description" [mat-autosize]="true"
-                    autocomplete="off"></textarea>
-          <mat-error *ngIf="createFormGroup.get('details.description').hasError('maxlength')">
-            {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsDescriptionMaxLength } }}}
-          </mat-error>
-        </mat-form-field>
+        <div class="button-group">
+          <mat-label>{{'CREATE_SPORT_PLAN.form.sportType.label' | translate}}</mat-label>
+          <mat-button-toggle-group formControlName="sportType" #sportTypeButtonGroup [multiple]="false">
+            <mat-button-toggle *ngFor="let item of sportTypes;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.sportType.label' | translate:{level: item} }}">
+              {{ item }}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
 
-      </div>
+        <form formGroupName="details" class="create-form-group-details">
 
-    </mat-card>
+          <mat-form-field>
+            <mat-label>{{'CREATE_SPORT_PLAN.form.details.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
+            <textarea matInput type="text"
+                      formControlName="description" [mat-autosize]="true"
+                      autocomplete="off"></textarea>
+            <mat-error *ngIf="createFormGroup.get('details.description').hasError('maxlength')">
+              {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsDescriptionMaxLength } }}}
+            </mat-error>
+          </mat-form-field>
 
-    <button mat-button
-            type="button"
-            class="add-new-step-button"
-            (click)="this.createFormGroup.addNewStep()">{{'CREATE_SPORT_PLAN.form.steps.addNew' | translate}}</button>
+          <mat-form-field>
+            <mat-label>{{'CREATE_SPORT_PLAN.form.details.goal.label' | translate}}</mat-label>
+            <input matInput type="text"
+                   formControlName="goal"
+                   autocomplete="off">
+            <mat-error *ngIf="createFormGroup.get('details.goal').hasError('required') && createFormGroup.get('details.goal').touched">
+              {{'FORM.error.required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="createFormGroup.get('details.goal').hasError('maxlength')">
+              {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsGoalMaxLength } }}}
+            </mat-error>
+          </mat-form-field>
+
+          <div class="button-group">
+            <mat-label>{{'CREATE_SPORT_PLAN.form.details.level.label' | translate}}</mat-label>
+            <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
+              <mat-button-toggle *ngFor="let item of levels;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.details.level.label' | translate:{level: item} }}">
+                {{ item }}
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.steps.label' | translate}}</ng-template>
+
+        <mat-card formArrayName="steps"
+                  class="add-steps-card"
+                  *ngFor="let stepGroup of createFormGroup.get('steps').controls, let i = index">
+          <div [formGroupName]="i" class="add-steps-form-group">
+
+            <mat-form-field>
+              <mat-label>{{'CREATE_SPORT_PLAN.form.steps.name.label' | translate}}</mat-label>
+              <input matInput type="text"
+                     formControlName="name"
+                     autocomplete="off">
+              <mat-error *ngIf="createFormGroup.get('steps').controls[i].get('name').hasError('required') && createFormGroup.get('steps').controls[i].get('name').touched">
+                {{'FORM.error.required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="createFormGroup.get('steps').controls[i].get('name').hasError('maxlength')">
+                {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planStepNameMaxLength } }}}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'CREATE_SPORT_PLAN.form.steps.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
+              <textarea matInput type="text"
+                        formControlName="description" [mat-autosize]="true"
+                        autocomplete="off"></textarea>
+              <mat-error *ngIf="createFormGroup.get('details.description').hasError('maxlength')">
+                {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsDescriptionMaxLength } }}}
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </mat-card>
+
+        <button mat-button
+                type="button"
+                class="add-new-step-button"
+                (click)="this.createFormGroup.addNewStep()">{{'CREATE_SPORT_PLAN.form.steps.addNew' | translate}}</button>
+      </mat-step>
+    </mat-vertical-stepper>
 
   </form>
 </div>

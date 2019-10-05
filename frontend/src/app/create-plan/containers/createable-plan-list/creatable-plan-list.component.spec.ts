@@ -3,9 +3,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 import { MockModule } from 'ng-mocks';
 
+import { RoutePaths } from '../../create-plan.routes';
 import { CreatablePlanListComponent } from './creatable-plan-list.component';
 import { CreatablePlanListComponentDriver } from './creatable-plan-list.component.driver';
-import { RoutePaths } from '../../create-plan.routes';
 
 const componentSetup = (): CreatablePlanListComponentDriver => {
   return componentTestingSetup({

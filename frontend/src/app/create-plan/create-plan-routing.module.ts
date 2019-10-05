@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CreatablePlanListComponent } from './containers/createable-plan-list/creatable-plan-list.component';
 import { CreateSportPlanComponent } from './containers/create-sport-plan/create-sport-plan.component';
+import { CreatablePlanListComponent } from './containers/createable-plan-list/creatable-plan-list.component';
 import { RoutePaths } from './create-plan.routes';
 
 const routes: Routes = [

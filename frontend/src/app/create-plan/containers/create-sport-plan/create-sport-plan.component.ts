@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { debounceTime } from 'rxjs/operators';
+
 import { CreateSportPlanForm } from './create-sport-plan.form';
-import { debounce, debounceTime, filter } from 'rxjs/operators';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'pi-create-sport-plan',
@@ -14,7 +14,7 @@ export class CreateSportPlanComponent implements OnInit {
   createFormGroup: CreateSportPlanForm = new CreateSportPlanForm();
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.createFormGroup.valueChanges.pipe(debounceTime(50)).subscribe((form) => console.log(form));
   }
 }

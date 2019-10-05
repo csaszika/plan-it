@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 export const planNameMaxLength = 30;
 export const planDetailsDescriptionMaxLength = 300;
@@ -14,9 +14,9 @@ export class CreateSportPlanForm extends FormGroup {
   readonly planStepNameMaxLength = planStepNameMaxLength;
   readonly planStepDescriptionMaxLength = planStepDescriptionMaxLength;
   constructor() {
-    // const form = this.fb.group();
     super({
       name: new FormControl(null, [Validators.required, Validators.maxLength(planNameMaxLength)]),
+      sportType: new FormControl(null, [Validators.required]),
       details: new FormGroup({
         description: new FormControl(null, [Validators.maxLength(planDetailsDescriptionMaxLength)]),
         goal: new FormControl(null, [Validators.required, Validators.maxLength(planDetailsGoalMaxLength)]),
@@ -25,7 +25,6 @@ export class CreateSportPlanForm extends FormGroup {
         ageClass: new FormControl(null, [Validators.required]),
       }),
       steps: new FormArray([], Validators.minLength(1)),
-      sportType: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -38,6 +37,8 @@ export class CreateSportPlanForm extends FormGroup {
     );
     // TODO design (get info from customer)
     // 3. videoLinks?
-    // 4. infoLinks?
+    // 4. infoLinks? -> get more insights noooo
+    // 5. files? -> get more insights
+    // 6. animations? -> future, perhaps
   }
 }

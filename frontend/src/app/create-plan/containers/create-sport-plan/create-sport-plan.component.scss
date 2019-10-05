@@ -13,7 +13,7 @@ $top-margin: 15px;
   flex-flow: column nowrap;
 
   mat-form-field {
-    margin-top: $top-margin;
+    min-width: fit-content;
     margin-right: $side-margin;
     margin-left: $side-margin;
   }
