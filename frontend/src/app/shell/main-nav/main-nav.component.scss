@@ -20,7 +20,7 @@
   margin-right: 0;
   margin-left: auto;
 
-  .language-button {
+  .language-buttons-container__button {
     min-width: 0;
     color: midnightblue;
     padding: 0 10px;
@@ -30,7 +30,7 @@
     color: white;
   }
 
-  .language-divider {
+  .language-buttons-container__divider {
     border-left: 1px solid white;
     height: inherit;
   }

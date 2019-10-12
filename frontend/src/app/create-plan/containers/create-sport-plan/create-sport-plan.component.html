@@ -1,7 +1,7 @@
 <div>
   <h1 class="page-heading">{{'CREATE_SPORT_PLAN.heading' | translate}}</h1>
 
-  <form *ngIf="createFormGroup" [formGroup]="createFormGroup" class="create-form-group">
+  <form *ngIf="createFormGroup" [formGroup]="createFormGroup" class="create-sport-form">
 
     <mat-vertical-stepper [linear]="true">
       <!-- stepControl only validity check -->
@@ -21,7 +21,7 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="button-group">
+        <div class="create-sport-form__button-group">
           <mat-label>{{'CREATE_SPORT_PLAN.form.sportType.label' | translate}}</mat-label>
           <mat-button-toggle-group formControlName="sportType" #sportTypeButtonGroup [multiple]="false">
             <mat-button-toggle *ngFor="let item of sportTypes;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.sportType.label' | translate:{level: item} }}">
@@ -30,7 +30,7 @@
           </mat-button-toggle-group>
         </div>
 
-        <div class="create-form-group-details">
+        <div class="create-sport-form__details">
           <mat-form-field>
             <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
             <textarea matInput type="text"
@@ -65,7 +65,7 @@
               formGroupName="{{createFormGroup.specialDetailsFormControlKey}}">
 
           <div *ngIf="createFormGroup.controls[createFormGroup.specialDetailsFormControlKey].controls.level"
-               class="button-group">
+               class="create-sport-form__button-group">
             <mat-label>{{'CREATE_SPORT_PLAN.form.level.label' | translate}}</mat-label>
             <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
               <mat-button-toggle *ngFor="let item of levels;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.level.label' | translate:{level: item} }}">
@@ -75,7 +75,7 @@
           </div>
 
           <div *ngIf="createFormGroup.controls[createFormGroup.specialDetailsFormControlKey].controls.ageClass"
-               class="button-group">
+               class="create-sport-form__button-group">
             <mat-label>{{'CREATE_SPORT_PLAN.form.ageClass.label' | translate}}</mat-label>
             <mat-button-toggle-group formControlName="ageClass" #ageClassButtonGroup [multiple]="false">
               <mat-button-toggle *ngFor="let item of ageClassesForFootball;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.ageClass.label' | translate:{level: item} }}">
@@ -92,9 +92,10 @@
         <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.steps.label' | translate}}</ng-template>
 
         <mat-card formArrayName="steps"
-                  class="add-steps-card"
+                  class="create-sport-form__add-steps-card"
                   *ngFor="let stepGroup of createFormGroup.get('steps').controls, let i = index">
-          <div [formGroupName]="i" class="add-steps-form-group">
+
+          <div [formGroupName]="i" class="create-sport-form__add-steps-form">
 
             <mat-form-field>
               <mat-label>{{'CREATE_SPORT_PLAN.form.steps.name.label' | translate}}</mat-label>
@@ -125,7 +126,7 @@
 
         <button mat-button
                 type="button"
-                class="add-new-step-button"
+                class="create-sport-form__add-new-step-button"
                 (click)="this.createFormGroup.addNewStep()">{{'CREATE_SPORT_PLAN.form.steps.addNew' | translate}}</button>
       </mat-step>
     </mat-vertical-stepper>

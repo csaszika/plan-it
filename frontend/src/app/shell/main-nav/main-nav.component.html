@@ -25,13 +25,13 @@
       <span>PlanIT</span>
       <div class="language-buttons-container">
         <button mat-button
-                class="language-button"
+                class="language-buttons-container__button"
                 name="change-to-hu"
                 [ngClass]="{'active': currentLanguage === langHU}"
                 (click)="onClickHUTranslation()">{{langHU}}</button>
-        <span class="language-divider"></span>
+        <span class="language-buttons-container__divider"></span>
         <button mat-button
-                class="language-button"
+                class="language-buttons-container__button"
                 name="change-to-en"
                 [ngClass]="{'active': currentLanguage === langEN}"
                 (click)="onClickENTranslation()">{{langEN}}</button>
