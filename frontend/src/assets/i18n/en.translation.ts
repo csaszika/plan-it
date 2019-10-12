@@ -15,19 +15,17 @@ export default {
       sportType: {
         label: 'Sport type',
       },
-      details: {
-        description: {
-          label: 'Description',
-        },
-        goal: {
-          label: 'Goal',
-        },
-        level: {
-          label: 'Level',
-        },
-        ageClass: {
-          label: 'Age class',
-        },
+      description: {
+        label: 'Description',
+      },
+      goal: {
+        label: 'Goal',
+      },
+      level: {
+        label: 'Level',
+      },
+      ageClass: {
+        label: 'Age class',
       },
       steps: {
         name: {
@@ -40,8 +38,11 @@ export default {
       },
     },
     stepper: {
-      plan: {
-        label: 'Plan details',
+      planDetails: {
+        label: 'Main details',
+      },
+      planSpecialDetails: {
+        label: 'Specific details',
       },
       steps: {
         label: 'Plan steps',

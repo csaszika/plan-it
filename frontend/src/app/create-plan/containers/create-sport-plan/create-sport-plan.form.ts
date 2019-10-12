@@ -13,26 +13,27 @@ export class CreateSportPlanForm extends FormGroup {
   readonly planDetailsGoalMaxLength = planDetailsGoalMaxLength;
   readonly planStepNameMaxLength = planStepNameMaxLength;
   readonly planStepDescriptionMaxLength = planStepDescriptionMaxLength;
+  readonly specialDetailsFormControlKey = 'specialDetails';
   constructor() {
     super({
-      name: new FormControl(null, [Validators.required, Validators.maxLength(planNameMaxLength)]),
-      sportType: new FormControl(null, [Validators.required]),
-      details: new FormGroup({
-        description: new FormControl(null, [Validators.maxLength(planDetailsDescriptionMaxLength)]),
-        goal: new FormControl(null, [Validators.required, Validators.maxLength(planDetailsGoalMaxLength)]),
-        level: new FormControl(null, [Validators.required]),
-        // TODO tbd values (U7-23 + mature)
-        ageClass: new FormControl(null, [Validators.required]),
-      }),
+      name: new FormControl('', [Validators.required, Validators.maxLength(planNameMaxLength)]),
+      sportType: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.maxLength(planDetailsDescriptionMaxLength)]),
+      goal: new FormControl('', [Validators.required, Validators.maxLength(planDetailsGoalMaxLength)]),
       steps: new FormArray([], Validators.minLength(1)),
     });
+  }
+
+  addSpecialDetailsFormControl(specialFormGroup: FormGroup): void {
+    this.removeControl(this.specialDetailsFormControlKey);
+    this.addControl(this.specialDetailsFormControlKey, specialFormGroup);
   }
 
   addNewStep(): void {
     (this.get('steps') as FormArray).push(
       new FormGroup({
-        name: new FormControl(null, [Validators.required, Validators.maxLength(planStepNameMaxLength)]),
-        description: new FormControl(null, [Validators.maxLength(planStepDescriptionMaxLength)]),
+        name: new FormControl('', [Validators.required, Validators.maxLength(planStepNameMaxLength)]),
+        description: new FormControl('', [Validators.maxLength(planStepDescriptionMaxLength)]),
       })
     );
     // TODO design (get info from customer)

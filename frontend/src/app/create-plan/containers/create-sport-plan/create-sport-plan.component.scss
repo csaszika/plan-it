@@ -13,7 +13,7 @@ $top-margin: 15px;
   flex-flow: column nowrap;
 
   mat-form-field {
-    min-width: fit-content;
+    min-width: 40%;
     margin-right: $side-margin;
     margin-left: $side-margin;
   }
@@ -35,6 +35,7 @@ $top-margin: 15px;
       margin-bottom: 5px;
     }
 
+    // fix material design
     .mat-button-toggle-label-content .mat-button-toggle-appearance-standard {
       line-height: 0 !important;
     }
