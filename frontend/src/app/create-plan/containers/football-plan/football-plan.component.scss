@@ -1,0 +1,58 @@
+
+$side-margin: 30px;
+$top-margin: 15px;
+
+.football-form {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+  mat-form-field {
+    min-width: 40%;
+    margin-right: $side-margin;
+    margin-left: $side-margin;
+  }
+
+  .football-form__main-details {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .football-form__button-group {
+    display: flex;
+    flex-flow: column nowrap;
+    width: fit-content;
+    margin-top: $top-margin;
+    margin-bottom: 10px;
+    margin-left: $side-margin;
+
+    mat-label {
+      margin-bottom: 5px;
+    }
+    // fix material design
+    .mat-button-toggle-label-content .mat-button-toggle-appearance-standard {
+      line-height: 0 !important;
+    }
+  }
+
+  // modify material design
+  .mat-card {
+    background: #424280;
+  }
+
+  .create-sport-form__add-steps-card {
+    margin-top: $top-margin;
+    margin-right: $side-margin;
+    margin-left: $side-margin;
+
+    .create-sport-form__add-steps-form {
+      width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+  }
+
+  .create-sport-form__add-new-step-button {
+    margin: $top-margin $side-margin $top-margin $side-margin;
+  }
+}

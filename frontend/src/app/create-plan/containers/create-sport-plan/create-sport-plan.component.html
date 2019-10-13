@@ -33,8 +33,10 @@
         <div class="create-sport-form__main-details">
           <mat-form-field>
             <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
-            <textarea matInput type="text"
-                      formControlName="description" [mat-autosize]="true"
+            <textarea matInput
+                      [mat-autosize]="true"
+                      type="text"
+                      formControlName="description"
                       autocomplete="off"></textarea>
             <mat-error *ngIf="createFormGroup.get('description').hasError('maxlength')">
               {{'FORM.error.maxlength' | translate:{ number: createFormGroup.planDetailsDescriptionMaxLength } }}}

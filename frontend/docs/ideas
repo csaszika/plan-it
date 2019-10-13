@@ -1,3 +1,8 @@
 1. create color selector from material.io color picker
 
 2. quick plan creator like https://www.freetrainers.com/exercise/calendar/
+
+3. breadcrumb from url with following logic:
+
+Plan creation > Football = /create-plan/football
+Plan creation > Agility = /create-plan/agility
