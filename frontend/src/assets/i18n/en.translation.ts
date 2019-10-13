@@ -24,6 +24,9 @@ export default {
       level: {
         label: 'Level',
       },
+      color: {
+        label: 'Color',
+      },
       ageClass: {
         label: 'Age class',
       },

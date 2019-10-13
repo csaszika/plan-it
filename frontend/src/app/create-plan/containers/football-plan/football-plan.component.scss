@@ -13,6 +13,16 @@ $top-margin: 15px;
     margin-left: $side-margin;
   }
 
+  mat-label {
+    opacity: 0.7;
+  }
+
+  .football-form__color-picker {
+    margin-right: $side-margin;
+    margin-left: $side-margin;
+    margin-top: $top-margin;
+  }
+
   .football-form__main-details {
     display: flex;
     flex-flow: column nowrap;

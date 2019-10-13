@@ -1,0 +1,10 @@
+<div class="color-picker-container">
+  <div mat-menu-item
+       class="color-picker-container__color-picker-item"
+       *ngFor="let color of colors"
+       (click)="onChange(color)"
+       [style.background]="color">
+    <mat-icon class="color-picker-container__chosen-icon" *ngIf="currentColor === color">check_circle</mat-icon>
+    <div class="docs-theme-picker-primary"></div>
+  </div>
+</div>

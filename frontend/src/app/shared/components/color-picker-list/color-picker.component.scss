@@ -1,0 +1,26 @@
+$theme-picker-grid-cell-size: 40px;
+$theme-picker-swatch-size: 30px;
+
+.color-picker-container {
+  display: flex;
+  flex-flow: row wrap;
+
+  .color-picker-container__color-picker-item {
+    position: relative;
+    width: $theme-picker-swatch-size;
+    height: $theme-picker-swatch-size;
+    margin: ($theme-picker-grid-cell-size - $theme-picker-swatch-size) / 2;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,.2);
+    overflow: hidden;
+    outline: none;
+
+    .color-picker-container__chosen-icon {
+      color: white;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+}

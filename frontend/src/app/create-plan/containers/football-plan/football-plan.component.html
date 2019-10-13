@@ -44,6 +44,11 @@
           </mat-error>
         </mat-form-field>
 
+        <div class="football-form__color-picker">
+          <mat-label>{{'CREATE_SPORT_PLAN.form.color.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
+          <pi-color-picker formControlName="color" [colors]="colors"></pi-color-picker>
+        </div>
+
         <div class="football-form__button-group">
           <mat-label>{{'CREATE_SPORT_PLAN.form.level.label' | translate}}</mat-label>
           <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
@@ -71,7 +76,7 @@
 
       <mat-card formArrayName="steps"
                 class="football-form__add-steps-card"
-                *ngFor="let stepGroup of footballForm.get('steps').controls, let i = index">
+                *ngFor="let steps of footballForm.get('steps').controls, let i = index">
 
         <div [formGroupName]="i" class="football-form__add-steps-form">
 

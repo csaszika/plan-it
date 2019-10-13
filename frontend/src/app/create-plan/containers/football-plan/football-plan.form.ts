@@ -18,6 +18,7 @@ export class FootballPlanForm extends FormGroup {
       name: new FormControl('', [Validators.required, Validators.maxLength(planNameMaxLength)]),
       description: new FormControl('', [Validators.maxLength(planDetailsDescriptionMaxLength)]),
       goal: new FormControl('', [Validators.required, Validators.maxLength(planDetailsGoalMaxLength)]),
+      color: new FormControl('', []),
       level: new FormControl('', [Validators.required]),
       // TODO tbd values (U7-23 + mature)
       ageClass: new FormControl('', [Validators.required]),

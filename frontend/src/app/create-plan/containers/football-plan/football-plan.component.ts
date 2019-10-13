@@ -9,6 +9,7 @@ import { FootballPlanForm } from './football-plan.form';
   styleUrls: ['./football-plan.component.scss'],
 })
 export class FootballPlanComponent implements OnInit {
+  readonly colors = ['green', 'yellow', 'red', 'blue'];
   readonly levels = [1, 2, 3, 4, 5];
   readonly ageClasses = ['U7', 'U10', 'U13', 'U15', 'U20'];
 
