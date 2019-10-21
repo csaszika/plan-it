@@ -12,7 +12,25 @@ import { FormGroup } from '@angular/forms';
 })
 export class CreateSportPlanComponent implements OnInit {
   readonly levels = [1, 2, 3, 4, 5];
-  readonly ageClassesForFootball = ['U7', 'U10', 'U13', 'U15', 'U20'];
+  readonly ageClassesForFootball = [
+    'U7',
+    'U8',
+    'U9',
+    'U10',
+    'U11',
+    'U12',
+    'U13',
+    'U14',
+    'U15',
+    'U16',
+    'U17',
+    'U18',
+    'U19',
+    'U20',
+    'U21',
+    'U22',
+    'U23',
+  ];
   readonly sportTypes = ['Football', 'Agility'];
   readonly sportTypeToFormControl: { [index: string]: FormGroup } = {
     Football: new FootballDetailsForm(),

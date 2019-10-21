@@ -2,19 +2,19 @@
   What are they trying to get done?
 
 tasks:
-1. nincs rendszerben a cucc
+1. there is no a common interface for create, archive plans
 2. nem lathato mindenki szamara
-3. korosztalyra bontva
-4. players can give points to training
-
+3. age classes u7-u23
+4. players can give points to training (perhaps useless)
 5. level 1-5 1-10? customers
 
 2. PAINS are what your customers want to avoid, such as risk, negative emotions, or costs.
   What are their biggest pains preventing them from getting that job done?
 
 problems:
-
-1.
+1. there is no a common interface for create, archive plans
+2. hard to create word docs
+3. hard to create a plan book for learning/teaching
 
 3. GAINS are positive outcomes your customers are hoping for, such as functional utility, positive emotions, or even cost savings.
   What are the biggest gains they’re looking for after doing the job?
@@ -22,11 +22,10 @@ problems:
 animations:
 material design:
 1. themes per customer
-2. icons, svg-s, background image
-football animation creation:
-share plan(extra questions): talk with customers
-rate plans: no at the moment
-coloring: lehet
+2. icons, svg-s, background sport image! (perhaps by plan type!!)
+3. football animation creation:
+4. share plan(extra questions): talk with customers
+5. coloring: yep we need that!!!
 
 4. Plan making on mobile?
 
