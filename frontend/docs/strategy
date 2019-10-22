@@ -5,7 +5,7 @@ Must have:
 4. Create agility plan (perhaps can be merged with football plan creation, grooming about customer inputs)
 5. My plan list view
 6. A plan view (update, delete)
-7. Registration and login (firebase auth)
+7. Registration and login (firebase auth) (email+)
 
 99. Admin interface? (user mgmt, create groups..etc)
 
@@ -17,7 +17,8 @@ Delighters:
 1. My plan list view (delete, share with group(with world?), copy/duplicate all with icons)
 2. public plans view (same as my plans, copy/duplicate)
 3. public plan view (readonly) (copy, comment?)
-4. Football animation creator
+4. Football animation creator (+1, -1, )
+5. sms or fb message about daily training
 
 Future:
 1. Dashboard (various block like new public plans, got rating for plans...etc) perhaps we dont need this

@@ -6,3 +6,9 @@
 
 Plan creation > Football = /create-plan/football
 Plan creation > Agility = /create-plan/agility
+
+4. Norbi puts plan to the clothing room door
+
+automata: before training (half hour)
+
+send sms or facebook message? (1 proba)
