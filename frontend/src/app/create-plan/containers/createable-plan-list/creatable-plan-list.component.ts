@@ -29,12 +29,6 @@ export class CreatablePlanListComponent implements OnInit {
         url: RoutePaths.CREATE_AGILITY_PLAN,
       },
       {
-        title: 'Sport',
-        description: 'Create your own training plan',
-        type: PlanGroup.SPORT,
-        url: RoutePaths.CREATE_SPORT_PLAN,
-      },
-      {
         title: 'Smart goal',
         description: 'Create your smart goal',
         type: PlanGroup.WORK,

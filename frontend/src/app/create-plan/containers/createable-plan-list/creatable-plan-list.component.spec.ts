@@ -1,7 +1,8 @@
-import { MatCardModule } from '@angular/material/card';
+import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { componentTestingSetup } from 'angular-unit-component-driver';
-import { MockModule } from 'ng-mocks';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MockComponent } from 'ng-mocks';
 
 import { RoutePaths } from '../../create-plan.routes';
 import { CreatablePlanListComponent } from './creatable-plan-list.component';
@@ -11,7 +12,8 @@ const componentSetup = (): CreatablePlanListComponentDriver => {
   return componentTestingSetup({
     componentClass: CreatablePlanListComponent,
     driver: CreatablePlanListComponentDriver,
-    imports: [NoopAnimationsModule, MockModule(MatCardModule)],
+    imports: [NoopAnimationsModule, RouterTestingModule],
+    declarations: [MockComponent(MatCard), MockComponent(MatCardTitle), MockComponent(MatCardSubtitle)],
   });
 };
 
@@ -32,7 +34,7 @@ describe('CreatablePlanListComponent', () => {
     });
 
     Then('could navigate to route', () => {
-      expect(driver.firstPlanCard.getAttribute('href')).toEqual(RoutePaths.CREATE_SPORT_PLAN);
+      expect(driver.firstPlanCard.getAttribute('ng-reflect-router-link')).toEqual(RoutePaths.CREATE_FOOTBALL_PLAN);
     });
   });
 });

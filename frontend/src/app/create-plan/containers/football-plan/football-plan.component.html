@@ -24,7 +24,7 @@
         <mat-form-field>
           <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
           <textarea matInput
-                    [mat-autosize]="true"
+                    [cdkTextareaAutosize]="true"
                     type="text"
                     formControlName="description"
                     autocomplete="off"></textarea>
@@ -93,7 +93,7 @@
           <mat-form-field>
             <mat-label>{{'CREATE_SPORT_PLAN.form.steps.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
             <textarea matInput type="text"
-                      formControlName="description" [mat-autosize]="true"
+                      formControlName="description" [cdkTextareaAutosize]="true"
                       autocomplete="off"></textarea>
             <mat-error *ngIf="footballForm.get('description').hasError('maxlength')">
               {{'FORM.error.maxlength' | translate:{ number: footballForm.planStepDescriptionMaxLength } }}}

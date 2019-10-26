@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+
 import { TrainingPlan, TrainingPlanId } from '../../types/training-plan.types';
 
 @Injectable({
@@ -13,7 +14,6 @@ export class TrainingPlansService {
   }
 
   addPlan(newPlan: TrainingPlan): Promise<DocumentReference> {
-    console.log(newPlan);
     return this.plansRef.add(newPlan);
   }
 

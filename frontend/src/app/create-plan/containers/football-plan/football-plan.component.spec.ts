@@ -1,24 +1,62 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatCard } from '@angular/material/card';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatStep, MatVerticalStepper } from '@angular/material/stepper';
+import { TranslatePipe } from '@ngx-translate/core';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
+import { MockComponent, MockDirective, MockModule, MockPipe } from 'ng-mocks';
 
+import { TrainingPlansService } from '../../../shared/services/training-plans/training-plans.service';
 import { FootballPlanComponent } from './football-plan.component';
+import { FootballPlanComponentDriver } from './football-plan.component.driver';
+
+const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): FootballPlanComponentDriver => {
+  return componentTestingSetup({
+    componentClass: FootballPlanComponent,
+    driver: FootballPlanComponentDriver,
+    imports: [MockModule(ReactiveFormsModule)],
+    providers: [{ provide: TrainingPlansService, useValue: mockTrainingPlansService }],
+    declarations: [
+      MockComponent(MatVerticalStepper),
+      MockComponent(MatStep),
+      MockComponent(MatButtonToggleGroup),
+      MockComponent(MatButtonToggle),
+      MockComponent(MatFormField),
+      MockComponent(MatLabel),
+      MockComponent(MatError),
+      MockComponent(MatCard),
+      MockDirective(MatButton),
+      MockDirective(CdkTextareaAutosize),
+      MockPipe(TranslatePipe),
+    ],
+  });
+};
 
 describe('FootballPlanComponent', () => {
-  let component: FootballPlanComponent;
-  let fixture: ComponentFixture<FootballPlanComponent>;
+  let driver: FootballPlanComponentDriver;
+  const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, [
+    'addPlan',
+    'deletePlan',
+    'updatePlan',
+  ]);
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [FootballPlanComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FootballPlanComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup(mockTrainingPlansService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    Given(() => {});
+
+    When(() => {
+      driver.detectChanges();
+    });
+
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+    });
   });
 });

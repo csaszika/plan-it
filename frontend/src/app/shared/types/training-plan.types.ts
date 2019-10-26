@@ -10,7 +10,7 @@ export interface TrainingPlan {
   ageClass: string;
   description: string;
   goal: string;
-  level: string;
+  level: number;
   name: string;
   steps: Array<TrainingPlanStep>;
 }

@@ -9,15 +9,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CreateSportPlanComponent } from './containers/create-sport-plan/create-sport-plan.component';
 import { CreatablePlanListComponent } from './containers/createable-plan-list/creatable-plan-list.component';
-import { CreatePlanRoutingModule } from './create-plan-routing.module';
 import { FootballPlanComponent } from './containers/football-plan/football-plan.component';
+import { CreatePlanRoutingModule } from './create-plan-routing.module';
 
 const MATERIAL_MODULES = [MatButtonModule, MatButtonToggleModule, MatCardModule, MatFormFieldModule, MatInputModule, MatStepperModule];
 
 @NgModule({
-  declarations: [CreatablePlanListComponent, CreateSportPlanComponent, FootballPlanComponent],
+  declarations: [CreatablePlanListComponent, FootballPlanComponent],
   imports: [CommonModule, CreatePlanRoutingModule, ReactiveFormsModule, TranslateModule, ...MATERIAL_MODULES],
 })
 export class CreatePlanModule {}
