@@ -21,7 +21,7 @@ export class FootballPlanForm extends FormGroup {
       level: new FormControl('', [Validators.required]),
       // TODO tbd values (U7-23 + mature)
       ageClass: new FormControl('', [Validators.required]),
-      steps: new FormArray([], Validators.minLength(1)),
+      steps: new FormArray([], Validators.required),
     });
   }
 
