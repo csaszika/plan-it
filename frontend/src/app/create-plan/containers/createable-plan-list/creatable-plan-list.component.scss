@@ -3,13 +3,13 @@
 .creatable-plan-list-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   padding: 5px;
 
   mat-card {
     cursor: pointer;
     margin: 5px 1px 5px 1px;
-    width: 29%;
+    width: 22%;
 
     mat-card-title {
       text-align: center;
@@ -37,7 +37,7 @@
 
   @include tablet {
     mat-card {
-      width: 28%;
+      width: 20%;
     }
   }
 }

@@ -3,27 +3,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { TrainingPlan } from '../../types/training-plan.types';
 import { TrainingPlansService } from './training-plans.service';
+import { angularFirestoreStub } from '../../../test-util/stubs/firestore.stub';
 
 describe('TrainingPlansService', () => {
   let service: TrainingPlansService;
   let spyCollection: jasmine.Spy;
-
-  const angularFirestoreStub = {
-    collection: (path: string): any => {
-      return {
-        add: (data: TrainingPlan): void => {},
-        doc: (id: string): object => {
-          return {
-            delete: (): void => {},
-            update: (): void => {},
-          };
-        },
-      };
-    },
-  };
+  let firestore: any;
 
   Given(() => {
-    spyCollection = spyOn(angularFirestoreStub, 'collection').and.returnValue({
+    firestore = angularFirestoreStub();
+    spyCollection = spyOn(firestore, 'collection').and.returnValue({
       add: (data: TrainingPlan): void => {},
       doc: (id: string): object => {
         return {
@@ -36,7 +25,7 @@ describe('TrainingPlansService', () => {
 
   Given(() => {
     TestBed.configureTestingModule({
-      providers: [TrainingPlansService, { provide: AngularFirestore, useValue: angularFirestoreStub }],
+      providers: [TrainingPlansService, { provide: AngularFirestore, useValue: firestore }],
     });
     service = TestBed.get(TrainingPlansService);
   });
@@ -44,7 +33,7 @@ describe('TrainingPlansService', () => {
   describe('Initializing', () => {
     Then('should be created', () => {
       expect(service).toBeTruthy();
-      expect(angularFirestoreStub.collection).toHaveBeenCalledWith('/trainingPlans');
+      expect(firestore.collection).toHaveBeenCalledWith('/trainingPlans');
     });
   });
 
@@ -67,7 +56,7 @@ describe('TrainingPlansService', () => {
       let spyAdd: jasmine.Spy;
 
       Given(() => {
-        spyAdd = spyOn(angularFirestoreStub.collection(''), 'add').and.callThrough();
+        spyAdd = spyOn(firestore.collection(''), 'add').and.callThrough();
       });
 
       When(() => {
@@ -84,11 +73,11 @@ describe('TrainingPlansService', () => {
       let spyDoc: jasmine.Spy;
 
       Given(() => {
-        spyDoc = spyOn(angularFirestoreStub.collection(''), 'doc').and.returnValue({
+        spyDoc = spyOn(firestore.collection(''), 'doc').and.returnValue({
           delete: (): void => {},
           update: (): void => {},
         });
-        spyDelete = spyOn(angularFirestoreStub.collection('').doc(''), 'delete').and.callThrough();
+        spyDelete = spyOn(firestore.collection('').doc(''), 'delete').and.callThrough();
       });
 
       When(() => {
@@ -106,11 +95,11 @@ describe('TrainingPlansService', () => {
       let spyDoc: jasmine.Spy;
 
       Given(() => {
-        spyDoc = spyOn(angularFirestoreStub.collection(''), 'doc').and.returnValue({
+        spyDoc = spyOn(firestore.collection(''), 'doc').and.returnValue({
           delete: (): void => {},
           update: (): void => {},
         });
-        spyUpdate = spyOn(angularFirestoreStub.collection('').doc(''), 'update').and.callThrough();
+        spyUpdate = spyOn(firestore.collection('').doc(''), 'update').and.callThrough();
       });
 
       When(() => {
