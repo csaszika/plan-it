@@ -34,7 +34,7 @@ export class FootballPlanComponent {
     'U21',
     'U22',
     'U23',
-    'Adult', //TODO translate Adult
+    'Adult', // TODO translate Adult
   ];
   // TODO now we can create plans and then update or delete the last one
   private selectedTrainingPlanId: TrainingPlanId = 'have to come from store';

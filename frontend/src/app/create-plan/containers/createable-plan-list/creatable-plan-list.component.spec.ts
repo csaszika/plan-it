@@ -1,7 +1,7 @@
 import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { componentTestingSetup } from 'angular-unit-component-driver';
 import { RouterTestingModule } from '@angular/router/testing';
+import { componentTestingSetup } from 'angular-unit-component-driver';
 import { MockComponent } from 'ng-mocks';
 
 import { RoutePaths } from '../../create-plan.routes';
