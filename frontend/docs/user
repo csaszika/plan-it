@@ -1,0 +1,10 @@
+1. Registration and login
+  1. https://angularfirebase.com/lessons/angular-firebase-authentication-tutorial-email-password-signup/
+  2. AuthGuard
+
+2. User authorization
+  1.
+
+3. User collection/document
+  1. id (generated uid during authentication)
+  2. authorities (array => [groups like KelenSC, ...])

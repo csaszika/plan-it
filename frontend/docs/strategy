@@ -2,7 +2,7 @@ Must have:
 1. Menu (my plans, create plan(by type))
 2. Creatable plans view
 3. Create football plan
-4. Create agility plan (perhaps can be merged with football plan creation, grooming about customer inputs)
+4. Create agility plan
 5. My plan list view
 6. A plan view (update, delete)
 7. Registration and login (firebase auth) (email+)
