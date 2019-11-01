@@ -3,7 +3,7 @@ export default {
     menuItem: {
       dashboard: 'Nyitó oldal',
       createPlan: 'Terv készítés',
-      myPlans: 'Terveim',
+      plans: 'Tervek',
     },
   },
 };

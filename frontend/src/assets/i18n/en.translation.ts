@@ -3,7 +3,7 @@ export default {
     menuItem: {
       dashboard: 'Dashboard',
       createPlan: 'Create plan',
-      myPlans: 'My plans',
+      plans: 'Plans',
     },
   },
   CREATE_SPORT_PLAN: {

@@ -12,6 +12,6 @@ export class ShellComponent {
   menuItems: MenuItem[] = [
     { url: `/${RoutePaths.DASHBOARD}`, key: 'NAVBAR.menuItem.dashboard' },
     { url: `/${RoutePaths.CREATE_PLAN}`, key: 'NAVBAR.menuItem.createPlan' },
-    { url: `/${RoutePaths.MY_PLANS}`, key: 'NAVBAR.menuItem.myPlans' },
+    { url: `/${RoutePaths.PLANS}`, key: 'NAVBAR.menuItem.plans' },
   ];
 }
