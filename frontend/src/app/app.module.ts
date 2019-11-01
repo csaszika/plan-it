@@ -68,7 +68,7 @@ export class ObjectTranslateLoader implements TranslateLoader {
         strictActionImmutability: true,
       },
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production }),
     EffectsModule.forRoot([]),
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }],

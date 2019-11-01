@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-gzip": "ng build --prod --stats-json && gzipper --verbose ./dist",
+    "build-prod-stats": "ng build --prod --stats-json",
     "test": "ng test --code-coverage --watch=false --progress=false --browsers ChromeHeadlessWithoutSandbox",
     "e2e": "ng e2e",
     "lint": "npm run ts-lint && npm run lint-style && npm run prettier",
@@ -21,7 +23,8 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run frontend:server:production",
     "preinstall": "node ./scripts/check-dev-env nodeVersion=10.16 npmVersion=6.11.2",
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "bundle-report": "webpack-bundle-analyzer dist/browser/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
@@ -51,6 +54,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "firebase": ">= 5.5.7 <7",
+    "jspdf": "^1.5.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
@@ -67,12 +71,14 @@
     "@types/jasmine": "~3.4.4",
     "@types/jasmine-given": "^2.6.4",
     "@types/jasminewd2": "~2.0.8",
+    "@types/jspdf": "^1.3.1",
     "@types/node": "~12.7.12",
     "angular-configuration": "^0.3.0",
     "angular-unit-component-driver": "^0.3.0",
     "codelyzer": "^5.1.2",
     "firebase-tools": "^6.10.0",
     "fuzzy": "^0.1.3",
+    "gzipper": "^3.4.0",
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "jasmine-auto-spies": "^5.0.1",
@@ -99,6 +105,7 @@
     "tslint-consistent-codestyle": "^1.15.1",
     "typescript": "~3.5.3",
     "wait-on": "^3.2.0",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.1.0"
   }
 }
