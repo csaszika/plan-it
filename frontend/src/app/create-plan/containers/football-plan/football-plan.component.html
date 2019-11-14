@@ -7,20 +7,21 @@
     <mat-step>
       <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.planDetails.label' | translate}}</ng-template>
 
-      <mat-form-field>
-        <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
-        <input matInput type="text"
-               formControlName="name"
-               autocomplete="off">
-        <mat-error *ngIf="footballForm.get('name').hasError('required') && footballForm.get('name').touched">
-          {{'FORM.error.required' | translate}}
-        </mat-error>
-        <mat-error *ngIf="footballForm.get('name').hasError('maxlength')">
-          {{'FORM.error.maxlength' | translate:{ number: footballForm.planNameMaxLength } }}}
-        </mat-error>
-      </mat-form-field>
-
       <div class="football-form__main-details">
+
+        <mat-form-field>
+          <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
+          <input matInput type="text"
+                 formControlName="name"
+                 autocomplete="off">
+          <mat-error *ngIf="footballForm.get('name').hasError('required') && footballForm.get('name').touched">
+            {{'FORM.error.required' | translate}}
+          </mat-error>
+          <mat-error *ngIf="footballForm.get('name').hasError('maxlength')">
+            {{'FORM.error.maxlength' | translate:{ number: footballForm.planNameMaxLength } }}}
+          </mat-error>
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
           <textarea matInput

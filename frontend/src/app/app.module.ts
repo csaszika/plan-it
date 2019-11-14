@@ -37,6 +37,8 @@ export class ObjectTranslateLoader implements TranslateLoader {
   }
 }
 
+const MATERIAL_MODULES = [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule];
+
 @NgModule({
   declarations: [AppComponent, ShellComponent, MainNavComponent, DashboardComponent],
   imports: [
@@ -45,13 +47,9 @@ export class ObjectTranslateLoader implements TranslateLoader {
     AngularFirestoreModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
+    ...MATERIAL_MODULES,
     HttpClientModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     TranslateModule.forRoot({
       loader: {

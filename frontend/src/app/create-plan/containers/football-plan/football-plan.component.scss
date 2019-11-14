@@ -16,6 +16,7 @@ $top-margin: 15px;
   .football-form__main-details {
     display: flex;
     flex-flow: column nowrap;
+    overflow: auto;
   }
 
   .football-form__button-group {

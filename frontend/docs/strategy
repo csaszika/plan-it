@@ -4,21 +4,23 @@ Must have:
 3. Create football plan
 4. Create agility plan
 5. My plan list view
-6. A plan view (update, delete)
+6. A plan view (update, delete, copy/duplicate)
 7. Registration and login (firebase auth) (email+)
+8. pdf generate => coaching point(text) (mire figyeljen az edzo, tanacsok, mit mondjanak a jatekosoknak)
 
 99. Admin interface? (user mgmt, create groups..etc)
 
 Performance:
 1. Quick plan creator (https://www.freetrainers.com/exercise/calendar/)
-2. breadcrumb
+2. breadcrumb (+)
 
 Delighters:
 1. My plan list view (delete, share with group(with world?), copy/duplicate all with icons)
 2. public plans view (same as my plans, copy/duplicate)
 3. public plan view (readonly) (copy, comment?)
-4. Football animation creator (+1, -1, )
-5. sms or fb message about daily training
+4. Football animation creator (+1, -1, +)
+5. sms or fb message(++) about daily training
+6. email grass or firm grass (+)
 
 Future:
-1. Dashboard (various block like new public plans, got rating for plans...etc) perhaps we dont need this
+1. Dashboard (various block like new public plans, got rating for plans...etc) perhaps we dont need this (-)

@@ -4,7 +4,7 @@
   tasks:
   1. there is no a common interface for create, archive plans
   2. nem lathato mindenki szamara
-  3. age classes u7-u23 (u7(), u8-9, u10-11, u12 u13, ) -> Zsolt???
+  3. age classes u7-u23 (u7, u8-9, u10-11, u12-13++) -> Zsolt???
   4. players can give points to training (perhaps useless)
   5. level 1-5 1-10? customers (1-5++)
 
@@ -18,8 +18,8 @@
     7. training celja
 
     8. (4 or more)tasks
-      1. picture(form step) + description + additonal info(additional step info) (szervezes, megjegyzes)
-    9. creator (keszitette: Konczey Zsolt)
+      1. picture(form step) + description + additional info(additional step info) (szervezes, megjegyzes)
+    9. creator (made by: Konczey Zsolt)
     10. kelen logo in the background
 
   7. more teams more plan types (Zsolt?) -> coloring????
@@ -43,11 +43,11 @@ problems:
   material design:
   1. themes per customer(++)
   2. icons, svg-s, background sport image! (perhaps by plan type!!)
-  3. football animation creation:
+  3. football animation creation: + - +
   4. share plan(extra questions): talk with customers
-  5. coloring: yep we need that!!! ++??
-  6. videoLinks for plan creation (++)
-  7. customVideos (++)
+  5. coloring: yep we need that!!! +++??
+  6. videoLinks for plan creation (+++)
+  7. customVideos (+++)
 
 4. Plan making on mobile?
 
@@ -55,5 +55,6 @@ problems:
   2. smart football (spanyol) gondolkodasmod
   3. offline++ (service worker caching and save on wifi)
   4. mobile++
+  5. 2 template van => egysegesites
 
 
