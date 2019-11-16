@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { cardListAnimation } from '../../../shared/animations/card-list.animations';
 import { RoutePaths } from '../../create-plan.routes';
 import { PlanGroup } from '../../types/plan-group.enums';
+import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
 
 @Component({
   selector: 'pi-creatable-plan-list',
@@ -12,7 +13,7 @@ import { PlanGroup } from '../../types/plan-group.enums';
   animations: [cardListAnimation],
 })
 export class CreatablePlanListComponent implements OnInit {
-  planTypes$!: Observable<Array<{ title: string; description: string; url: string }>>;
+  planTypes$!: Observable<Array<NavCardItem>>;
 
   ngOnInit(): void {
     this.planTypes$ = of([

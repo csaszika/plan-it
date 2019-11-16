@@ -12,11 +12,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CreatablePlanListComponent } from './containers/createable-plan-list/creatable-plan-list.component';
 import { FootballPlanComponent } from './containers/football-plan/football-plan.component';
 import { CreatePlanRoutingModule } from './create-plan-routing.module';
+import { NavigationCardsModule } from '../shared/navigation-cards/navigation-cards.module';
 
 const MATERIAL_MODULES = [MatButtonModule, MatButtonToggleModule, MatCardModule, MatFormFieldModule, MatInputModule, MatStepperModule];
 
 @NgModule({
   declarations: [CreatablePlanListComponent, FootballPlanComponent],
-  imports: [CommonModule, CreatePlanRoutingModule, ReactiveFormsModule, TranslateModule, ...MATERIAL_MODULES],
+  imports: [CommonModule, CreatePlanRoutingModule, ReactiveFormsModule, TranslateModule, ...MATERIAL_MODULES, NavigationCardsModule],
 })
 export class CreatePlanModule {}

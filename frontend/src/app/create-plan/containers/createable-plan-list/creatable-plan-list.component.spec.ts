@@ -1,19 +1,18 @@
-import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 import { MockComponent } from 'ng-mocks';
 
 import { RoutePaths } from '../../create-plan.routes';
 import { CreatablePlanListComponent } from './creatable-plan-list.component';
 import { CreatablePlanListComponentDriver } from './creatable-plan-list.component.driver';
+import { NavigationCardsComponent } from '../../../shared/navigation-cards/navigation-cards/navigation-cards.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const componentSetup = (): CreatablePlanListComponentDriver => {
   return componentTestingSetup({
     componentClass: CreatablePlanListComponent,
     driver: CreatablePlanListComponentDriver,
-    imports: [NoopAnimationsModule, RouterTestingModule],
-    declarations: [MockComponent(MatCard), MockComponent(MatCardTitle), MockComponent(MatCardSubtitle)],
+    imports: [NoopAnimationsModule],
+    declarations: [MockComponent(NavigationCardsComponent)],
   });
 };
 
@@ -31,10 +30,6 @@ describe('CreatablePlanListComponent', () => {
 
     Then('should create', () => {
       expect(driver.componentInstance).toBeTruthy();
-    });
-
-    Then('could navigate to route', () => {
-      expect(driver.firstPlanCard.getAttribute('ng-reflect-router-link')).toEqual(RoutePaths.CREATE_FOOTBALL_PLAN);
     });
   });
 });
