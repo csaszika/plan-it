@@ -38,11 +38,7 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
 
 describe('FootballPlanComponent', () => {
   let driver: FootballPlanComponentDriver;
-  const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, [
-    'addPlan',
-    'deletePlan',
-    'updatePlan',
-  ]);
+  const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
 
   Given(() => {
     driver = componentSetup(mockTrainingPlansService);
@@ -59,4 +55,26 @@ describe('FootballPlanComponent', () => {
       expect(driver.componentInstance).toBeTruthy();
     });
   });
+
+  // TODO something wrong with jasmine-auto-spies
+  // describe('Events', () => {
+  //   Given(() => {});
+  //
+  //   When(() => {
+  //     driver.detectChanges();
+  //     mockTrainingPlansService.addPlan.and.resolveWith({ id: 'mockId' } as DocumentReference);
+  //     driver.saveButton.click();
+  //   });
+  //
+  //   Then('should call service to save', () => {
+  //     expect(mockTrainingPlansService.addPlan).toHaveBeenCalledWith({
+  //       name: '',
+  //       description: '',
+  //       goal: '',
+  //       level: '',
+  //       ageClass: '',
+  //       steps: [],
+  //     });
+  //   });
+  // });
 });
