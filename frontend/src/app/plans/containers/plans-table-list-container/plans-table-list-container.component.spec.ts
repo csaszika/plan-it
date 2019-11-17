@@ -1,24 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { componentTestingSetup } from 'angular-unit-component-driver';
+import { MockComponent } from 'ng-mocks';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NavigationCardsComponent } from '../../../shared/navigation-cards/navigation-cards/navigation-cards.component';
+import { PlansTableListContainerComponentDriver } from './plans-table-list-container.component.driver';
 import { PlansTableListContainerComponent } from './plans-table-list-container.component';
 
-describe('PlansTableListContainerComponent', () => {
-  let component: PlansTableListContainerComponent;
-  let fixture: ComponentFixture<PlansTableListContainerComponent>;
+const componentSetup = (): PlansTableListContainerComponentDriver => {
+  return componentTestingSetup({
+    componentClass: PlansTableListContainerComponent,
+    driver: PlansTableListContainerComponentDriver,
+    imports: [NoopAnimationsModule],
+    declarations: [MockComponent(NavigationCardsComponent)],
+  });
+};
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PlansTableListContainerComponent],
-    }).compileComponents();
-  }));
+describe('CreatablePlanListComponent', () => {
+  let driver: PlansTableListContainerComponentDriver;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PlansTableListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Initializing', () => {
+    Given(() => {
+      driver.detectChanges();
+    });
+
+    Then('should create', () => {
+      expect(driver.componentInstance).toBeTruthy();
+    });
   });
 });

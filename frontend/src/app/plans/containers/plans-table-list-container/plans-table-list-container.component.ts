@@ -1,12 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
+import { PlanGroup } from '../../../create-plan/types/plan-group.enums';
+import { PlansRoutes } from '../../../shared/routes/plans.routes';
+import { cardListAnimation } from '../../../shared/animations/card-list.animations';
 
 @Component({
   selector: 'pi-plans-table-list-container',
   templateUrl: './plans-table-list-container.component.html',
   styleUrls: ['./plans-table-list-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [cardListAnimation],
 })
 export class PlansTableListContainerComponent implements OnInit {
-  constructor() {}
+  planTypes$!: Observable<Array<NavCardItem>>;
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.planTypes$ = of([
+      {
+        title: 'Football',
+        description: 'Create your own football training',
+        type: PlanGroup.SPORT,
+        url: PlansRoutes.FOOTBALL_PLANS,
+      },
+      {
+        title: 'Agility',
+        description: 'Create your own agility training',
+        type: PlanGroup.SPORT,
+        url: PlansRoutes.AGILITY_PLANS,
+      },
+      {
+        title: 'Smart goal',
+        description: 'Create your smart goal',
+        type: PlanGroup.WORK,
+        url: PlansRoutes.SMART_GOALS,
+      },
+    ]);
+  }
 }

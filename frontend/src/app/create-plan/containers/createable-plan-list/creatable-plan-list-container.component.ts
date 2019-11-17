@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { cardListAnimation } from '../../../shared/animations/card-list.animations';
@@ -10,6 +10,7 @@ import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-car
   selector: 'pi-creatable-plan-list',
   templateUrl: './creatable-plan-list-container.component.html',
   styleUrls: ['./creatable-plan-list-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [cardListAnimation],
 })
 export class CreatablePlanListContainerComponent implements OnInit {
