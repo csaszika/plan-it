@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavigationCardsComponent } from './navigation-cards.component';
 import { NavigationCardsComponentDriver } from './navigation-cards.driver';
-import { RoutePaths } from '../../../create-plan/create-plan.routes';
+import { CreatePlanRoutes } from '../../routes/create-plan.routes';
 import { PlanGroup } from '../../../create-plan/types/plan-group.enums';
 
 const componentSetup = (): NavigationCardsComponentDriver => {
@@ -31,17 +31,17 @@ describe('NavigationCardsComponent', () => {
         {
           title: 'Football',
           description: 'Create your own football training',
-          url: RoutePaths.CREATE_FOOTBALL_PLAN,
+          url: CreatePlanRoutes.CREATE_FOOTBALL_PLAN,
         },
         {
           title: 'Agility',
           description: 'Create your own agility training',
-          url: RoutePaths.CREATE_AGILITY_PLAN,
+          url: CreatePlanRoutes.CREATE_AGILITY_PLAN,
         },
         {
           title: 'Smart goal',
           description: 'Create your smart goal',
-          url: RoutePaths.CREATE_SMART_GOAL,
+          url: CreatePlanRoutes.CREATE_SMART_GOAL,
         },
       ];
       driver.detectChanges();
@@ -52,7 +52,7 @@ describe('NavigationCardsComponent', () => {
     });
 
     Then('could navigate to route', () => {
-      expect(driver.firstPlanCard.getAttribute('ng-reflect-router-link')).toEqual(RoutePaths.CREATE_FOOTBALL_PLAN);
+      expect(driver.firstPlanCard.getAttribute('ng-reflect-router-link')).toEqual(CreatePlanRoutes.CREATE_FOOTBALL_PLAN);
     });
   });
 });

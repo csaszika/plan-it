@@ -3,16 +3,16 @@ import { DocumentReference } from '@angular/fire/firestore';
 import { FormGroupDirective } from '@angular/forms';
 import { MatVerticalStepper } from '@angular/material/stepper';
 
-import { TrainingPlansService } from '../../../shared/services/training-plans/training-plans.service';
-import { TrainingPlanId } from '../../../shared/types/training-plan.types';
+import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
+import { TrainingPlanId } from '../../../../shared/types/training-plan.types';
 import { FootballPlanForm } from './football-plan.form';
 
 @Component({
   selector: 'pi-football-plan',
-  templateUrl: './football-plan.component.html',
-  styleUrls: ['./football-plan.component.scss'],
+  templateUrl: './football-plan-form-container.component.html',
+  styleUrls: ['./football-plan-form-container.component.scss'],
 })
-export class FootballPlanComponent {
+export class FootballPlanFormContainerComponent {
   /* tslint:disable:no-magic-numbers */
   readonly levels = [1, 2, 3, 4, 5];
   /* tslint:enable:no-magic-numbers */

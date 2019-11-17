@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { RoutePaths } from '../app.routes';
+import { RoutePaths } from '../shared/routes/app.routes';
 import { MenuItem } from './types/menu-item.interface';
 
 @Component({

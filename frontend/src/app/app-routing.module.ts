@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RoutePaths } from './app.routes';
+import { RoutePaths } from './shared/routes/app.routes';
 import { DashboardComponent } from './shell/dashboard/dashboard.component';
 import { ShellComponent } from './shell/shell.component';
 
@@ -20,7 +20,11 @@ const routes: Routes = [
         path: RoutePaths.CREATE_PLAN,
         loadChildren: () => import('./create-plan/create-plan.module').then((module) => module.CreatePlanModule),
       },
-      { path: '', pathMatch: 'full', redirectTo: RoutePaths.DASHBOARD },
+      {
+        path: RoutePaths.FOOTBALL,
+        loadChildren: () => import('./domains/football/football.module').then((module) => module.FootballModule),
+      },
+      { path: '', pathMatch: 'full', redirectTo: RoutePaths.PLANS },
     ],
   },
 ];

@@ -10,14 +10,14 @@ import { componentTestingSetup } from 'angular-unit-component-driver';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { MockComponent, MockDirective, MockModule, MockPipe } from 'ng-mocks';
 
-import { TrainingPlansService } from '../../../shared/services/training-plans/training-plans.service';
-import { FootballPlanComponent } from './football-plan.component';
-import { FootballPlanComponentDriver } from './football-plan.component.driver';
+import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
+import { FootballPlanFormContainerComponent } from './football-plan-form-container.component';
+import { FootballPlanFormContainerComponentDriver } from './football-plan-form-container.component.driver';
 
-const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): FootballPlanComponentDriver => {
+const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): FootballPlanFormContainerComponentDriver => {
   return componentTestingSetup({
-    componentClass: FootballPlanComponent,
-    driver: FootballPlanComponentDriver,
+    componentClass: FootballPlanFormContainerComponent,
+    driver: FootballPlanFormContainerComponentDriver,
     imports: [MockModule(ReactiveFormsModule)],
     providers: [{ provide: TrainingPlansService, useValue: mockTrainingPlansService }],
     declarations: [
@@ -37,7 +37,7 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
 };
 
 describe('FootballPlanComponent', () => {
-  let driver: FootballPlanComponentDriver;
+  let driver: FootballPlanFormContainerComponentDriver;
   const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
 
   Given(() => {
