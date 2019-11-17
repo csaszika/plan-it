@@ -1,5 +1,5 @@
 import { ComponentDriver } from 'angular-unit-component-driver';
 
-import { CreatablePlanListComponent } from './creatable-plan-list.component';
+import { CreatablePlanListContainerComponent } from './creatable-plan-list-container.component';
 
-export class CreatablePlanListComponentDriver extends ComponentDriver<CreatablePlanListComponent> {}
+export class CreatablePlanListComponentDriver extends ComponentDriver<CreatablePlanListContainerComponent> {}

@@ -8,11 +8,11 @@ import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-car
 
 @Component({
   selector: 'pi-creatable-plan-list',
-  templateUrl: './creatable-plan-list.component.html',
-  styleUrls: ['./creatable-plan-list.component.scss'],
+  templateUrl: './creatable-plan-list-container.component.html',
+  styleUrls: ['./creatable-plan-list-container.component.scss'],
   animations: [cardListAnimation],
 })
-export class CreatablePlanListComponent implements OnInit {
+export class CreatablePlanListContainerComponent implements OnInit {
   planTypes$!: Observable<Array<NavCardItem>>;
 
   ngOnInit(): void {

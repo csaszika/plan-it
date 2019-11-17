@@ -13,6 +13,10 @@ const routes: Routes = [
     children: [
       { path: RoutePaths.DASHBOARD, component: DashboardComponent, data: { animation: '' } },
       {
+        path: RoutePaths.PLANS,
+        loadChildren: () => import('./plans/plans.module').then((module) => module.PlansModule),
+      },
+      {
         path: RoutePaths.CREATE_PLAN,
         loadChildren: () => import('./create-plan/create-plan.module').then((module) => module.CreatePlanModule),
       },
