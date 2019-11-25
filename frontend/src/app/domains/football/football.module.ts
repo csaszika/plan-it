@@ -8,14 +8,27 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { FootballRoutingModule } from './football-routing.module';
-import { FootballPlanFormContainerComponent } from './containers/football-plan/football-plan-form-container.component';
+import { FootballPlanFormContainerComponent } from './containers/football-plan-form-container/football-plan-form-container.component';
+import { FootballPlansContainerComponent } from './containers/football-plans-container/football-plans-container.component';
 
 const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatStepperModule];
 
 @NgModule({
-  declarations: [FootballPlanFormContainerComponent],
-  imports: [CommonModule, FootballRoutingModule, ReactiveFormsModule, TranslateModule, ...MATERIAL_MODULES],
+  declarations: [FootballPlanFormContainerComponent, FootballPlansContainerComponent],
+  imports: [
+    CommonModule,
+    FootballRoutingModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    ...MATERIAL_MODULES,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+  ],
 })
 export class FootballModule {}

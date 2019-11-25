@@ -12,9 +12,6 @@ export default {
       planName: {
         label: 'Plan name',
       },
-      sportType: {
-        label: 'Sport type',
-      },
       description: {
         label: 'Description',
       },
@@ -47,6 +44,14 @@ export default {
       steps: {
         label: 'Plan steps',
       },
+    },
+  },
+  PLANS: {
+    column: {
+      name: 'Plan name',
+      ageClass: 'Age class',
+      level: 'Level',
+      creator: 'Creator',
     },
   },
   FORM: {
