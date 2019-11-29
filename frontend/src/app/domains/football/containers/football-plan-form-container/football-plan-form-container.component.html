@@ -1,131 +1,145 @@
-<form *ngIf="footballForm"
-      #form="ngForm"
-      [formGroup]="footballForm" class="football-form">
+<div [ngSwitch]="dataLoadingError$ | async">
 
-  <mat-vertical-stepper>
+  <form *ngSwitchCase="dataLoadingErrorEnum.DATA"
+        #form="ngForm"
+        @fade
+        [formGroup]="footballForm" class="football-form">
 
-    <mat-step>
-      <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.planDetails.label' | translate}}</ng-template>
+    <mat-vertical-stepper>
 
-      <div class="football-form__main-details">
+      <mat-step>
+        <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.planDetails.label' | translate}}</ng-template>
 
-        <mat-form-field>
-          <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
-          <input matInput type="text"
-                 formControlName="name"
-                 autocomplete="off">
-          <mat-error *ngIf="footballForm.get('name').hasError('required') && footballForm.get('name').touched">
-            {{'FORM.error.required' | translate}}
-          </mat-error>
-          <mat-error *ngIf="footballForm.get('name').hasError('maxlength')">
-            {{'FORM.error.maxlength' | translate:{ number: footballForm.planNameMaxLength } }}}
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
-          <textarea matInput
-                    [cdkTextareaAutosize]="true"
-                    type="text"
-                    formControlName="description"
-                    autocomplete="off"></textarea>
-          <mat-error *ngIf="footballForm.get('description').hasError('maxlength')">
-            {{'FORM.error.maxlength' | translate:{ number: footballForm.planDetailsDescriptionMaxLength } }}}
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>{{'CREATE_SPORT_PLAN.form.goal.label' | translate}}</mat-label>
-          <input matInput type="text"
-                 formControlName="goal"
-                 autocomplete="off">
-          <mat-error *ngIf="footballForm.get('goal').hasError('required') && footballForm.get('goal').touched">
-            {{'FORM.error.required' | translate}}
-          </mat-error>
-          <mat-error *ngIf="footballForm.get('goal').hasError('maxlength')">
-            {{'FORM.error.maxlength' | translate:{ number: footballForm.planDetailsGoalMaxLength } }}}
-          </mat-error>
-        </mat-form-field>
-
-        <div class="football-form__button-group">
-          <mat-label>{{'CREATE_SPORT_PLAN.form.level.label' | translate}}</mat-label>
-          <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
-            <mat-button-toggle *ngFor="let item of levels$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.level.label' | translate:{level: item} }}">
-              {{ item }}
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-        </div>
-
-        <div class="football-form__button-group">
-          <mat-label>{{'CREATE_SPORT_PLAN.form.ageClass.label' | translate}}</mat-label>
-          <mat-button-toggle-group formControlName="ageClass" #ageClassButtonGroup [multiple]="false">
-            <mat-button-toggle *ngFor="let item of ageClasses$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.ageClass.label' | translate:{level: item} }}">
-              {{ item }}
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-        </div>
-
-      </div>
-
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.steps.label' | translate}}</ng-template>
-
-      <mat-card formArrayName="steps"
-                class="football-form__add-steps-card"
-                *ngFor="let stepGroup of footballForm.get('steps').controls, let i = index">
-
-        <div [formGroupName]="i" class="football-form__add-steps-form">
+        <div class="football-form__main-details">
 
           <mat-form-field>
-            <mat-label>{{'CREATE_SPORT_PLAN.form.steps.name.label' | translate}}</mat-label>
+            <mat-label>{{'CREATE_SPORT_PLAN.form.planName.label' | translate}}</mat-label>
             <input matInput type="text"
                    formControlName="name"
                    autocomplete="off">
-            <mat-error *ngIf="footballForm.get('steps').controls[i].get('name').hasError('required') && footballForm.get('steps').controls[i].get('name').touched">
+            <mat-error *ngIf="footballForm.get('name').hasError('required') && footballForm.get('name').touched">
               {{'FORM.error.required' | translate}}
             </mat-error>
-            <mat-error *ngIf="footballForm.get('steps').controls[i].get('name').hasError('maxlength')">
-              {{'FORM.error.maxlength' | translate:{ number: footballForm.planStepNameMaxLength } }}}
+            <mat-error *ngIf="footballForm.get('name').hasError('maxlength')">
+              {{'FORM.error.maxlength' | translate:{ number: footballForm.planNameMaxLength } }}}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>{{'CREATE_SPORT_PLAN.form.steps.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
-            <textarea matInput type="text"
-                      formControlName="description" [cdkTextareaAutosize]="true"
+            <mat-label>{{'CREATE_SPORT_PLAN.form.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
+            <textarea matInput
+                      [cdkTextareaAutosize]="true"
+                      type="text"
+                      formControlName="description"
                       autocomplete="off"></textarea>
             <mat-error *ngIf="footballForm.get('description').hasError('maxlength')">
-              {{'FORM.error.maxlength' | translate:{ number: footballForm.planStepDescriptionMaxLength } }}}
+              {{'FORM.error.maxlength' | translate:{ number: footballForm.planDetailsDescriptionMaxLength } }}}
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field>
+            <mat-label>{{'CREATE_SPORT_PLAN.form.goal.label' | translate}}</mat-label>
+            <input matInput type="text"
+                   formControlName="goal"
+                   autocomplete="off">
+            <mat-error *ngIf="footballForm.get('goal').hasError('required') && footballForm.get('goal').touched">
+              {{'FORM.error.required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="footballForm.get('goal').hasError('maxlength')">
+              {{'FORM.error.maxlength' | translate:{ number: footballForm.planDetailsGoalMaxLength } }}}
+            </mat-error>
+          </mat-form-field>
+
+          <div class="football-form__button-group">
+            <mat-label>{{'CREATE_SPORT_PLAN.form.level.label' | translate}}</mat-label>
+            <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
+              <mat-button-toggle *ngFor="let item of levels$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.level.label' | translate:{level: item} }}">
+                {{ item }}
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <div class="football-form__button-group">
+            <mat-label>{{'CREATE_SPORT_PLAN.form.ageClass.label' | translate}}</mat-label>
+            <mat-button-toggle-group formControlName="ageClass" #ageClassButtonGroup [multiple]="false">
+              <mat-button-toggle *ngFor="let item of ageClasses$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.ageClass.label' | translate:{level: item} }}">
+                {{ item }}
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
         </div>
 
-      </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>{{'CREATE_SPORT_PLAN.stepper.steps.label' | translate}}</ng-template>
+
+        <mat-card formArrayName="steps"
+                  class="football-form__add-steps-card"
+                  *ngFor="let stepGroup of footballForm.get('steps').controls, let i = index">
+
+          <div [formGroupName]="i" class="football-form__add-steps-form">
+
+            <mat-form-field>
+              <mat-label>{{'CREATE_SPORT_PLAN.form.steps.name.label' | translate}}</mat-label>
+              <input matInput type="text"
+                     formControlName="name"
+                     autocomplete="off">
+              <mat-error *ngIf="footballForm.get('steps').controls[i].get('name').hasError('required') && footballForm.get('steps').controls[i].get('name').touched">
+                {{'FORM.error.required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="footballForm.get('steps').controls[i].get('name').hasError('maxlength')">
+                {{'FORM.error.maxlength' | translate:{ number: footballForm.planStepNameMaxLength } }}}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'CREATE_SPORT_PLAN.form.steps.description.label' | translate}} - {{'FORM.optional.label' | translate}}</mat-label>
+              <textarea matInput type="text"
+                        formControlName="description" [cdkTextareaAutosize]="true"
+                        autocomplete="off"></textarea>
+              <mat-error *ngIf="footballForm.get('description').hasError('maxlength')">
+                {{'FORM.error.maxlength' | translate:{ number: footballForm.planStepDescriptionMaxLength } }}}
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </mat-card>
+
+        <button mat-button
+                type="button"
+                class="create-sport-form__add-new-step-button"
+                (click)="footballForm.addNewStep()">{{'CREATE_SPORT_PLAN.form.steps.addNew' | translate}}</button>
+
+      </mat-step>
+
+    </mat-vertical-stepper>
+
+    <section class="mat-action-row">
+      <button mat-button
+              type="submit"
+              name="save-plan"
+              [disabled]="footballForm.invalid"
+              (click)="savePlan(form)">Save</button>
 
       <button mat-button
               type="button"
-              class="create-sport-form__add-new-step-button"
-              (click)="footballForm.addNewStep()">{{'CREATE_SPORT_PLAN.form.steps.addNew' | translate}}</button>
+              (click)="deletePlan()">Delete</button>
 
-    </mat-step>
+      <button mat-button
+              (click)="updatePlan()">Update</button>
+    </section>
+  </form>
 
-  </mat-vertical-stepper>
+  <div *ngSwitchCase="dataLoadingErrorEnum.LOADING">
+    <mat-progress-bar
+      [mode]="'query'">
+    </mat-progress-bar>
+  </div>
 
-  <section class="mat-action-row">
-    <button mat-button
-            type="submit"
-            name="save-plan"
-            [disabled]="footballForm.invalid"
-            (click)="savePlan(form)">Save</button>
-
-    <button mat-button
-            type="button"
-            (click)="deletePlan()">Delete</button>
-
-    <button mat-button
-            (click)="updatePlan()">Update</button>
-  </section>
-</form>
+  <div *ngSwitchCase="dataLoadingErrorEnum.ERROR">
+    Error...
+  </div>
+</div>

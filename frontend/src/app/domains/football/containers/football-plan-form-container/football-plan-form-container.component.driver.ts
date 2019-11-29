@@ -6,4 +6,7 @@ export class FootballPlanFormContainerComponentDriver extends ComponentDriver<Fo
   get saveButton(): HTMLButtonElement {
     return this.querySelector('button[name=save-plan]');
   }
+  get form(): HTMLFormElement {
+    return this.querySelector('form');
+  }
 }

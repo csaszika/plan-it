@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
@@ -35,6 +36,7 @@ const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatButtonToggleModule,
     MatSortModule,
     StoreModule.forFeature(footballFeatureKey, reducers),
     EffectsModule.forFeature([FootballPlanConfigurationEffects]),
+    MatProgressBarModule,
   ],
 })
 export class FootballModule {}

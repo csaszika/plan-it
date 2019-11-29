@@ -4,7 +4,9 @@ import { MatButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatStep, MatVerticalStepper } from '@angular/material/stepper';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -24,7 +26,7 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
   return componentTestingSetup({
     componentClass: FootballPlanFormContainerComponent,
     driver: FootballPlanFormContainerComponentDriver,
-    imports: [MockModule(ReactiveFormsModule)],
+    imports: [MockModule(ReactiveFormsModule), NoopAnimationsModule],
     providers: [
       { provide: TrainingPlansService, useValue: mockTrainingPlansService },
       provideMockStore({
@@ -44,6 +46,7 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
       MockComponent(MatLabel),
       MockComponent(MatError),
       MockComponent(MatCard),
+      MockComponent(MatProgressBar),
       MockDirective(MatButton),
       MockDirective(CdkTextareaAutosize),
       MockPipe(TranslatePipe),
@@ -73,6 +76,10 @@ describe('FootballPlanFormComponent', () => {
 
     Then('should be created', () => {
       expect(driver.componentInstance).toBeTruthy();
+    });
+
+    Then('should have a form', () => {
+      expect(driver.form).toBeTruthy();
     });
 
     Then('should trigger getting data', () => {
