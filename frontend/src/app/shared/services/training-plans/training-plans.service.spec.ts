@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { angularFirestoreStub } from '../../../test-util/stubs/firestore.stub';
 import { TrainingPlan } from '../../types/training-plan.types';
 import { TrainingPlansService } from './training-plans.service';
-import { angularFirestoreStub } from '../../../test-util/stubs/firestore.stub';
 
 describe('TrainingPlansService', () => {
   let service: TrainingPlansService;

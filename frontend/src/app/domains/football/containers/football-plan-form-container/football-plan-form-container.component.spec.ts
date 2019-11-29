@@ -5,12 +5,18 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
 import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatStep, MatVerticalStepper } from '@angular/material/stepper';
+import { Store } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslatePipe } from '@ngx-translate/core';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { MockComponent, MockDirective, MockModule, MockPipe } from 'ng-mocks';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
+import { PlanConfigurationType } from '../../../../shared/types/plan-configuration.types';
+import { FootballState } from '../../ngrx';
+import { getFootballConfigurations } from '../../ngrx/plan-configurations/football-plan-configuration.actions';
+import { initialState as footballPlanConfigurationInitialState } from '../../ngrx/plan-configurations/football-plan-configuration.reducer';
 import { FootballPlanFormContainerComponent } from './football-plan-form-container.component';
 import { FootballPlanFormContainerComponentDriver } from './football-plan-form-container.component.driver';
 
@@ -19,7 +25,16 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
     componentClass: FootballPlanFormContainerComponent,
     driver: FootballPlanFormContainerComponentDriver,
     imports: [MockModule(ReactiveFormsModule)],
-    providers: [{ provide: TrainingPlansService, useValue: mockTrainingPlansService }],
+    providers: [
+      { provide: TrainingPlansService, useValue: mockTrainingPlansService },
+      provideMockStore({
+        initialState: {
+          football: {
+            footballPlanConfiguration: footballPlanConfigurationInitialState(),
+          },
+        },
+      }),
+    ],
     declarations: [
       MockComponent(MatVerticalStepper),
       MockComponent(MatStep),
@@ -36,16 +51,21 @@ const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): Fo
   });
 };
 
-describe('FootballPlanComponent', () => {
+describe('FootballPlanFormComponent', () => {
   let driver: FootballPlanFormContainerComponentDriver;
   const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
+  let store: Store<FootballState>;
 
   Given(() => {
     driver = componentSetup(mockTrainingPlansService);
+    store = driver.injector.get(Store);
   });
 
   describe('Initializing', () => {
-    Given(() => {});
+    let spyDispatch: jasmine.Spy;
+    Given(() => {
+      spyDispatch = spyOn(store, 'dispatch').and.callThrough();
+    });
 
     When(() => {
       driver.detectChanges();
@@ -53,6 +73,10 @@ describe('FootballPlanComponent', () => {
 
     Then('should be created', () => {
       expect(driver.componentInstance).toBeTruthy();
+    });
+
+    Then('should trigger getting data', () => {
+      expect(spyDispatch).toHaveBeenCalledWith(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
     });
   });
 

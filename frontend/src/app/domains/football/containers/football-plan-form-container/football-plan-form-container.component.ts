@@ -1,10 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentReference } from '@angular/fire/firestore';
 import { FormGroupDirective } from '@angular/forms';
 import { MatVerticalStepper } from '@angular/material/stepper';
+import { select, Store } from '@ngrx/store';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
+import { PlanConfigurationType } from '../../../../shared/types/plan-configuration.types';
 import { TrainingPlanId } from '../../../../shared/types/training-plan.types';
+import { FootballState } from '../../ngrx';
+import { getFootballConfigurations } from '../../ngrx/plan-configurations/football-plan-configuration.actions';
+import {
+  selectFootballPlanAgeClasses,
+  selectFootballPlanLevels,
+} from '../../ngrx/plan-configurations/football-plan-configuration.selectors';
 import { FootballPlanForm } from './football-plan.form';
 
 @Component({
@@ -12,37 +20,21 @@ import { FootballPlanForm } from './football-plan.form';
   templateUrl: './football-plan-form-container.component.html',
   styleUrls: ['./football-plan-form-container.component.scss'],
 })
-export class FootballPlanFormContainerComponent {
+export class FootballPlanFormContainerComponent implements OnInit {
   /* tslint:disable:no-magic-numbers */
-  readonly levels = [1, 2, 3, 4, 5];
+  readonly levels$ = this.store.pipe(select(selectFootballPlanLevels));
   /* tslint:enable:no-magic-numbers */
-  readonly ageClasses = [
-    'U7',
-    'U8',
-    'U9',
-    'U10',
-    'U11',
-    'U12',
-    'U13',
-    'U14',
-    'U15',
-    'U16',
-    'U17',
-    'U18',
-    'U19',
-    'U20',
-    'U21',
-    'U22',
-    'U23',
-    'Adult', // TODO translate Adult
-  ];
+  readonly ageClasses$ = this.store.pipe(select(selectFootballPlanAgeClasses));
   // TODO now we can create plans and then update or delete the last one
-  private selectedTrainingPlanId: TrainingPlanId = 'have to come from store';
+  private selectedTrainingPlanId: TrainingPlanId = 'have to come from ngrx';
   footballForm: FootballPlanForm = new FootballPlanForm();
-
   @ViewChild(MatVerticalStepper, { static: false }) stepper!: MatVerticalStepper;
 
-  constructor(private readonly trainingPlansService: TrainingPlansService) {}
+  constructor(private readonly trainingPlansService: TrainingPlansService, private readonly store: Store<FootballState>) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
+  }
 
   savePlan(form: FormGroupDirective): void {
     this.trainingPlansService.addPlan(this.footballForm.value).then((newPlan: DocumentReference) => {

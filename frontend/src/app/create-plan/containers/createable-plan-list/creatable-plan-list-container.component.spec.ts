@@ -1,10 +1,10 @@
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 import { MockComponent } from 'ng-mocks';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NavigationCardsComponent } from '../../../shared/navigation-cards/navigation-cards/navigation-cards.component';
 import { CreatablePlanListContainerComponent } from './creatable-plan-list-container.component';
 import { CreatablePlanListContainerComponentDriver } from './creatable-plan-list-container.component.driver';
-import { NavigationCardsComponent } from '../../../shared/navigation-cards/navigation-cards/navigation-cards.component';
 
 const componentSetup = (): CreatablePlanListContainerComponentDriver => {
   return componentTestingSetup({

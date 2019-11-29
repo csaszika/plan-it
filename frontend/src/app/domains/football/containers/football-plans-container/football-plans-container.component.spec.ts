@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTableModule } from '@angular/material/table';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MockModule, MockPipe } from 'ng-mocks';
 
 import { FootballPlansContainerComponent } from './football-plans-container.component';
 
@@ -8,7 +11,8 @@ describe('FootballPlansContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FootballPlansContainerComponent],
+      imports: [MockModule(MatTableModule)],
+      declarations: [FootballPlansContainerComponent, MockPipe(TranslatePipe)],
     }).compileComponents();
   }));
 

@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
+import { NavigationCardsModule } from '../shared/navigation-cards/navigation-cards.module';
 import { CreatablePlanListContainerComponent } from './containers/createable-plan-list/creatable-plan-list-container.component';
 import { CreatePlanRoutingModule } from './create-plan-routing.module';
-import { NavigationCardsModule } from '../shared/navigation-cards/navigation-cards.module';
 
 const MATERIAL_MODULES = [MatCardModule];
 

@@ -50,7 +50,7 @@
         <div class="football-form__button-group">
           <mat-label>{{'CREATE_SPORT_PLAN.form.level.label' | translate}}</mat-label>
           <mat-button-toggle-group formControlName="level" #levelButtonGroup [multiple]="false">
-            <mat-button-toggle *ngFor="let item of levels;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.level.label' | translate:{level: item} }}">
+            <mat-button-toggle *ngFor="let item of levels$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.level.label' | translate:{level: item} }}">
               {{ item }}
             </mat-button-toggle>
           </mat-button-toggle-group>
@@ -59,7 +59,7 @@
         <div class="football-form__button-group">
           <mat-label>{{'CREATE_SPORT_PLAN.form.ageClass.label' | translate}}</mat-label>
           <mat-button-toggle-group formControlName="ageClass" #ageClassButtonGroup [multiple]="false">
-            <mat-button-toggle *ngFor="let item of ageClasses;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.ageClass.label' | translate:{level: item} }}">
+            <mat-button-toggle *ngFor="let item of ageClasses$ | async;" value="{{item}}" aria-label="{{ 'CREATE_SPORT_PLAN.form.ageClass.label' | translate:{level: item} }}">
               {{ item }}
             </mat-button-toggle>
           </mat-button-toggle-group>

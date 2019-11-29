@@ -1,4 +1,5 @@
 import { Observable, of } from 'rxjs';
+
 import { LANGUAGE_HU } from '../../shared/constants/languages.constants';
 
 export class TranslateServiceStub {
