@@ -1,5 +1,5 @@
 .sidenav-container {
-  height: 100%;
+  block-size: 100%;
 }
 
 .sidenav {
@@ -31,8 +31,8 @@
   }
 
   .language-buttons-container__divider {
-    border-left: 1px solid white;
-    height: inherit;
+    border-inline-start: 1px solid white;
+    block-size: inherit;
   }
 }
 

@@ -5,12 +5,12 @@ $top-margin: 15px;
 .football-form {
   display: flex;
   flex-flow: column nowrap;
-  width: 100%;
+  inline-size: 100%;
 
   mat-form-field {
-    margin-left: $side-margin;
-    margin-right: $side-margin;
-    min-width: 40%;
+    margin-inline-start: $side-margin;
+    margin-inline-end: $side-margin;
+    min-inline-size: 40%;
   }
 
   .football-form__main-details {
@@ -22,13 +22,13 @@ $top-margin: 15px;
   .football-form__button-group {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 10px;
-    margin-left: $side-margin;
-    margin-top: $top-margin;
-    width: fit-content;
+    margin-block-end: 10px;
+    margin-inline-start: $side-margin;
+    margin-inline-end: $top-margin;
+    inline-size: fit-content;
 
     mat-label {
-      margin-bottom: 5px;
+      margin-block-end: 5px;
     }
   }
 
@@ -38,14 +38,14 @@ $top-margin: 15px;
   }
 
   .create-sport-form__add-steps-card {
-    margin-left: $side-margin;
-    margin-right: $side-margin;
-    margin-top: $top-margin;
+    margin-inline-start: $side-margin;
+    margin-inline-end: $side-margin;
+    margin-block-start: $top-margin;
 
     .create-sport-form__add-steps-form {
       display: flex;
       flex-flow: column nowrap;
-      width: 100%;
+      inline-size: 100%;
     }
   }
 

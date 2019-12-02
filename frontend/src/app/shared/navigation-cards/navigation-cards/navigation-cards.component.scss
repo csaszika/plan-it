@@ -23,14 +23,14 @@
 
   @include small-phone {
     mat-card {
-      height: 75px;
+      block-size: 75px;
       width: 100%;
     }
   }
 
   @include phone {
     mat-card {
-      height: 75px;
+      block-size: 75px;
       width: 42%;
     }
   }
