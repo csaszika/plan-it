@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -37,6 +38,7 @@ const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatButtonToggleModule,
     StoreModule.forFeature(footballFeatureKey, reducers),
     EffectsModule.forFeature([FootballPlanConfigurationEffects]),
     MatProgressBarModule,
+    MatIconModule,
   ],
 })
 export class FootballModule {}

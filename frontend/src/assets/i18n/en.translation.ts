@@ -52,6 +52,9 @@ export default {
       ageClass: 'Age class',
       level: 'Level',
       creator: 'Creator',
+      actions: {
+        delete: 'Delete plan',
+      },
     },
   },
   FORM: {

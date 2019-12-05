@@ -1,6 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 
 export type PlanId = string;
 
@@ -21,5 +20,5 @@ export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> 
     return this.plans$;
   }
 
-  disconnect() {}
+  disconnect(): void {}
 }
