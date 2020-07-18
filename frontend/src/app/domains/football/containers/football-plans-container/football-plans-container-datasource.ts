@@ -12,7 +12,7 @@ export interface PlanTableItem {
 }
 
 export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> {
-  constructor(private plans$: Observable<PlanTableItem[]>) {
+  constructor(private readonly plans$: Observable<PlanTableItem[]>) {
     super();
   }
 

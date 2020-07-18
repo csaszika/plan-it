@@ -1,13 +1,11 @@
+import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { RouterTestingModule } from '@angular/router/testing';
 import { componentTestingSetup } from 'angular-unit-component-driver';
 import { MockComponent } from 'ng-mocks';
-import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 
+import { CreatePlanRoutes } from '../../routes/create-plan.routes';
 import { NavigationCardsComponent } from './navigation-cards.component';
 import { NavigationCardsComponentDriver } from './navigation-cards.driver';
-import { CreatePlanRoutes } from '../../routes/create-plan.routes';
-import { PlanGroup } from '../../../create-plan/types/plan-group.enums';
 
 const componentSetup = (): NavigationCardsComponentDriver => {
   return componentTestingSetup({

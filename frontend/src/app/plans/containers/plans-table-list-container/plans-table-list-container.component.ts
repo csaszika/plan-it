@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
 import { PlanGroup } from '../../../create-plan/types/plan-group.enums';
-import { PlansRoutes } from '../../../shared/routes/plans.routes';
 import { cardListAnimation } from '../../../shared/animations/card-list.animations';
+import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
+import { PlansRoutes } from '../../../shared/routes/plans.routes';
 
 @Component({
   selector: 'pi-plans-table-list-container',

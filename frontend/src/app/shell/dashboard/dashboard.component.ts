@@ -12,6 +12,7 @@ export class DashboardComponent {
     const img = new Image();
     img.src = 'assets/kelen-logo.jpg';
 
+    // tslint:disable-next-line:no-magic-numbers
     pdf.addImage(img, 'JPEG', 170, 15, 20, 26);
 
     pdf.save('x.pdf');

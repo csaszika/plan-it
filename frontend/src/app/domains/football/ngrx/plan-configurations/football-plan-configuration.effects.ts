@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentSnapshot, DocumentSnapshotExists } from '@angular/fire/firestore';
+import { DocumentSnapshotExists } from '@angular/fire/firestore';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -20,7 +20,7 @@ export class FootballPlanConfigurationEffects {
       this.actions$.pipe(
         ofType(getFootballConfigurations.type),
         switchMap((action: { configurationType: string }) => {
-          return this.service.getPlanConfigurationByFeature(action.configurationType).pipe(
+          return this.service.getPlanConfigurationByFeature$(action.configurationType).pipe(
             map(
               (response: DocumentSnapshotExists<FootballPlanConfiguration>): Action => {
                 return loadFootballConfigurations({ configuration: response.data() });
@@ -31,5 +31,5 @@ export class FootballPlanConfigurationEffects {
         })
       )
   );
-  constructor(private actions$: Actions, private readonly service: PlanConfigurationService) {}
+  constructor(private readonly actions$: Actions, private readonly service: PlanConfigurationService) {}
 }

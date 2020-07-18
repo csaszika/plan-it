@@ -14,7 +14,7 @@ export class PlanConfigurationService {
     this.planConfigurationRef = db.collection('/planConfiguration');
   }
 
-  getPlanConfigurationByFeature(document: string): Observable<any> {
+  getPlanConfigurationByFeature$(document: string): Observable<any> {
     return this.planConfigurationRef.doc(document).get();
   }
 }

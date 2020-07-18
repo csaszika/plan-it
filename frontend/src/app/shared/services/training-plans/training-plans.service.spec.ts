@@ -27,7 +27,7 @@ describe('TrainingPlansService', () => {
     TestBed.configureTestingModule({
       providers: [TrainingPlansService, { provide: AngularFirestore, useValue: firestore }],
     });
-    service = TestBed.get(TrainingPlansService);
+    service = TestBed.inject(TrainingPlansService);
   });
 
   describe('Initializing', () => {

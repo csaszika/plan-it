@@ -13,7 +13,7 @@ describe('PlanConfigurationService', () => {
     TestBed.configureTestingModule({
       providers: [PlanConfigurationService, { provide: AngularFirestore, useValue: firestore }],
     });
-    service = TestBed.get(PlanConfigurationService);
+    service = TestBed.inject(PlanConfigurationService);
   });
 
   Then('should be created', () => {

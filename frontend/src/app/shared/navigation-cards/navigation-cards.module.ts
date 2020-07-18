@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationCardsComponent } from './navigation-cards/navigation-cards.component';
+import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+
+import { NavigationCardsComponent } from './navigation-cards/navigation-cards.component';
 
 @NgModule({
   declarations: [NavigationCardsComponent],

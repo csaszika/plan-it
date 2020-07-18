@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
 import { NavCardItem } from '../interfaces/nav-card-item';
 
 @Component({

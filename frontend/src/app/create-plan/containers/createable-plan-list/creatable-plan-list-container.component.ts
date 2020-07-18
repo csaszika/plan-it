@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { cardListAnimation } from '../../../shared/animations/card-list.animations';
+import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
 import { CreatePlanRoutes } from '../../../shared/routes/create-plan.routes';
 import { PlanGroup } from '../../types/plan-group.enums';
-import { NavCardItem } from '../../../shared/navigation-cards/interfaces/nav-card-item';
 
 @Component({
   selector: 'pi-creatable-plan-list',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
 import { PlansTableListContainerComponent } from './containers/plans-table-list-container/plans-table-list-container.component';
 
 const routes: Routes = [
