@@ -6,7 +6,7 @@ import { PlansTableListContainerComponent } from './containers/plans-table-list-
 import { PlansRoutingModule } from './plans-routing.module';
 
 @NgModule({
-  declarations: [PlansTableListContainerComponent],
-  imports: [CommonModule, PlansRoutingModule, NavigationCardsModule],
+    declarations: [PlansTableListContainerComponent],
+    imports: [CommonModule, PlansRoutingModule, NavigationCardsModule],
 })
 export class PlansModule {}

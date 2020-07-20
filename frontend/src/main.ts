@@ -5,12 +5,12 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  enableProdMode();
+    enableProdMode();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    /* tslint:disable no-console */
-    .catch((err: any) => console.error(err));
+    platformBrowserDynamic()
+        .bootstrapModule(AppModule)
+        /* tslint:disable no-console */
+        .catch((err: any) => console.error(err));
 });

@@ -7,28 +7,28 @@ import { CreatablePlanListContainerComponent } from './creatable-plan-list-conta
 import { CreatablePlanListContainerComponentDriver } from './creatable-plan-list-container.component.driver';
 
 const componentSetup = (): CreatablePlanListContainerComponentDriver => {
-  return componentTestingSetup({
-    componentClass: CreatablePlanListContainerComponent,
-    driver: CreatablePlanListContainerComponentDriver,
-    imports: [NoopAnimationsModule],
-    declarations: [MockComponent(NavigationCardsComponent)],
-  });
+    return componentTestingSetup({
+        componentClass: CreatablePlanListContainerComponent,
+        driver: CreatablePlanListContainerComponentDriver,
+        imports: [NoopAnimationsModule],
+        declarations: [MockComponent(NavigationCardsComponent)],
+    });
 };
 
 describe('CreatablePlanListComponent', () => {
-  let driver: CreatablePlanListContainerComponentDriver;
+    let driver: CreatablePlanListContainerComponentDriver;
 
-  Given(() => {
-    driver = componentSetup();
-  });
-
-  describe('Initializing', () => {
     Given(() => {
-      driver.detectChanges();
+        driver = componentSetup();
     });
 
-    Then('should create', () => {
-      expect(driver.componentInstance).toBeTruthy();
+    describe('Initializing', () => {
+        Given(() => {
+            driver.detectChanges();
+        });
+
+        Then('should create', () => {
+            expect(driver.componentInstance).toBeTruthy();
+        });
     });
-  });
 });

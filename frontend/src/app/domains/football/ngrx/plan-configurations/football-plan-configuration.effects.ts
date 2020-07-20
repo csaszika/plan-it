@@ -8,28 +8,28 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { PlanConfigurationService } from '../../../../shared/services/plan-configuration/plan-configuration.service';
 import { FootballPlanConfiguration } from '../../../../shared/types/plan-configuration.types';
 import {
-  getFootballConfigurations,
-  loadFootballConfigurations,
-  loadFootballConfigurationsFailure,
+    getFootballConfigurations,
+    loadFootballConfigurations,
+    loadFootballConfigurationsFailure,
 } from './football-plan-configuration.actions';
 
 @Injectable()
 export class FootballPlanConfigurationEffects {
-  loadFootballConfiguration$ = createEffect(
-    (): Observable<Action> =>
-      this.actions$.pipe(
-        ofType(getFootballConfigurations.type),
-        switchMap((action: { configurationType: string }) => {
-          return this.service.getPlanConfigurationByFeature$(action.configurationType).pipe(
-            map(
-              (response: DocumentSnapshotExists<FootballPlanConfiguration>): Action => {
-                return loadFootballConfigurations({ configuration: response.data() });
-              }
-            ),
-            catchError(() => of(loadFootballConfigurationsFailure()))
-          );
-        })
-      )
-  );
-  constructor(private readonly actions$: Actions, private readonly service: PlanConfigurationService) {}
+    loadFootballConfiguration$ = createEffect(
+        (): Observable<Action> =>
+            this.actions$.pipe(
+                ofType(getFootballConfigurations.type),
+                switchMap((action: { configurationType: string }) => {
+                    return this.service.getPlanConfigurationByFeature$(action.configurationType).pipe(
+                        map(
+                            (response: DocumentSnapshotExists<FootballPlanConfiguration>): Action => {
+                                return loadFootballConfigurations({ configuration: response.data() });
+                            }
+                        ),
+                        catchError(() => of(loadFootballConfigurationsFailure()))
+                    );
+                })
+            )
+    );
+    constructor(private readonly actions$: Actions, private readonly service: PlanConfigurationService) {}
 }

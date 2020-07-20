@@ -6,30 +6,30 @@ import { ShellComponent } from './shell.component';
 import { ShellComponentDriver } from './shell.component.driver';
 
 const componentSetup = (): ShellComponentDriver => {
-  return componentTestingSetup({
-    componentClass: ShellComponent,
-    driver: ShellComponentDriver,
-    declarations: [MockComponent(MainNavComponent)],
-  });
+    return componentTestingSetup({
+        componentClass: ShellComponent,
+        driver: ShellComponentDriver,
+        declarations: [MockComponent(MainNavComponent)],
+    });
 };
 
 describe('ShellComponent', () => {
-  let driver: ShellComponentDriver;
+    let driver: ShellComponentDriver;
 
-  Given(() => {
-    driver = componentSetup();
-  });
-
-  describe('Initializing', () => {
-    Given(() => {});
-
-    When(() => {
-      driver.detectChanges();
+    Given(() => {
+        driver = componentSetup();
     });
 
-    Then('should be created', () => {
-      expect(driver.componentInstance).toBeTruthy();
-      expect(driver.mainNav).toBeTruthy();
+    describe('Initializing', () => {
+        Given(() => {});
+
+        When(() => {
+            driver.detectChanges();
+        });
+
+        Then('should be created', () => {
+            expect(driver.componentInstance).toBeTruthy();
+            expect(driver.mainNav).toBeTruthy();
+        });
     });
-  });
 });

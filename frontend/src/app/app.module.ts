@@ -31,45 +31,45 @@ import { metaReducers, reducers } from './store';
 // }
 
 export class ObjectTranslateLoader implements TranslateLoader {
-  // tslint:disable:rxjs-finnish
-  getTranslation(lang: string): Observable<any> {
-    return from(import(`../assets/i18n/${lang}.translation.ts`)).pipe(pluck('default'));
-  }
+    // tslint:disable:rxjs-finnish
+    getTranslation(lang: string): Observable<any> {
+        return from(import(`../assets/i18n/${lang}.translation.ts`)).pipe(pluck('default'));
+    }
 }
 
 const MATERIAL_MODULES = [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule];
 
 @NgModule({
-  declarations: [AppComponent, ShellComponent, MainNavComponent, DashboardComponent],
-  imports: [
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserAnimationsModule,
-    ...MATERIAL_MODULES,
-    HttpClientModule,
-    LayoutModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        // useFactory: HttpLoaderFactory,
-        useClass: ObjectTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      },
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production }),
-    EffectsModule.forRoot([]),
-  ],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, ShellComponent, MainNavComponent, DashboardComponent],
+    imports: [
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserAnimationsModule,
+        ...MATERIAL_MODULES,
+        HttpClientModule,
+        LayoutModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                // useFactory: HttpLoaderFactory,
+                useClass: ObjectTranslateLoader,
+                deps: [HttpClient],
+            },
+        }),
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+            },
+        }),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production }),
+        EffectsModule.forRoot([]),
+    ],
+    providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

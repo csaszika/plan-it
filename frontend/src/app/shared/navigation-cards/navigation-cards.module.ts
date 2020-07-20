@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { NavigationCardsComponent } from './navigation-cards/navigation-cards.component';
 
 @NgModule({
-  declarations: [NavigationCardsComponent],
-  imports: [CommonModule, MatCardModule, RouterModule],
-  exports: [NavigationCardsComponent],
+    declarations: [NavigationCardsComponent],
+    imports: [CommonModule, MatCardModule, RouterModule],
+    exports: [NavigationCardsComponent],
 })
 export class NavigationCardsModule {}

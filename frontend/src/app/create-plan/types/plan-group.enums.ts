@@ -1,4 +1,4 @@
 export enum PlanGroup {
-  SPORT = 'sport',
-  WORK = 'work',
+    SPORT = 'sport',
+    WORK = 'work',
 }

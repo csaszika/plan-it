@@ -1,5 +1,5 @@
 export interface NavCardItem {
-  title: string;
-  description: string;
-  url: string;
+    title: string;
+    description: string;
+    url: string;
 }

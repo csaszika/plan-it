@@ -4,21 +4,21 @@ import { Observable } from 'rxjs';
 export type PlanId = string;
 
 export interface PlanTableItem {
-  id: PlanId;
-  name: string;
-  ageClass: string;
-  level: number;
-  creator: string;
+    id: PlanId;
+    name: string;
+    ageClass: string;
+    level: number;
+    creator: string;
 }
 
 export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> {
-  constructor(private readonly plans$: Observable<PlanTableItem[]>) {
-    super();
-  }
+    constructor(private readonly plans$: Observable<PlanTableItem[]>) {
+        super();
+    }
 
-  connect(): Observable<PlanTableItem[]> {
-    return this.plans$;
-  }
+    connect(): Observable<PlanTableItem[]> {
+        return this.plans$;
+    }
 
-  disconnect(): void {}
+    disconnect(): void {}
 }

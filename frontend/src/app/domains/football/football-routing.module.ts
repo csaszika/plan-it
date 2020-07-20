@@ -5,19 +5,19 @@ import { FootballPlanFormContainerComponent } from './containers/football-plan-f
 import { FootballPlansContainerComponent } from './containers/football-plans-container/football-plans-container.component';
 
 const routes: Routes = [
-  {
-    path: 'create',
-    component: FootballPlanFormContainerComponent,
-  },
-  {
-    path: 'all',
-    component: FootballPlansContainerComponent,
-  },
-  { path: '', pathMatch: 'full', redirectTo: 'all' },
+    {
+        path: 'create',
+        component: FootballPlanFormContainerComponent,
+    },
+    {
+        path: 'all',
+        component: FootballPlansContainerComponent,
+    },
+    { path: '', pathMatch: 'full', redirectTo: 'all' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class FootballRoutingModule {}

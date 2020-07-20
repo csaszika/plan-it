@@ -9,7 +9,7 @@ import { CreatePlanRoutingModule } from './create-plan-routing.module';
 const MATERIAL_MODULES = [MatCardModule];
 
 @NgModule({
-  declarations: [CreatablePlanListContainerComponent],
-  imports: [CommonModule, CreatePlanRoutingModule, ...MATERIAL_MODULES, NavigationCardsModule],
+    declarations: [CreatablePlanListContainerComponent],
+    imports: [CommonModule, CreatePlanRoutingModule, ...MATERIAL_MODULES, NavigationCardsModule],
 })
 export class CreatePlanModule {}

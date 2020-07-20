@@ -12,47 +12,48 @@ import { TrainingPlanId } from '../../../../shared/types/training-plan.types';
 import { FootballState } from '../../ngrx';
 import { getFootballConfigurations } from '../../ngrx/plan-configurations/football-plan-configuration.actions';
 import {
-  selectFootballPlanAgeClasses,
-  selectFootballPlanConfigurationShowState,
-  selectFootballPlanLevels,
+    selectFootballPlanAgeClasses,
+    selectFootballPlanConfigurationShowState,
+    selectFootballPlanLevels,
 } from '../../ngrx/plan-configurations/football-plan-configuration.selectors';
 import { FootballPlanForm } from './football-plan.form';
 
 @Component({
-  selector: 'pi-football-plan',
-  templateUrl: './football-plan-form-container.component.html',
-  styleUrls: ['./football-plan-form-container.component.scss'],
-  animations: [fade],
+    selector: 'pi-football-plan',
+    templateUrl: './football-plan-form-container.component.html',
+    styleUrls: ['./football-plan-form-container.component.scss'],
+    animations: [fade],
 })
 export class FootballPlanFormContainerComponent implements OnInit {
-  readonly levels$ = this.store.pipe(select(selectFootballPlanLevels));
-  readonly ageClasses$ = this.store.pipe(select(selectFootballPlanAgeClasses));
-  readonly dataLoadingErrorEnum = DataLoadingError;
-  readonly dataLoadingError$ = this.store.pipe(select(selectFootballPlanConfigurationShowState));
-  // TODO now we can create plans and then update or delete the last one
-  private selectedTrainingPlanId: TrainingPlanId = 'have to come from ngrx';
-  footballForm: FootballPlanForm = new FootballPlanForm();
-  @ViewChild(MatVerticalStepper, { static: false }) stepper!: MatVerticalStepper;
+    readonly levels$ = this.store.pipe(select(selectFootballPlanLevels));
+    readonly ageClasses$ = this.store.pipe(select(selectFootballPlanAgeClasses));
+    readonly dataLoadingErrorEnum = DataLoadingError;
+    readonly dataLoadingError$ = this.store.pipe(select(selectFootballPlanConfigurationShowState));
+    // TODO now we can create plans and then update or delete the last one
+    private selectedTrainingPlanId: TrainingPlanId = 'have to come from ngrx';
 
-  constructor(private readonly trainingPlansService: TrainingPlansService, private readonly store: Store<FootballState>) {}
+    footballForm: FootballPlanForm = new FootballPlanForm();
+    @ViewChild(MatVerticalStepper, { static: false }) stepper!: MatVerticalStepper;
 
-  ngOnInit(): void {
-    this.store.dispatch(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
-  }
+    constructor(private readonly trainingPlansService: TrainingPlansService, private readonly store: Store<FootballState>) {}
 
-  savePlan(form: FormGroupDirective): void {
-    this.trainingPlansService.addPlan(this.footballForm.value).then((newPlan: DocumentReference) => {
-      this.selectedTrainingPlanId = newPlan.id;
-      this.stepper.reset();
-      form.resetForm();
-    });
-  }
+    ngOnInit(): void {
+        this.store.dispatch(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
+    }
 
-  deletePlan(): void {
-    this.trainingPlansService.deletePlan(this.selectedTrainingPlanId);
-  }
+    savePlan(form: FormGroupDirective): void {
+        this.trainingPlansService.addPlan(this.footballForm.value).then((newPlan: DocumentReference) => {
+            this.selectedTrainingPlanId = newPlan.id;
+            this.stepper.reset();
+            form.resetForm();
+        });
+    }
 
-  updatePlan(): void {
-    this.trainingPlansService.updatePlan(this.selectedTrainingPlanId, this.footballForm.value);
-  }
+    deletePlan(): void {
+        this.trainingPlansService.deletePlan(this.selectedTrainingPlanId);
+    }
+
+    updatePlan(): void {
+        this.trainingPlansService.updatePlan(this.selectedTrainingPlanId, this.footballForm.value);
+    }
 }

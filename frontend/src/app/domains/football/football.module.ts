@@ -25,20 +25,20 @@ import { FootballPlanConfigurationEffects } from './ngrx/plan-configurations/foo
 const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatStepperModule];
 
 @NgModule({
-  declarations: [FootballPlanFormContainerComponent, FootballPlansContainerComponent],
-  imports: [
-    CommonModule,
-    FootballRoutingModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    ...MATERIAL_MODULES,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    StoreModule.forFeature(footballFeatureKey, reducers),
-    EffectsModule.forFeature([FootballPlanConfigurationEffects]),
-    MatProgressBarModule,
-    MatIconModule,
-  ],
+    declarations: [FootballPlanFormContainerComponent, FootballPlansContainerComponent],
+    imports: [
+        CommonModule,
+        FootballRoutingModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        ...MATERIAL_MODULES,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        StoreModule.forFeature(footballFeatureKey, reducers),
+        EffectsModule.forFeature([FootballPlanConfigurationEffects]),
+        MatProgressBarModule,
+        MatIconModule,
+    ],
 })
 export class FootballModule {}

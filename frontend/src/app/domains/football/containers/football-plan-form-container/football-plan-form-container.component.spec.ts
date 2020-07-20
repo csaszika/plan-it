@@ -21,91 +21,92 @@ import { getFootballConfigurations } from '../../ngrx/plan-configurations/footba
 import { initialState as footballPlanConfigurationInitialState } from '../../ngrx/plan-configurations/football-plan-configuration.reducer';
 import { FootballPlanFormContainerComponent } from './football-plan-form-container.component';
 import { FootballPlanFormContainerComponentDriver } from './football-plan-form-container.component.driver';
+import {DocumentReference} from "@angular/fire/firestore";
 
 const componentSetup = (mockTrainingPlansService: Spy<TrainingPlansService>): FootballPlanFormContainerComponentDriver => {
-  return componentTestingSetup({
-    componentClass: FootballPlanFormContainerComponent,
-    driver: FootballPlanFormContainerComponentDriver,
-    imports: [MockModule(ReactiveFormsModule), NoopAnimationsModule],
-    providers: [
-      { provide: TrainingPlansService, useValue: mockTrainingPlansService },
-      provideMockStore({
-        initialState: {
-          football: {
-            footballPlanConfiguration: footballPlanConfigurationInitialState(),
-          },
-        },
-      }),
-    ],
-    declarations: [
-      MockComponent(MatVerticalStepper),
-      MockComponent(MatStep),
-      MockComponent(MatButtonToggleGroup),
-      MockComponent(MatButtonToggle),
-      MockComponent(MatFormField),
-      MockComponent(MatLabel),
-      MockComponent(MatError),
-      MockComponent(MatCard),
-      MockComponent(MatProgressBar),
-      MockDirective(MatButton),
-      MockDirective(CdkTextareaAutosize),
-      MockPipe(TranslatePipe),
-    ],
-  });
+    return componentTestingSetup({
+        componentClass: FootballPlanFormContainerComponent,
+        driver: FootballPlanFormContainerComponentDriver,
+        imports: [MockModule(ReactiveFormsModule), NoopAnimationsModule],
+        providers: [
+            { provide: TrainingPlansService, useValue: mockTrainingPlansService },
+            provideMockStore({
+                initialState: {
+                    football: {
+                        footballPlanConfiguration: footballPlanConfigurationInitialState(),
+                    },
+                },
+            }),
+        ],
+        declarations: [
+            MockComponent(MatVerticalStepper),
+            MockComponent(MatStep),
+            MockComponent(MatButtonToggleGroup),
+            MockComponent(MatButtonToggle),
+            MockComponent(MatFormField),
+            MockComponent(MatLabel),
+            MockComponent(MatError),
+            MockComponent(MatCard),
+            MockComponent(MatProgressBar),
+            MockDirective(MatButton),
+            MockDirective(CdkTextareaAutosize),
+            MockPipe(TranslatePipe),
+        ],
+    });
 };
 
 describe('FootballPlanFormComponent', () => {
-  let driver: FootballPlanFormContainerComponentDriver;
-  const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
-  let store: Store<FootballState>;
+    let driver: FootballPlanFormContainerComponentDriver;
+    const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
+    let store: Store<FootballState>;
 
-  Given(() => {
-    driver = componentSetup(mockTrainingPlansService);
-    store = driver.injector.get(Store);
-  });
-
-  describe('Initializing', () => {
-    let spyDispatch: jasmine.Spy;
     Given(() => {
-      spyDispatch = spyOn(store, 'dispatch').and.callThrough();
+        driver = componentSetup(mockTrainingPlansService);
+        store = driver.injector.get(Store);
     });
 
-    When(() => {
-      driver.detectChanges();
+    describe('Initializing', () => {
+        let spyDispatch: jasmine.Spy;
+        Given(() => {
+            spyDispatch = spyOn(store, 'dispatch').and.callThrough();
+        });
+
+        When(() => {
+            driver.detectChanges();
+        });
+
+        Then('should be created', () => {
+            expect(driver.componentInstance).toBeTruthy();
+        });
+
+        Then('should have a form', () => {
+            expect(driver.form).toBeTruthy();
+        });
+
+        Then('should trigger getting data', () => {
+            expect(spyDispatch).toHaveBeenCalledWith(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
+        });
     });
 
-    Then('should be created', () => {
-      expect(driver.componentInstance).toBeTruthy();
-    });
+    // TODO something wrong with jasmine-auto-spies
+    describe('Events', () => {
+      Given(() => {});
 
-    Then('should have a form', () => {
-      expect(driver.form).toBeTruthy();
-    });
+      When(() => {
+        driver.detectChanges();
+        mockTrainingPlansService.addPlan.and.resolveWith({ id: 'mockId' } as DocumentReference);
+        driver.saveButton.click();
+      });
 
-    Then('should trigger getting data', () => {
-      expect(spyDispatch).toHaveBeenCalledWith(getFootballConfigurations({ configurationType: PlanConfigurationType.FOOTBALL }));
+      Then('should call service to save', () => {
+        expect(mockTrainingPlansService.addPlan).toHaveBeenCalledWith({
+          name: '',
+          description: '',
+          goal: '',
+          level: '',
+          ageClass: '',
+          steps: [],
+        });
+      });
     });
-  });
-
-  // TODO something wrong with jasmine-auto-spies
-  // describe('Events', () => {
-  //   Given(() => {});
-  //
-  //   When(() => {
-  //     driver.detectChanges();
-  //     mockTrainingPlansService.addPlan.and.resolveWith({ id: 'mockId' } as DocumentReference);
-  //     driver.saveButton.click();
-  //   });
-  //
-  //   Then('should call service to save', () => {
-  //     expect(mockTrainingPlansService.addPlan).toHaveBeenCalledWith({
-  //       name: '',
-  //       description: '',
-  //       goal: '',
-  //       level: '',
-  //       ageClass: '',
-  //       steps: [],
-  //     });
-  //   });
-  // });
 });

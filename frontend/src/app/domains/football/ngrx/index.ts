@@ -5,9 +5,9 @@ import { FootballPlanConfigurationState, reducer as planConfigReducer } from './
 export const footballFeatureKey = 'football';
 
 export interface FootballState {
-  footballPlanConfiguration: FootballPlanConfigurationState;
+    footballPlanConfiguration: FootballPlanConfigurationState;
 }
 
 export const reducers: ActionReducerMap<FootballState> = {
-  footballPlanConfiguration: planConfigReducer,
+    footballPlanConfiguration: planConfigReducer,
 };

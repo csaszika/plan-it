@@ -4,29 +4,29 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardComponentDriver } from './dashboard.component.driver';
 
 const componentSetup = (): DashboardComponentDriver => {
-  return componentTestingSetup({
-    componentClass: DashboardComponent,
-    driver: DashboardComponentDriver,
-    imports: [],
-  });
+    return componentTestingSetup({
+        componentClass: DashboardComponent,
+        driver: DashboardComponentDriver,
+        imports: [],
+    });
 };
 
 describe('DashboardComponent', () => {
-  let driver: DashboardComponentDriver;
+    let driver: DashboardComponentDriver;
 
-  Given(() => {
-    driver = componentSetup();
-  });
-
-  describe('Initializing', () => {
-    Given(() => {});
-
-    When(() => {
-      driver.detectChanges();
+    Given(() => {
+        driver = componentSetup();
     });
 
-    Then(() => {
-      expect(driver.componentInstance).toBeTruthy();
+    describe('Initializing', () => {
+        Given(() => {});
+
+        When(() => {
+            driver.detectChanges();
+        });
+
+        Then(() => {
+            expect(driver.componentInstance).toBeTruthy();
+        });
     });
-  });
 });

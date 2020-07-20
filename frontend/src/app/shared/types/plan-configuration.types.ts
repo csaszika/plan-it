@@ -1,8 +1,8 @@
 export enum PlanConfigurationType {
-  FOOTBALL = 'football',
+    FOOTBALL = 'football',
 }
 
 export interface FootballPlanConfiguration {
-  ageClasses: Array<string>;
-  levels: Array<number>;
+    ageClasses: Array<string>;
+    levels: Array<number>;
 }

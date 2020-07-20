@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 import { FootballPlanConfiguration } from '../../types/plan-configuration.types';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class PlanConfigurationService {
-  private readonly planConfigurationRef: AngularFirestoreCollection<FootballPlanConfiguration>;
+    private readonly planConfigurationRef: AngularFirestoreCollection<FootballPlanConfiguration>;
 
-  constructor(private readonly db: AngularFirestore) {
-    this.planConfigurationRef = db.collection('/planConfiguration');
-  }
+    constructor(private readonly db: AngularFirestore) {
+        this.planConfigurationRef = db.collection('/planConfiguration');
+    }
 
-  getPlanConfigurationByFeature$(document: string): Observable<any> {
-    return this.planConfigurationRef.doc(document).get();
-  }
+    getPlanConfigurationByFeature$(document: string): Observable<any> {
+        return this.planConfigurationRef.doc(document).get();
+    }
 }
