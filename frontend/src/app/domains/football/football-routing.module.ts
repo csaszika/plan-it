@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FootballPlanFormContainerComponent } from './containers/football-plan-form-container/football-plan-form-container.component';
-import { FootballPlansContainerComponent } from './containers/football-plans-container/football-plans-container.component';
+import { FootballPlansContainer } from './containers/football-plans-container/football-plans-container.component';
 
 const routes: Routes = [
     {
@@ -11,7 +11,7 @@ const routes: Routes = [
     },
     {
         path: 'all',
-        component: FootballPlansContainerComponent,
+        component: FootballPlansContainer,
     },
     { path: '', pathMatch: 'full', redirectTo: 'all' },
 ];

@@ -119,16 +119,17 @@
 
     <section class="mat-action-row">
       <button mat-button
-              type="submit"
               name="save-plan"
               [disabled]="footballForm.invalid"
               (click)="savePlan(form)">Save</button>
 
       <button mat-button
+              name="delete-plan"
               type="button"
               (click)="deletePlan()">Delete</button>
 
       <button mat-button
+              name="update-plan"
               (click)="updatePlan()">Update</button>
     </section>
   </form>

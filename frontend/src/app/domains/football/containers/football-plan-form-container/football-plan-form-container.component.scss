@@ -8,8 +8,8 @@ $top-margin: 15px;
   inline-size: 100%;
 
   mat-form-field {
-    margin-inline-start: $side-margin;
     margin-inline-end: $side-margin;
+    margin-inline-start: $side-margin;
     min-inline-size: 40%;
   }
 
@@ -22,10 +22,10 @@ $top-margin: 15px;
   .football-form__button-group {
     display: flex;
     flex-flow: column nowrap;
-    margin-block-end: 10px;
-    margin-inline-start: $side-margin;
-    margin-inline-end: $top-margin;
     inline-size: fit-content;
+    margin-block-end: 10px;
+    margin-inline-end: $top-margin;
+    margin-inline-start: $side-margin;
 
     mat-label {
       margin-block-end: 5px;
@@ -38,9 +38,9 @@ $top-margin: 15px;
   }
 
   .create-sport-form__add-steps-card {
-    margin-inline-start: $side-margin;
-    margin-inline-end: $side-margin;
     margin-block-start: $top-margin;
+    margin-inline-end: $side-margin;
+    margin-inline-start: $side-margin;
 
     .create-sport-form__add-steps-form {
       display: flex;

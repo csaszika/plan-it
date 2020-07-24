@@ -19,7 +19,7 @@ import {
 import { FootballPlanForm } from './football-plan.form';
 
 @Component({
-    selector: 'pi-football-plan',
+    selector: 'pi-football-plan-form',
     templateUrl: './football-plan-form-container.component.html',
     styleUrls: ['./football-plan-form-container.component.scss'],
     animations: [fade],

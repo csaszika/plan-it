@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CreatablePlanListContainerComponent } from './containers/createable-plan-list/creatable-plan-list-container.component';
+import { CreatablePlanListContainer } from './containers/createable-plan-list/creatable-plan-list-container.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: CreatablePlanListContainerComponent,
+        component: CreatablePlanListContainer,
     },
 ];
 

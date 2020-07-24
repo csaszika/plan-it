@@ -1,34 +1,69 @@
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { componentTestingSetup } from 'angular-unit-component-driver';
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, ngMocks } from 'ng-mocks';
 
+import { PlanGroup } from '../../../create-plan/types/plan-group.enums';
 import { NavigationCardsComponent } from '../../../shared/navigation-cards/navigation-cards/navigation-cards.component';
-import { PlansTableListContainerComponent } from './plans-table-list-container.component';
-import { PlansTableListContainerComponentDriver } from './plans-table-list-container.component.driver';
+import { PlansRoutes } from '../../../shared/routes/plans.routes';
+import { PlansTableListContainer } from './plans-table-list-container.component';
 
-const componentSetup = (): PlansTableListContainerComponentDriver => {
-    return componentTestingSetup({
-        componentClass: PlansTableListContainerComponent,
-        driver: PlansTableListContainerComponentDriver,
-        imports: [NoopAnimationsModule],
-        declarations: [MockComponent(NavigationCardsComponent)],
-    });
-};
+@Component({
+    template: '<pi-plans-table-list-container></pi-plans-table-list-container>',
+})
+class TestWrapperComponent {
+    @ViewChild(PlansTableListContainer, { static: true }) component!: PlansTableListContainer;
+}
 
-describe('CreatablePlanListComponent', () => {
-    let driver: PlansTableListContainerComponentDriver;
+describe('PlansTableListContainer', () => {
+    let fixture: ComponentFixture<TestWrapperComponent>;
 
     Given(() => {
-        driver = componentSetup();
+        TestBed.configureTestingModule({
+            imports: [NoopAnimationsModule],
+            declarations: [TestWrapperComponent, PlansTableListContainer, MockComponent(NavigationCardsComponent)],
+            providers: [],
+        });
+    });
+
+    const element = () => fixture.nativeElement.querySelector('pi-plans-table-list-container');
+    const navCards = () => ngMocks.find(fixture.debugElement, NavigationCardsComponent).componentInstance;
+
+    Given(() => {
+        fixture = TestBed.createComponent(TestWrapperComponent);
     });
 
     describe('Initializing', () => {
-        Given(() => {
-            driver.detectChanges();
+        When(() => {
+            fixture.detectChanges();
         });
 
-        Then('should create', () => {
-            expect(driver.componentInstance).toBeTruthy();
+        Then('should be created', () => {
+            expect(element()).toBeTruthy();
+        });
+
+        Then('should have navigation cards', () => {
+            expect(navCards()).toExist();
+            expect(navCards().navCardItems).toEqual([
+                {
+                    title: 'Football',
+                    description: 'Create your own football training',
+                    type: PlanGroup.SPORT,
+                    url: PlansRoutes.FOOTBALL_PLANS,
+                },
+                {
+                    title: 'Agility',
+                    description: 'Create your own agility training',
+                    type: PlanGroup.SPORT,
+                    url: PlansRoutes.AGILITY_PLANS,
+                },
+                {
+                    title: 'Smart goal',
+                    description: 'Create your smart goal',
+                    type: PlanGroup.WORK,
+                    url: PlansRoutes.SMART_GOALS,
+                },
+            ]);
         });
     });
 });

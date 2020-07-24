@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import * as jsPDF from 'jspdf';
+// @ts-ignore
+import jsPDF from 'jspdf';
 
 @Component({
     selector: 'pi-dashboard',

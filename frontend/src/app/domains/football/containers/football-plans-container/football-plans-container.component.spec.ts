@@ -1,29 +1,49 @@
+import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MockComponent, MockModule, MockPipe } from 'ng-mocks';
+import { MockComponent, MockModule, MockPipe, ngMocks } from 'ng-mocks';
 
-import { FootballPlansContainerComponent } from './football-plans-container.component';
+import { FootballPlansContainer } from './football-plans-container.component';
+
+@Component({
+    template: '<pi-football-plans-container></pi-football-plans-container>',
+})
+class TestWrapperComponent {
+    @ViewChild(FootballPlansContainer, { static: true }) component!: FootballPlansContainer;
+}
 
 describe('FootballPlansContainerComponent', () => {
-    let component: FootballPlansContainerComponent;
-    let fixture: ComponentFixture<FootballPlansContainerComponent>;
+    let fixture: ComponentFixture<TestWrapperComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [MockModule(MatTableModule)],
-            declarations: [FootballPlansContainerComponent, MockPipe(TranslatePipe), MockComponent(MatIcon)],
-        }).compileComponents();
-    }));
+    Given(
+        async(() => {
+            TestBed.configureTestingModule({
+                imports: [MockModule(MatTableModule)],
+                declarations: [TestWrapperComponent, FootballPlansContainer, MockPipe(TranslatePipe), MockComponent(MatIcon)],
+            }).compileComponents();
+        })
+    );
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(FootballPlansContainerComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    Given(() => {
+        fixture = TestBed.createComponent(TestWrapperComponent);
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    const element = () => fixture.nativeElement.querySelector('pi-football-plans-container');
+    const table = () => element().querySelector('table');
+
+    describe('Initializing', () => {
+        When(() => {
+            fixture.detectChanges();
+        });
+
+        Then('should be created', () => {
+            expect(element()).toBeTruthy();
+        });
+
+        Then('should have the table', () => {
+            expect(table()).toExist();
+        });
     });
 });

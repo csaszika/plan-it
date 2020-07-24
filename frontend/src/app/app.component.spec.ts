@@ -1,50 +1,57 @@
-import { async } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { componentTestingSetup } from 'angular-unit-component-driver';
 import { of } from 'rxjs';
 
 import { AppComponent } from './app.component';
-import { AppComponentDriver } from './app.component.driver';
 import { LANGUAGE_EN, LANGUAGE_HU } from './shared/constants/languages.constants';
 
-const componentSetup = (languageUseSpy: jasmine.Spy, getBrowserLangSpy: jasmine.Spy): AppComponentDriver => {
-    return componentTestingSetup({
-        componentClass: AppComponent,
-        driver: AppComponentDriver,
-        imports: [RouterTestingModule],
-        providers: [
-            {
-                provide: TranslateService,
-                useValue: {
-                    use: languageUseSpy,
-                    getBrowserLang: getBrowserLangSpy,
-                },
-            },
-        ],
-    });
-};
+@Component({
+    template: '<pi-root></pi-root>',
+})
+class TestWrapperComponent {
+    @ViewChild(AppComponent, { static: true }) appComponent!: AppComponent;
+}
 
 describe('AppComponent', () => {
-    let driver: AppComponentDriver;
-
+    let fixture: ComponentFixture<TestWrapperComponent>;
     const languageUseSpy = jasmine.createSpy().and.returnValue(of(LANGUAGE_HU));
     const getBrowserLangSpy = jasmine.createSpy().and.returnValue(LANGUAGE_HU);
 
-    Given(() => {
-        driver = componentSetup(languageUseSpy, getBrowserLangSpy);
-    });
+    Given(
+        async(() => {
+            TestBed.configureTestingModule({
+                imports: [RouterTestingModule],
+                declarations: [TestWrapperComponent, AppComponent],
+                providers: [
+                    {
+                        provide: TranslateService,
+                        useValue: {
+                            use: languageUseSpy,
+                            getBrowserLang: getBrowserLangSpy,
+                        },
+                    },
+                ],
+            }).compileComponents();
+        })
+    );
+
+    const element = () => fixture.nativeElement.querySelector('pi-root');
+    const routerOutlet = () => fixture.nativeElement.querySelector('router-outlet');
 
     describe('Initializing', () => {
-        Given(() => {});
-
-        When(() => {
-            driver.detectChanges();
+        Given(() => {
+            fixture = TestBed.createComponent(TestWrapperComponent);
         });
 
-        Then('should be created', () => {
-            expect(driver.componentInstance).toBeTruthy();
-            expect(driver.routerOutlet).toBeTruthy();
+        When(() => {
+            fixture.detectChanges();
+        });
+
+        it('should be created', () => {
+            expect(element()).toBeTruthy();
+            expect(routerOutlet()).toExist();
         });
 
         Then('should use appropriate language', () => {
@@ -57,27 +64,28 @@ describe('AppComponent', () => {
         });
     });
 
-    // describe('Initializing with unknown language', () => {
-    //     Given(() => {
-    //         getBrowserLangSpy.and.returnValue('ES');
-    //     });
-    //
-    //     When(() => {
-    //         driver.detectChanges();
-    //     });
-    //
-    //     Then('should be created', () => {
-    //         expect(driver.componentInstance).toBeTruthy();
-    //         expect(driver.routerOutlet).toBeTruthy();
-    //     });
-    //
-    //     Then('should use appropriate language', () => {
-    //         expect(languageUseSpy).toHaveBeenCalledTimes(1);
-    //         expect(languageUseSpy).toHaveBeenCalledWith(LANGUAGE_EN);
-    //     });
-    // });
+    describe('Initializing with unknown language', () => {
+        Given(() => {
+            getBrowserLangSpy.and.returnValue('ES');
+            fixture = TestBed.createComponent(TestWrapperComponent);
+        });
 
-  // afterEach(() => {
-  //     languageUseSpy.calls.reset();
-  // });
+        When(() => {
+            fixture.detectChanges();
+        });
+
+        Then('should be created', () => {
+            expect(element()).toBeTruthy();
+            expect(routerOutlet()).toBeTruthy();
+        });
+
+        Then('should use appropriate language', () => {
+            expect(languageUseSpy).toHaveBeenCalledTimes(1);
+            expect(languageUseSpy).toHaveBeenCalledWith(LANGUAGE_EN);
+        });
+
+        afterEach(() => {
+            languageUseSpy.calls.reset();
+        });
+    });
 });

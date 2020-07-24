@@ -13,7 +13,7 @@ import { PlanGroup } from '../../types/plan-group.enums';
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [cardListAnimation],
 })
-export class CreatablePlanListContainerComponent implements OnInit {
+export class CreatablePlanListContainer implements OnInit {
     planTypes$!: Observable<Array<NavCardItem>>;
 
     ngOnInit(): void {

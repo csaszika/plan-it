@@ -13,7 +13,8 @@ import { PlansRoutes } from '../../../shared/routes/plans.routes';
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [cardListAnimation],
 })
-export class PlansTableListContainerComponent implements OnInit {
+// tslint:disable-next-line:component-class-suffix
+export class PlansTableListContainer implements OnInit {
     planTypes$!: Observable<Array<NavCardItem>>;
 
     ngOnInit(): void {

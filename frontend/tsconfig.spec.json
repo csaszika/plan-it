@@ -3,14 +3,15 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine",
-      "jasmine-given",
+      "jest",
+      "jest-given-when-then",
+      "jest-jquery-matchers",
       "node"
     ],
-    "skipLibCheck": true
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true
   },
   "files": [
-    "src/test.ts",
     "src/polyfills.ts"
   ],
   "include": [

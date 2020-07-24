@@ -10,7 +10,7 @@ import { FootballPlansContainerDatasource, PlanTableItem } from './football-plan
     templateUrl: './football-plans-container.component.html',
     styleUrls: ['./football-plans-container.component.scss'],
 })
-export class FootballPlansContainerComponent implements OnInit, AfterViewInit {
+export class FootballPlansContainer implements OnInit, AfterViewInit {
     @ViewChild(MatTable, { static: false }) table!: MatTable<PlanTableItem>;
     dataSource!: FootballPlansContainerDatasource;
     plans$: Observable<PlanTableItem[]> = of([

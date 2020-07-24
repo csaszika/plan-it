@@ -17,7 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FootballPlanFormContainerComponent } from './containers/football-plan-form-container/football-plan-form-container.component';
-import { FootballPlansContainerComponent } from './containers/football-plans-container/football-plans-container.component';
+import { FootballPlansContainer } from './containers/football-plans-container/football-plans-container.component';
 import { FootballRoutingModule } from './football-routing.module';
 import { footballFeatureKey, reducers } from './ngrx';
 import { FootballPlanConfigurationEffects } from './ngrx/plan-configurations/football-plan-configuration.effects';
@@ -25,7 +25,7 @@ import { FootballPlanConfigurationEffects } from './ngrx/plan-configurations/foo
 const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatStepperModule];
 
 @NgModule({
-    declarations: [FootballPlanFormContainerComponent, FootballPlansContainerComponent],
+    declarations: [FootballPlanFormContainerComponent, FootballPlansContainer],
     imports: [
         CommonModule,
         FootballRoutingModule,

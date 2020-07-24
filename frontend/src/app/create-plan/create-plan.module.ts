@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 import { NavigationCardsModule } from '../shared/navigation-cards/navigation-cards.module';
-import { CreatablePlanListContainerComponent } from './containers/createable-plan-list/creatable-plan-list-container.component';
+import { CreatablePlanListContainer } from './containers/createable-plan-list/creatable-plan-list-container.component';
 import { CreatePlanRoutingModule } from './create-plan-routing.module';
 
 const MATERIAL_MODULES = [MatCardModule];
 
 @NgModule({
-    declarations: [CreatablePlanListContainerComponent],
+    declarations: [CreatablePlanListContainer],
     imports: [CommonModule, CreatePlanRoutingModule, ...MATERIAL_MODULES, NavigationCardsModule],
 })
 export class CreatePlanModule {}
