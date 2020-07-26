@@ -8,8 +8,8 @@
 
   mat-card {
     cursor: pointer;
-    margin: 5px 1px 5px 1px;
-    width: 28%;
+    margin: 5px;
+    flex: 1;
 
     mat-card-title {
       text-align: center;
@@ -24,20 +24,20 @@
   @include small-phone {
     mat-card {
       block-size: 75px;
-      width: 100%;
+      flex: 1 1 100%;
     }
   }
 
   @include phone {
     mat-card {
       block-size: 75px;
-      width: 42%;
+      flex: 1 1 42%;
     }
   }
 
   @include tablet {
     mat-card {
-      width: 28%;
+      flex: 1 1 28%;
     }
   }
 }
