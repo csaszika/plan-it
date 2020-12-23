@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     const getBrowserLangSpy = jasmine.createSpy().and.returnValue(LANGUAGE_HU);
 
     Given(
-        async(() => {
+        waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [RouterTestingModule],
                 declarations: [TestWrapperComponent, AppComponent],

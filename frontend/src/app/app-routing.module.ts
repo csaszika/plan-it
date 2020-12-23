@@ -31,7 +31,11 @@ const routes: Routes = [
 /* tslint:enable:typedef */
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [
+        RouterModule.forRoot(routes, {
+            initialNavigation: 'enabled',
+        }),
+    ],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

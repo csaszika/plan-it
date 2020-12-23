@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold } from 'jasmine-marbles';
 import { Observable, of } from 'rxjs';
@@ -15,17 +15,19 @@ describe('FootballPlanConfigurationEffects', () => {
         getPlanConfigurationByFeature$: jasmine.createSpy('getPlanConfigurationByFeature$'),
     };
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                FootballPlanConfigurationEffects,
-                { provide: PlanConfigurationService, useValue: mockPlanConfigurationService },
-                provideMockActions(() => actions$),
-            ],
-        });
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                providers: [
+                    FootballPlanConfigurationEffects,
+                    { provide: PlanConfigurationService, useValue: mockPlanConfigurationService },
+                    provideMockActions(() => actions$),
+                ],
+            });
 
-        effects = TestBed.inject(FootballPlanConfigurationEffects);
-    }));
+            effects = TestBed.inject(FootballPlanConfigurationEffects);
+        })
+    );
 
     const configurationData = {
         ageClasses: ['U7', 'U8', 'U9'],

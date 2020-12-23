@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -18,7 +18,7 @@ describe('FootballPlansContainerComponent', () => {
     let fixture: ComponentFixture<TestWrapperComponent>;
 
     Given(
-        async(() => {
+        waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [MockModule(MatTableModule)],
                 declarations: [TestWrapperComponent, FootballPlansContainer, MockPipe(TranslatePipe), MockComponent(MatIcon)],
