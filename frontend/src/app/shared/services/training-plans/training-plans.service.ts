@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 import { TrainingPlan, TrainingPlanId } from '../../types/training-plan.types';
 
@@ -11,6 +12,10 @@ export class TrainingPlansService {
 
     constructor(private readonly db: AngularFirestore) {
         this.plansRef = db.collection('/trainingPlans');
+    }
+
+    getPlans$(): Observable<any> {
+        return this.plansRef.valueChanges({ idField: 'id' });
     }
 
     addPlan(newPlan: TrainingPlan): Promise<DocumentReference> {

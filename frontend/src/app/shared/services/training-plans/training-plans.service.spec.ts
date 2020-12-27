@@ -13,6 +13,7 @@ describe('TrainingPlansService', () => {
     Given(() => {
         firestore = angularFirestoreStub();
         spyCollection = spyOn(firestore, 'collection').and.returnValue({
+            valueChanges: (): void => {},
             add: (data: TrainingPlan): void => {},
             doc: (id: string): object => {
                 return {
@@ -52,6 +53,22 @@ describe('TrainingPlansService', () => {
                 },
             ],
         };
+        describe('#getPlans$', () => {
+            let spyGetPlans$: jasmine.Spy;
+
+            Given(() => {
+                spyGetPlans$ = spyOn(firestore.collection(''), 'valueChanges').and.callThrough();
+            });
+
+            When(() => {
+                service.getPlans$();
+            });
+
+            Then('should called firestore with appropriate params', () => {
+                expect(spyGetPlans$).toHaveBeenCalledWith({ idField: 'id' });
+            });
+        });
+
         describe('#addPlan', () => {
             let spyAdd: jasmine.Spy;
 
@@ -63,7 +80,7 @@ describe('TrainingPlansService', () => {
                 service.addPlan(mockPlan);
             });
 
-            Then('should be created', () => {
+            Then('should called firestore with appropriate params', () => {
                 expect(spyAdd).toHaveBeenCalledWith(mockPlan);
             });
         });
@@ -84,7 +101,7 @@ describe('TrainingPlansService', () => {
                 service.deletePlan(mockPlan.id);
             });
 
-            Then('should be created', () => {
+            Then('should called firestore with appropriate params', () => {
                 expect(spyDoc).toHaveBeenCalledWith(mockPlan.id);
                 expect(spyDelete).toHaveBeenCalled();
             });
@@ -106,7 +123,7 @@ describe('TrainingPlansService', () => {
                 service.updatePlan(mockPlan.id, mockPlan);
             });
 
-            Then('should be created', () => {
+            Then('should called firestore with appropriate params', () => {
                 expect(spyDoc).toHaveBeenCalledWith(mockPlan.id);
                 expect(spyUpdate).toHaveBeenCalledWith(mockPlan);
             });
