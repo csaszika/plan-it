@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
 
@@ -17,6 +17,8 @@ export interface PlanTableItem {
 export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> {
     private plansSubject = new BehaviorSubject<PlanTableItem[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
+
+    loading$ = this.loadingSubject.asObservable();
 
     constructor(private readonly trainingPlansService: TrainingPlansService) {
         super();
@@ -40,9 +42,15 @@ export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> 
         this.trainingPlansService
             .getPlans$()
             .pipe(
-                catchError(() => of([])),
-                finalize(() => this.loadingSubject.next(false))
+                take(1),
+                catchError(() => {
+                    this.loadingSubject.next(false);
+                    return of([]);
+                })
             )
-            .subscribe((plans: PlanTableItem[]) => this.plansSubject.next(plans));
+            .subscribe((plans: PlanTableItem[]) => {
+                this.loadingSubject.next(false);
+                this.plansSubject.next(plans);
+            });
     }
 }

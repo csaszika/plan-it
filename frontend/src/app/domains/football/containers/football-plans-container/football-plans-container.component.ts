@@ -1,5 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
 import { FootballPlansContainerDatasource, PlanTableItem } from './football-plans-container-datasource';
@@ -10,10 +12,14 @@ import { FootballPlansContainerDatasource, PlanTableItem } from './football-plan
     styleUrls: ['./football-plans-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FootballPlansContainer implements OnInit, AfterViewInit {
+export class FootballPlansContainer implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatTable, { static: false }) table!: MatTable<PlanTableItem>;
+    @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+
     dataSource!: FootballPlansContainerDatasource;
     displayedColumns = ['name', 'ageClass', 'level', 'actions'];
+
+    private subscriptions = new Subscription();
 
     constructor(private readonly trainingPlansService: TrainingPlansService, private readonly changeDetectorRef: ChangeDetectorRef) {}
 
@@ -25,5 +31,11 @@ export class FootballPlansContainer implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         this.table.dataSource = this.dataSource;
         this.changeDetectorRef.markForCheck();
+
+        this.subscriptions.add(this.paginator.page.subscribe(() => this.dataSource.loadPlans()));
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 }

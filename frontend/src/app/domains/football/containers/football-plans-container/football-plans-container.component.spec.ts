@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatIcon } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MockComponent, MockModule, MockPipe, ngMocks } from 'ng-mocks';
+import { MockComponent, MockPipe, ngMocks } from 'ng-mocks';
 import { of } from 'rxjs';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
@@ -28,6 +29,7 @@ describe('FootballPlansContainerComponent', () => {
                     FootballPlansContainer,
                     MockPipe(TranslatePipe, (x: any) => x),
                     MockComponent(MatIcon),
+                    MockComponent(MatPaginator),
                 ],
                 providers: [
                     {
@@ -52,6 +54,7 @@ describe('FootballPlansContainerComponent', () => {
     const element = () => fixture.nativeElement.querySelector('pi-football-plans-container');
     const table = () => element().querySelector('table');
     const tableHeaderColumns = () => table().querySelectorAll('th');
+    const paginator = () => ngMocks.find(fixture.debugElement, MatPaginator).componentInstance;
 
     describe('Initializing', () => {
         When(() => {
@@ -75,6 +78,15 @@ describe('FootballPlansContainerComponent', () => {
             expect(tableHeaderColumns()[3]).toExist();
             // tslint:enable:no-magic-numbers
             expect(tableHeaderColumns().length).toEqual(fixture.componentInstance.component.displayedColumns.length);
+        });
+
+        Then('should have the paginator with configuration', () => {
+            expect(paginator()).toExist();
+            // tslint:disable:no-magic-numbers
+            expect(paginator().length).toEqual(50);
+            expect(paginator().pageSize).toEqual(10);
+            expect(paginator().pageSizeOptions).toEqual([5, 10, 25, 50]);
+            // tslint:enable:no-magic-numbers
         });
     });
 });

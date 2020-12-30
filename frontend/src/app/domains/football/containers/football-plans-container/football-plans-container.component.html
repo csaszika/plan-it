@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-  <table mat-table class="full-width" aria-label="Elements">
+  <table mat-table class="full-width" aria-label="Football training plans">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>{{'PLANS.column.name' | translate}}</th>
@@ -26,4 +26,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [length]="50"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 50]">
+  </mat-paginator>
 </div>
