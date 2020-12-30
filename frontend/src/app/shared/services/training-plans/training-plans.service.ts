@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference, Query } from '@angular/fire/firestore';
+import { PageEvent } from '@angular/material/paginator';
+import firebase from 'firebase';
 import { Observable } from 'rxjs';
 
 import { TrainingPlan, TrainingPlanId } from '../../types/training-plan.types';
@@ -8,25 +10,28 @@ import { TrainingPlan, TrainingPlanId } from '../../types/training-plan.types';
     providedIn: 'root',
 })
 export class TrainingPlansService {
-    private readonly plansRef: AngularFirestoreCollection<TrainingPlan>;
+    private readonly COLLECTION_KEY = '/trainingPlans';
 
-    constructor(private readonly db: AngularFirestore) {
-        this.plansRef = db.collection('/trainingPlans');
+    constructor(private readonly afs: AngularFirestore) {}
+
+    getPlans$(event: PageEvent): Observable<any> {
+        return this.afs
+            .collection(this.COLLECTION_KEY, (ref: Query) => ref.orderBy('createdAt').startAt(event.pageIndex).limit(event.pageSize))
+            .valueChanges({ idField: 'id' });
     }
 
-    getPlans$(): Observable<any> {
-        return this.plansRef.valueChanges({ idField: 'id' });
-    }
-
-    addPlan(newPlan: TrainingPlan): Promise<DocumentReference> {
-        return this.plansRef.add(newPlan);
+    addPlan(newPlan: TrainingPlan): Promise<DocumentReference<any>> {
+        return this.afs.collection(this.COLLECTION_KEY).add({
+            ...newPlan,
+            createdAt: firebase.firestore.Timestamp.now(),
+        });
     }
 
     deletePlan(id: TrainingPlanId): Promise<void> {
-        return this.plansRef.doc(id).delete();
+        return this.afs.collection(this.COLLECTION_KEY).doc(id).delete();
     }
 
     updatePlan(id: TrainingPlanId, updatedPlan: Partial<TrainingPlan>): Promise<void> {
-        return this.plansRef.doc(id).update(updatedPlan);
+        return this.afs.collection(this.COLLECTION_KEY).doc(id).update(updatedPlan);
     }
 }

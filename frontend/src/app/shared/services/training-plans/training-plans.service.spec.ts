@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase';
 
 import { angularFirestoreStub } from '../../../test-util/stubs/firestore.stub';
 import { TrainingPlan } from '../../types/training-plan.types';
@@ -34,11 +35,11 @@ describe('TrainingPlansService', () => {
     describe('Initializing', () => {
         Then('should be created', () => {
             expect(service).toBeTruthy();
-            expect(firestore.collection).toHaveBeenCalledWith('/trainingPlans');
         });
     });
 
     describe('Public methods', () => {
+        const creationDate = firebase.firestore.Timestamp.fromDate(new Date('2020-10-10'));
         const mockPlan: TrainingPlan = {
             id: '',
             name: 'plan name',
@@ -52,6 +53,7 @@ describe('TrainingPlansService', () => {
                     description: 'step description',
                 },
             ],
+            createdAt: creationDate,
         };
         describe('#getPlans$', () => {
             let spyGetPlans$: jasmine.Spy;
@@ -61,7 +63,11 @@ describe('TrainingPlansService', () => {
             });
 
             When(() => {
-                service.getPlans$();
+                service.getPlans$({
+                    length: 10,
+                    pageIndex: 0,
+                    pageSize: 10,
+                });
             });
 
             Then('should called firestore with appropriate params', () => {
@@ -74,6 +80,7 @@ describe('TrainingPlansService', () => {
 
             Given(() => {
                 spyAdd = spyOn(firestore.collection(''), 'add').and.callThrough();
+                spyOn(firebase.firestore.Timestamp, 'now').and.returnValue(creationDate);
             });
 
             When(() => {

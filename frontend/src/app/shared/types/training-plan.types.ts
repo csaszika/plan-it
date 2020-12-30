@@ -1,3 +1,6 @@
+import firebase from 'firebase';
+import Timestamp = firebase.firestore.Timestamp;
+
 export type TrainingPlanId = string;
 
 export interface TrainingPlanStep {
@@ -13,4 +16,5 @@ export interface TrainingPlan {
     level: number;
     name: string;
     steps: Array<TrainingPlanStep>;
+    createdAt?: Timestamp;
 }

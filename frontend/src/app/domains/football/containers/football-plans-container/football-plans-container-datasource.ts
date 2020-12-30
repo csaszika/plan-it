@@ -1,4 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
+import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
 
@@ -15,42 +16,43 @@ export interface PlanTableItem {
 }
 
 export class FootballPlansContainerDatasource extends DataSource<PlanTableItem> {
-    private plansSubject = new BehaviorSubject<PlanTableItem[]>([]);
-    private loadingSubject = new BehaviorSubject<boolean>(false);
+    private readonly plansSubject$ = new BehaviorSubject<PlanTableItem[]>([]);
+    private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
 
-    loading$ = this.loadingSubject.asObservable();
+    readonly loading$ = this.loadingSubject$.asObservable();
 
     constructor(private readonly trainingPlansService: TrainingPlansService) {
         super();
     }
 
     connect(): Observable<PlanTableItem[]> {
-        return this.plansSubject.asObservable();
+        return this.plansSubject$.asObservable();
     }
 
     disconnect(): void {
-        this.plansSubject.complete();
-        this.loadingSubject.complete();
+        this.plansSubject$.complete();
+        this.loadingSubject$.complete();
     }
 
     /**
      * Subject game is needed because dataSource connect called too slow on second load-time.
      */
-    loadPlans(): void {
-        this.loadingSubject.next(true);
+    loadPlans(pageEvent: PageEvent): void {
+        this.loadingSubject$.next(true);
 
+        // tslint:disable:rxjs-no-ignored-subscription
         this.trainingPlansService
-            .getPlans$()
+            .getPlans$(pageEvent)
             .pipe(
                 take(1),
                 catchError(() => {
-                    this.loadingSubject.next(false);
+                    this.loadingSubject$.next(false);
                     return of([]);
                 })
             )
             .subscribe((plans: PlanTableItem[]) => {
-                this.loadingSubject.next(false);
-                this.plansSubject.next(plans);
+                this.loadingSubject$.next(false);
+                this.plansSubject$.next(plans);
             });
     }
 }

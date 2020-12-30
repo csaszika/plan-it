@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 
@@ -19,20 +19,24 @@ export class FootballPlansContainer implements OnInit, AfterViewInit, OnDestroy 
     dataSource!: FootballPlansContainerDatasource;
     displayedColumns = ['name', 'ageClass', 'level', 'actions'];
 
-    private subscriptions = new Subscription();
+    private readonly subscriptions = new Subscription();
 
     constructor(private readonly trainingPlansService: TrainingPlansService, private readonly changeDetectorRef: ChangeDetectorRef) {}
 
     ngOnInit(): void {
         this.dataSource = new FootballPlansContainerDatasource(this.trainingPlansService);
-        this.dataSource.loadPlans();
+        this.dataSource.loadPlans({
+            length: 10,
+            pageSize: 10,
+            pageIndex: 0,
+        });
     }
 
     ngAfterViewInit(): void {
         this.table.dataSource = this.dataSource;
         this.changeDetectorRef.markForCheck();
 
-        this.subscriptions.add(this.paginator.page.subscribe(() => this.dataSource.loadPlans()));
+        this.subscriptions.add(this.paginator.page.subscribe((pageEvent: PageEvent) => this.dataSource.loadPlans(pageEvent)));
     }
 
     ngOnDestroy(): void {
