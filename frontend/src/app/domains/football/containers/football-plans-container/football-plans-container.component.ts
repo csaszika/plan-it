@@ -1,9 +1,11 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { TrainingPlansService } from '../../../../shared/services/training-plans/training-plans.service';
+import { TrainingPlanId } from '../../../../shared/types/training-plan.types';
 import { FootballPlansContainerDatasource, PlanTableItem } from './football-plans-container-datasource';
 
 @Component({
@@ -21,7 +23,11 @@ export class FootballPlansContainer implements OnInit, AfterViewInit, OnDestroy 
 
     private readonly subscriptions = new Subscription();
 
-    constructor(private readonly trainingPlansService: TrainingPlansService, private readonly changeDetectorRef: ChangeDetectorRef) {}
+    constructor(
+        private readonly trainingPlansService: TrainingPlansService,
+        private readonly changeDetectorRef: ChangeDetectorRef,
+        private readonly router: Router
+    ) {}
 
     ngOnInit(): void {
         this.dataSource = new FootballPlansContainerDatasource(this.trainingPlansService);
@@ -41,5 +47,13 @@ export class FootballPlansContainer implements OnInit, AfterViewInit, OnDestroy 
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
+    }
+
+    deletePlan(planId: TrainingPlanId): void {
+        this.trainingPlansService.deletePlan(planId);
+    }
+
+    openPlan(planId: TrainingPlanId): void {
+        this.router.navigate(['/update', { id: planId }]);
     }
 }

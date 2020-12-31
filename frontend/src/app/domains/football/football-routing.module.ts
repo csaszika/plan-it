@@ -10,6 +10,10 @@ const routes: Routes = [
         component: FootballPlanFormContainerComponent,
     },
     {
+        path: 'update/:id',
+        component: FootballPlanFormContainerComponent,
+    },
+    {
         path: 'all',
         component: FootballPlansContainer,
     },

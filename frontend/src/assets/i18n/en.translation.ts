@@ -54,6 +54,7 @@ export default {
             creator: 'Creator',
             actions: {
                 delete: 'Delete plan',
+                edit: 'Edit plan',
             },
         },
     },

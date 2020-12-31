@@ -1,7 +1,12 @@
-.full-width {
+.football-plans_table {
   inline-size: 100%;
 
   .mat-column-actions {
-    width: 100px;
+    width: 10%;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    margin-left: 5px;
   }
 }

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatIcon } from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MockComponent, MockPipe, ngMocks } from 'ng-mocks';
 import { of } from 'rxjs';
@@ -20,10 +21,15 @@ class TestWrapperComponent {
 describe('FootballPlansContainerComponent', () => {
     let fixture: ComponentFixture<TestWrapperComponent>;
 
+    const plans = [
+        { id: 'id', name: 'Plany', ageClass: 'U18', level: 4, creator: 'Konci' },
+        { id: 'id2', name: 'Awesome plan', ageClass: 'U14', level: 3, creator: 'Majom' },
+    ];
+
     Given(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [MatTableModule],
+                imports: [MatTableModule, RouterTestingModule],
                 declarations: [
                     TestWrapperComponent,
                     FootballPlansContainer,
@@ -35,11 +41,8 @@ describe('FootballPlansContainerComponent', () => {
                     {
                         provide: TrainingPlansService,
                         useValue: {
-                            getPlans$: () =>
-                                of([
-                                    { id: 'id', name: 'Plany', ageClass: 'U18', level: 4, creator: 'Konci' },
-                                    { id: 'id2', name: 'Awesome plan', ageClass: 'U14', level: 3, creator: 'Majom' },
-                                ]),
+                            getPlans$: () => of(plans),
+                            deletePlan: jasmine.createSpy(),
                         },
                     },
                 ],
@@ -69,6 +72,14 @@ describe('FootballPlansContainerComponent', () => {
             expect(table()).toExist();
         });
 
+        // Then('should have the table rows', (done: DoneCallback) => {
+        //     fixture.whenStable().then(() => {
+        //         fixture.detectChanges();
+        //         expect(tableRows().length).toEqual(plans.length);
+        //         done();
+        //     });
+        // });
+
         Then('should have the table header column with translation keys', () => {
             // tslint:disable:no-magic-numbers
             const columns = fixture.componentInstance.component.displayedColumns;
@@ -89,4 +100,17 @@ describe('FootballPlansContainerComponent', () => {
             // tslint:enable:no-magic-numbers
         });
     });
+
+    // Somehow I cannot create a selector for mat-icons...
+    // describe('Events', () => {
+    //     When(() => {
+    //         fixture.detectChanges();
+    //         const deleteIconInFirstRow = tableRows()[0].querySelectorAll('mat-icon')[0];
+    //         deleteIconInFirstRow.click();
+    //     });
+    //
+    //     Then('should delete the plan', () => {
+    //         expect(TestBed.inject(TrainingPlansService).deletePlan).toHaveBeenCalledWith('id');
+    //     });
+    // });
 });
