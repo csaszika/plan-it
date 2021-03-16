@@ -16,9 +16,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslatePipe } from '@ngx-translate/core';
-import { TrainingPlan, TrainingPlansService } from '@plan-it/training-plans-api';
+import { TrainingPlansService } from '@plan-it/training-plans-api';
 import { getFootballConfigurations } from '@plan-it/ngrx-actions/football-configuration';
 import { PlanConfigurationType } from '@plan-it/types/plan-configuration';
+import { TrainingPlan } from '@plan-it/types/training-plan';
 import { FootballState, initialState as footballPlanConfigurationInitialState } from '@plan-it/ngrx-store/football';
 
 import { FootballPlanEditorComponent } from './football-plan-editor.component';

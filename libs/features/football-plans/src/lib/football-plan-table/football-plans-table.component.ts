@@ -4,7 +4,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, O
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { TrainingPlanId, TrainingPlansService } from '@plan-it/training-plans-api';
+import { TrainingPlansService } from '@plan-it/training-plans-api';
+import { TrainingPlanId } from '@plan-it/types/training-plan';
 
 import { FootballPlansTableDatasource, PlanTableItem } from './football-plans-table-datasource';
 

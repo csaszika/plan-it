@@ -458,13 +458,35 @@
             "projectType": "library",
             "root": "libs/ngrx-core/configuration",
             "sourceRoot": "libs/ngrx-core/configuration/src",
-            "prefix": "plan-it",
+            "prefix": "pi",
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "outputs": ["coverage/libs/ngrx-core/configuration"],
                     "options": {
                         "jestConfig": "libs/ngrx-core/configuration/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "types-training-plan": {
+            "projectType": "library",
+            "root": "libs/types/training-plan",
+            "sourceRoot": "libs/types/training-plan/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/types/training-plan/src/**/*.ts", "libs/types/training-plan/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/types/training-plan"],
+                    "options": {
+                        "jestConfig": "libs/types/training-plan/jest.config.js",
                         "passWithNoTests": true
                     }
                 }

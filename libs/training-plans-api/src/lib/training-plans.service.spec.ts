@@ -5,7 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { angularFirestoreStub } from '@plan-it/test-util';
 
-import { TrainingPlan } from './training-plan.types';
+import { TrainingPlan } from '../../../types/training-plan/src/lib/training-plan.types';
 import { TrainingPlansService } from './training-plans.service';
 
 describe('TrainingPlansService', () => {

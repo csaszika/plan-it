@@ -31,7 +31,8 @@
             "@plan-it/features/plans-list": ["libs/features/plans-list/src/index.ts"],
             "@plan-it/features/creatable-plan-list": ["libs/features/creatable-plan-list/src/index.ts"],
             "@plan-it/features/dashboard": ["libs/features/dashboard/src/index.ts"],
-            "@plan-it/features/football-plans": ["libs/features/football-plans/src/index.ts"]
+            "@plan-it/features/football-plans": ["libs/features/football-plans/src/index.ts"],
+            "@plan-it/types/training-plan": ["libs/types/training-plan/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

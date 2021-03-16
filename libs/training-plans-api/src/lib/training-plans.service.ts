@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference, Query } from '@angular/fire/firestore';
 import { PageEvent } from '@angular/material/paginator';
-
-import { TrainingPlan, TrainingPlanId } from './training-plan.types';
+import { TrainingPlan, TrainingPlanId } from '@plan-it/types/training-plan';
 
 @Injectable({
     providedIn: 'root',

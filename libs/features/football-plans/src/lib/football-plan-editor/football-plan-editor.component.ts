@@ -11,9 +11,10 @@ import {
     selectFootballPlanConfigurationShowState,
     selectFootballPlanLevels,
 } from '@plan-it/ngrx-store/football';
-import { TrainingPlanId, TrainingPlansService } from '@plan-it/training-plans-api';
+import { TrainingPlansService } from '@plan-it/training-plans-api';
 import { DataLoadingError } from '@plan-it/types/common';
 import { PlanConfigurationType } from '@plan-it/types/plan-configuration';
+import { TrainingPlanId } from '@plan-it/types/training-plan';
 
 import { FootballPlanForm } from './football-plan.form';
 

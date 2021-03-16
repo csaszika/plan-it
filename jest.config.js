@@ -19,6 +19,7 @@ module.exports = {
         '<rootDir>/libs/features/creatable-plan-list',
         '<rootDir>/libs/features/plans-list',
         '<rootDir>/libs/features/football-plans',
+        '<rootDir>/libs/types/training-plan',
     ],
     testEnvironment: 'jsdom',
     transform: {
