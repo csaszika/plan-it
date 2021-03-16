@@ -1,0 +1,474 @@
+{
+    "version": 1,
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "defaultProject": "plan-it",
+    "schematics": {
+        "@nrwl/angular": {
+            "application": {
+                "linter": "eslint"
+            },
+            "library": {
+                "linter": "eslint"
+            },
+            "storybook-configuration": {
+                "linter": "eslint"
+            }
+        },
+        "@nrwl/angular:application": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:component": {
+            "style": "scss"
+        }
+    },
+    "projects": {
+        "plan-it": {
+            "projectType": "application",
+            "root": "apps/plan-it",
+            "sourceRoot": "apps/plan-it/src",
+            "prefix": "pi",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/apps/plan-it",
+                        "index": "apps/plan-it/src/index.html",
+                        "main": "apps/plan-it/src/main.ts",
+                        "polyfills": "apps/plan-it/src/polyfills.ts",
+                        "tsConfig": "apps/plan-it/tsconfig.app.json",
+                        "aot": true,
+                        "assets": ["apps/plan-it/src/favicon.ico", "apps/plan-it/src/assets"],
+                        "styles": ["apps/plan-it/src/styles.scss", "./node_modules/@angular/material/prebuilt-themes/purple-green.css"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "libs/environments/src/lib/environment.ts",
+                                    "with": "libs/environments/src/lib/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "plan-it:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "plan-it:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "plan-it:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/plan-it/src/**/*.ts", "apps/plan-it/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/plan-it"],
+                    "options": {
+                        "jestConfig": "apps/plan-it/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "plan-it-e2e": {
+            "root": "apps/plan-it-e2e",
+            "sourceRoot": "apps/plan-it-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/plan-it-e2e/cypress.json",
+                        "tsConfig": "apps/plan-it-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "plan-it:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "plan-it:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/plan-it-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "types-ui-routes": {
+            "projectType": "library",
+            "root": "libs/types/ui-routes",
+            "sourceRoot": "libs/types/ui-routes/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/types/ui-routes/src/**/*.ts", "libs/types/ui-routes/src/**/*.html"]
+                    }
+                }
+            }
+        },
+        "animations": {
+            "projectType": "library",
+            "root": "libs/animations",
+            "sourceRoot": "libs/animations/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/animations/src/**/*.ts", "libs/animations/src/**/*.html"]
+                    }
+                }
+            }
+        },
+        "plan-configuration-api": {
+            "projectType": "library",
+            "root": "libs/plan-configuration-api",
+            "sourceRoot": "libs/plan-configuration-api/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/plan-configuration-api/src/**/*.ts", "libs/plan-configuration-api/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/plan-configuration-api"],
+                    "options": {
+                        "jestConfig": "libs/plan-configuration-api/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "test-util": {
+            "projectType": "library",
+            "root": "libs/test-util",
+            "sourceRoot": "libs/test-util/src",
+            "prefix": "pi",
+            "architect": {}
+        },
+        "training-plans-api": {
+            "projectType": "library",
+            "root": "libs/training-plans-api",
+            "sourceRoot": "libs/training-plans-api/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/training-plans-api/src/**/*.ts", "libs/training-plans-api/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/training-plans-api"],
+                    "options": {
+                        "jestConfig": "libs/training-plans-api/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "navigation-cards": {
+            "projectType": "library",
+            "root": "libs/ui-components/navigation-cards",
+            "sourceRoot": "libs/ui-components/navigation-cards/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/ui-components/navigation-cards/src/**/*.ts",
+                            "libs/ui-components/navigation-cards/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui-components/navigation-cards"],
+                    "options": {
+                        "jestConfig": "libs/ui-components/navigation-cards/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dashboard": {
+            "projectType": "library",
+            "root": "libs/features/dashboard",
+            "sourceRoot": "libs/features/dashboard/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/features/dashboard/src/**/*.ts", "libs/features/dashboard/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/features/dashboard"],
+                    "options": {
+                        "jestConfig": "libs/features/dashboard/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "creatable-plan-list": {
+            "projectType": "library",
+            "root": "libs/features/creatable-plan-list",
+            "sourceRoot": "libs/features/creatable-plan-list/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/features/creatable-plan-list/src/**/*.ts",
+                            "libs/features/creatable-plan-list/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/features/creatable-plan-list"],
+                    "options": {
+                        "jestConfig": "libs/features/creatable-plan-list/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "design-core": {
+            "root": "libs/design-core",
+            "sourceRoot": "libs/design-core/src",
+            "projectType": "library",
+            "architect": {}
+        },
+        "plans-list": {
+            "projectType": "library",
+            "root": "libs/features/plans-list",
+            "sourceRoot": "libs/features/plans-list/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/features/plans-list/src/**/*.ts", "libs/features/plans-list/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/features/plans-list"],
+                    "options": {
+                        "jestConfig": "libs/features/plans-list/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ngrx-actions-football-configuration": {
+            "projectType": "library",
+            "root": "libs/ngrx-actions/football-configuration",
+            "sourceRoot": "libs/ngrx-actions/football-configuration/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/ngrx-actions/football-configuration/src/**/*.ts",
+                            "libs/ngrx-actions/football-configuration/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ngrx-actions/football-configuration"],
+                    "options": {
+                        "jestConfig": "libs/ngrx-actions/football-configuration/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "types-plan-configuration": {
+            "projectType": "library",
+            "root": "libs/types/plan-configuration",
+            "sourceRoot": "libs/types/plan-configuration/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/types/plan-configuration/src/**/*.ts", "libs/types/plan-configuration/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/types/plan-configuration"],
+                    "options": {
+                        "jestConfig": "libs/types/plan-configuration/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "environments": {
+            "projectType": "library",
+            "root": "libs/environments",
+            "sourceRoot": "libs/environments/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/environments/src/**/*.ts", "libs/environments/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/environments"],
+                    "options": {
+                        "jestConfig": "libs/environments/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ngrx-store-football": {
+            "projectType": "library",
+            "root": "libs/ngrx-store/football",
+            "sourceRoot": "libs/ngrx-store/football/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ngrx-store/football/src/**/*.ts", "libs/ngrx-store/football/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ngrx-store/football"],
+                    "options": {
+                        "jestConfig": "libs/ngrx-store/football/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "types-common": {
+            "projectType": "library",
+            "root": "libs/types/common",
+            "sourceRoot": "libs/types/common/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/types/common/src/**/*.ts", "libs/types/common/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/types/common"],
+                    "options": {
+                        "jestConfig": "libs/types/common/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "football-plans": {
+            "projectType": "library",
+            "root": "libs/features/football-plans",
+            "sourceRoot": "libs/features/football-plans/src",
+            "prefix": "pi",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/features/football-plans/src/**/*.ts", "libs/features/football-plans/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/features/football-plans"],
+                    "options": {
+                        "jestConfig": "libs/features/football-plans/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ngrx-core-configuration": {
+            "projectType": "library",
+            "root": "libs/ngrx-core/configuration",
+            "sourceRoot": "libs/ngrx-core/configuration/src",
+            "prefix": "plan-it",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ngrx-core/configuration"],
+                    "options": {
+                        "jestConfig": "libs/ngrx-core/configuration/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        }
+    }
+}

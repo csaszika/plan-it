@@ -1,0 +1,31 @@
+<div class="mat-elevation-z8">
+    <table mat-table class="football-plans_table" aria-label="Football training plans">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{ 'PLANS.column.name' | translate }}</th>
+            <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ageClass">
+            <th mat-header-cell *matHeaderCellDef>{{ 'PLANS.column.ageClass' | translate }}</th>
+            <td mat-cell *matCellDef="let row">{{ row.ageClass }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef>{{ 'PLANS.column.level' | translate }}</th>
+            <td mat-cell *matCellDef="let row">{{ row.level }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <mat-icon [attr.aria-label]="'PLANS.column.actions.delete' | translate" (click)="deletePlan(row.id)">delete</mat-icon>
+                <mat-icon [attr.aria-label]="'PLANS.column.actions.edit' | translate" (click)="openPlan(row.id)">edit</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [length]="50" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"> </mat-paginator>
+</div>

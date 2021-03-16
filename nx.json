@@ -1,0 +1,39 @@
+{
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": { "dependencies": "*", "devDependencies": "*" },
+        "tsconfig.base.json": "*",
+        "tslint.json": "*",
+        ".eslintrc.json": "*",
+        "nx.json": "*"
+    },
+    "affected": { "defaultBase": "master" },
+    "npmScope": "plan-it",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+        }
+    },
+    "projects": {
+        "plan-it": { "tags": ["type:app"] },
+        "plan-it-e2e": { "tags": [], "implicitDependencies": ["plan-it"] },
+        "animations": { "tags": ["type:util"] },
+        "types-ui-routes": { "tags": ["type:types"] },
+        "types-common": { "tags": ["type:types"] },
+        "design-core": { "tags": ["type:design"] },
+        "test-util": { "tags": ["type:util"] },
+        "plan-configuration-api": { "tags": ["type:data"] },
+        "training-plans-api": { "tags": ["type:data"] },
+        "navigation-cards": { "tags": ["type:ui-components"], "implicitDependencies": ["design-core"] },
+        "dashboard": { "tags": ["type:feature"], "implicitDependencies": ["design-core"] },
+        "creatable-plan-list": { "tags": ["type:feature"] },
+        "plans-list": { "tags": ["type:feature"] },
+        "ngrx-actions-football-configuration": { "tags": ["type:ngrx-actions"] },
+        "types-plan-configuration": { "tags": ["type:types"] },
+        "environments": { "tags": ["type:configuration"] },
+        "ngrx-store-football": { "tags": ["type:ngrx-store"] },
+        "football-plans": { "tags": ["type:feature"] },
+        "ngrx-core-configuration": { "tags": ["type:configuration"] }
+    }
+}

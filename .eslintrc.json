@@ -1,0 +1,96 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nrwl/nx", "ordered-imports"],
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {
+                "@nrwl/nx/enforce-module-boundaries": [
+                    2,
+                    {
+                        "enforceBuildableLibDependency": true,
+                        "allow": [],
+                        "depConstraints": [
+                            {
+                                "sourceTag": "type:types",
+                                "onlyDependOnLibsWithTags": ["type:types"]
+                            },
+                            {
+                                "sourceTag": "type:configuration"
+                            },
+                            {
+                                "sourceTag": "type:animations"
+                            },
+                            {
+                                "sourceTag": "type:util",
+                                "onlyDependOnLibsWithTags": ["type:types"]
+                            },
+                            {
+                                "sourceTag": "type:ui-components",
+                                "onlyDependOnLibsWithTags": ["type:types", "type:util", "type:animations"]
+                            },
+                            {
+                                "sourceTag": "type:data",
+                                "onlyDependOnLibsWithTags": ["type:types", "type:util"]
+                            },
+                            {
+                                "sourceTag": "type:ngrx-actions",
+                                "onlyDependOnLibsWithTags": ["type:types"]
+                            },
+                            {
+                                "sourceTag": "type:ngrx-store",
+                                "onlyDependOnLibsWithTags": ["type:types", "type:ngrx-actions", "type:data"]
+                            },
+                            {
+                                "sourceTag": "type:ngrx-effects",
+                                "onlyDependOnLibsWithTags": ["type:types", "type:ngrx-actions", "type:ngrx-store"]
+                            },
+                            {
+                                "sourceTag": "type:feature",
+                                "onlyDependOnLibsWithTags": [
+                                    "type:types",
+                                    "type:util",
+                                    "type:animations",
+                                    "type:ui-components",
+                                    "type:data",
+                                    "type:configuration",
+                                    "type:ngrx-store",
+                                    "type:ngrx-actions"
+                                ]
+                            },
+                            {
+                                "sourceTag": "type:app",
+                                "onlyDependOnLibsWithTags": [
+                                    "type:types",
+                                    "type:util",
+                                    "type:animations",
+                                    "type:ui-components",
+                                    "type:data",
+                                    "type:feature",
+                                    "type:configuration",
+                                    "type:ngrx-store"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.ts"],
+            "extends": ["plugin:ordered-imports/recommended"]
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": ["plugin:@nrwl/nx/typescript"],
+            "parserOptions": { "project": "./tsconfig.*?.json" },
+            "rules": {}
+        },
+        {
+            "files": ["*.js", "*.jsx"],
+            "extends": ["plugin:@nrwl/nx/javascript"],
+            "rules": {}
+        }
+    ]
+}

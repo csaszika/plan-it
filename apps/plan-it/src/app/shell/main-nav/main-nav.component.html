@@ -1,0 +1,58 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+        #drawer
+        class="sidenav"
+        fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false"
+    >
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <ng-container *ngFor="let menuItem of menuItems">
+                <a mat-list-item [routerLink]="[menuItem.url]">{{ menuItem.key | translate }}</a>
+            </ng-container>
+            <a mat-list-item [routerLink]="'/logout'">Logout</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button
+                type="button"
+                name="toggle-menu"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async"
+            >
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>PlanIT</span>
+            <div class="language-buttons-container">
+                <button
+                    mat-button
+                    class="language-buttons-container__button"
+                    name="change-to-hu"
+                    [ngClass]="{ active: currentLanguage === languages.HU }"
+                    (click)="onClickLanguage(languages.HU)"
+                >
+                    {{ languages.HU }}
+                </button>
+                <span class="language-buttons-container__divider"></span>
+                <button
+                    mat-button
+                    class="language-buttons-container__button"
+                    name="change-to-en"
+                    [ngClass]="{ active: currentLanguage === languages.EN }"
+                    (click)="onClickLanguage(languages.EN)"
+                >
+                    {{ languages.EN }}
+                </button>
+            </div>
+        </mat-toolbar>
+
+        <main class="router-outlet-content">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

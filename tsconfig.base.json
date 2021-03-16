@@ -1,0 +1,38 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@plan-it/animations": ["libs/animations/src/index.ts"],
+            "@plan-it/design-core": ["libs/design-core/src/module"],
+            "@plan-it/types/ui-routes": ["libs/types/ui-routes/src/index.ts"],
+            "@plan-it/types/common": ["libs/types/common/src/index.ts"],
+            "@plan-it/types/plan-configuration": ["libs/types/plan-configuration/src/index.ts"],
+            "@plan-it/test-util": ["libs/test-util/src/index.ts"],
+            "@plan-it/environments": ["libs/environments/src/index.ts"],
+            "@plan-it/ui-components/navigation-cards": ["libs/ui-components/navigation-cards/src/index.ts"],
+            "@plan-it/plan-configuration-api": ["libs/plan-configuration-api/src/index.ts"],
+            "@plan-it/training-plans-api": ["libs/training-plans-api/src/index.ts"],
+            "@plan-it/ngrx-core/configuration": ["libs/ngrx-core/configuration/src/index.ts"],
+            "@plan-it/ngrx-actions/football-configuration": ["libs/ngrx-actions/football-configuration/src/index.ts"],
+            "@plan-it/ngrx-store/football": ["libs/ngrx-store/football/src/index.ts"],
+            "@plan-it/features/plans-list": ["libs/features/plans-list/src/index.ts"],
+            "@plan-it/features/creatable-plan-list": ["libs/features/creatable-plan-list/src/index.ts"],
+            "@plan-it/features/dashboard": ["libs/features/dashboard/src/index.ts"],
+            "@plan-it/features/football-plans": ["libs/features/football-plans/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

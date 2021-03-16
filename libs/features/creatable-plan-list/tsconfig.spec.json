@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../../dist/out-tsc",
+        "types": ["jest", "jest-jquery-matchers", "node"],
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true
+    },
+    "files": ["src/test-setup.ts"],
+    "include": ["**/*.spec.ts", "**/*.d.ts"]
+}

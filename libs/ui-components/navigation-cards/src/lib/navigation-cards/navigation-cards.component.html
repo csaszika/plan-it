@@ -1,0 +1,4 @@
+<mat-card *ngFor="let navCardItem of navCardItems" [routerLink]="[navCardItem.url]">
+    <mat-card-title>{{ navCardItem.title }}</mat-card-title>
+    <mat-card-subtitle>{{ navCardItem.description }}</mat-card-subtitle>
+</mat-card>
