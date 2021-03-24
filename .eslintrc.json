@@ -43,10 +43,6 @@
                                 "onlyDependOnLibsWithTags": ["type:types", "type:ngrx-actions", "type:data"]
                             },
                             {
-                                "sourceTag": "type:ngrx-effects",
-                                "onlyDependOnLibsWithTags": ["type:types", "type:ngrx-actions", "type:ngrx-store"]
-                            },
-                            {
                                 "sourceTag": "type:feature",
                                 "onlyDependOnLibsWithTags": [
                                     "type:types",
