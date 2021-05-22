@@ -491,6 +491,31 @@
                     }
                 }
             }
+        },
+        "ngrx-actions-football-training-plans": {
+            "projectType": "library",
+            "root": "libs/ngrx-actions/football-training-plans",
+            "sourceRoot": "libs/ngrx-actions/football-training-plans/src",
+            "prefix": "plan-it",
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/ngrx-actions/football-training-plans/src/**/*.ts",
+                            "libs/ngrx-actions/football-training-plans/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ngrx-actions/football-training-plans"],
+                    "options": {
+                        "jestConfig": "libs/ngrx-actions/football-training-plans/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
         }
     }
 }

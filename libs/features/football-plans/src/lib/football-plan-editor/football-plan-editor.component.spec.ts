@@ -20,7 +20,7 @@ import { TrainingPlansService } from '@plan-it/training-plans-api';
 import { getFootballConfigurations } from '@plan-it/ngrx-actions/football-configuration';
 import { PlanConfigurationType } from '@plan-it/types/plan-configuration';
 import { TrainingPlan } from '@plan-it/types/training-plan';
-import { FootballState, initialState as footballPlanConfigurationInitialState } from '@plan-it/ngrx-store/football';
+import { FootballPlanConfigurationState, FootballState } from '@plan-it/ngrx-store/football';
 
 import { FootballPlanEditorComponent } from './football-plan-editor.component';
 
@@ -35,6 +35,14 @@ describe('FootballPlanFormComponent', () => {
     let fixture: ComponentFixture<TestWrapperComponent>;
     const mockTrainingPlansService: Spy<TrainingPlansService> = createSpyFromClass(TrainingPlansService, ['addPlan']);
     let store: Store<FootballState>;
+
+    const initialState = (): FootballPlanConfigurationState => {
+        return {
+            configuration: { ageClasses: [], levels: [] },
+            loading: false,
+            error: false,
+        };
+    };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -60,7 +68,7 @@ describe('FootballPlanFormComponent', () => {
                 provideMockStore({
                     initialState: {
                         football: {
-                            footballPlanConfiguration: footballPlanConfigurationInitialState(),
+                            footballPlanConfiguration: initialState(),
                         },
                     },
                 }),

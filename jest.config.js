@@ -12,6 +12,7 @@ module.exports = {
         '<rootDir>/libs/ui-components/navigation-cards',
         '<rootDir>/libs/ngrx-core/configuration',
         '<rootDir>/libs/ngrx-actions/football-plan-configuration',
+        '<rootDir>/libs/ngrx-actions/football-training-plans',
         '<rootDir>/libs/ngrx-store/football-plan-configuration',
         '<rootDir>/libs/ngrx-store/states',
         '<rootDir>/libs/ngrx-store/football',

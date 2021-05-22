@@ -27,6 +27,7 @@
             "@plan-it/training-plans-api": ["libs/training-plans-api/src/index.ts"],
             "@plan-it/ngrx-core/configuration": ["libs/ngrx-core/configuration/src/index.ts"],
             "@plan-it/ngrx-actions/football-configuration": ["libs/ngrx-actions/football-configuration/src/index.ts"],
+            "@plan-it/ngrx-actions/football-training-plans": ["libs/ngrx-actions/football-training-plans/src/index.ts"],
             "@plan-it/ngrx-store/football": ["libs/ngrx-store/football/src/index.ts"],
             "@plan-it/features/plans-list": ["libs/features/plans-list/src/index.ts"],
             "@plan-it/features/creatable-plan-list": ["libs/features/creatable-plan-list/src/index.ts"],

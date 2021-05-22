@@ -32,6 +32,7 @@
         "creatable-plan-list": { "tags": ["type:feature"] },
         "plans-list": { "tags": ["type:feature"] },
         "ngrx-actions-football-configuration": { "tags": ["type:ngrx-actions"] },
+        "ngrx-actions-football-training-plans": { "tags": ["type:ngrx-actions"] },
         "environments": { "tags": ["type:configuration"] },
         "ngrx-store-football": { "tags": ["type:ngrx-store"] },
         "football-plans": { "tags": ["type:feature"] },

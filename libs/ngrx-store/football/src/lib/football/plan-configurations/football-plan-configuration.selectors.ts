@@ -6,10 +6,10 @@ import * as football from '../football.state';
 
 import { FootballPlanConfigurationState } from './football-plan-configuration.reducer';
 
-export const selectFootballPlanConfigurationFeature = createFeatureSelector<football.FootballState>(football.footballFeatureKey);
+export const selectFootballFeature = createFeatureSelector<football.FootballState>(football.footballFeatureKey);
 
 export const selectFootballPlanConfigurationState = createSelector(
-    selectFootballPlanConfigurationFeature,
+    selectFootballFeature,
     (state: football.FootballState) => state.footballPlanConfiguration
 );
 
