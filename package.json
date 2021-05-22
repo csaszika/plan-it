@@ -12,6 +12,7 @@
         "test": "ng test",
         "lint": "nx workspace-lint && ng lint",
         "lint-all": "nx run-many --all --target=lint --fix",
+        "test-all": "nx run-many --all --target=test --coverage",
         "commitmsg": "commitlint -e $GIT_PARAMS",
         "e2e": "ng e2e",
         "affected:apps": "nx affected:apps",
