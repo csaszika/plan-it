@@ -12,6 +12,8 @@ module.exports = {
         },
     },
     coverageDirectory: '../../../coverage/libs/ngrx-core/configuration',
+    coverageReporters: ['html', 'lcov'],
+    reporters: ['default'],
     snapshotSerializers: [
         'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
         'jest-preset-angular/build/AngularSnapshotSerializer.js',
