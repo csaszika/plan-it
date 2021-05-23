@@ -9,8 +9,22 @@
                 "project": ["libs/training-plans-api/tsconfig.*?.json"]
             },
             "rules": {
-                "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "pi", "style": "camelCase" }],
-                "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "pi", "style": "kebab-case" }]
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "pi",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "pi",
+                        "style": "kebab-case"
+                    }
+                ]
             }
         },
         {

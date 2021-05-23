@@ -1,4 +1,4 @@
-import 'jest-preset-angular';
+import 'jest-preset-angular/setup-jest';
 // eslint-disable-next-line  ordered-imports/ordered-imports
 import '@angular-extensions/pretty-html-log';
 // eslint-disable-next-line  ordered-imports/ordered-imports

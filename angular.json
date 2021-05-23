@@ -46,10 +46,15 @@
                         "main": "apps/plan-it/src/main.ts",
                         "polyfills": "apps/plan-it/src/polyfills.ts",
                         "tsConfig": "apps/plan-it/tsconfig.app.json",
-                        "aot": true,
                         "assets": ["apps/plan-it/src/favicon.ico", "apps/plan-it/src/assets"],
                         "styles": ["apps/plan-it/src/styles.scss", "./node_modules/@angular/material/prebuilt-themes/purple-green.css"],
-                        "scripts": []
+                        "scripts": [],
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true
                     },
                     "configurations": {
                         "production": {
