@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { selectFootballTrainingPlans } from '@plan-it/ngrx-store/football';
 import { TrainingPlansService } from '@plan-it/training-plans-api';
 import { TrainingPlanId } from '@plan-it/types/training-plan';
-import { getFootballTrainingPlans } from '@plan-it/ngrx-actions/football-training-plans';
+import { deleteFootballTrainingPlan, getFootballTrainingPlans } from '@plan-it/ngrx-actions/football-training-plans';
 
 @Component({
     selector: 'pi-football-plans-table',
@@ -59,7 +59,7 @@ export class FootballPlansTableComponent implements OnInit, AfterViewInit, OnDes
     }
 
     deletePlan(planId: TrainingPlanId): void {
-        this.trainingPlansService.deletePlan(planId);
+        this.store.dispatch(deleteFootballTrainingPlan({ planId }));
     }
 
     openPlan(planId: TrainingPlanId): void {

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TrainingPlan } from '@plan-it/types/training-plan';
+import { TrainingPlan, TrainingPlanId } from '@plan-it/types/training-plan';
 import { PageEvent } from '@angular/material/paginator';
 
 export const saveFootballTrainingPlan = createAction(
@@ -17,4 +17,16 @@ export const loadFootballTrainingPlans = createAction(
     props<{ plans: TrainingPlan[] }>()
 );
 
-export const loadFootballTrainingPlansFailure = createAction('[Football training plans] Get Football training plans failure');
+export const loadFootballTrainingPlansFailed = createAction('[Football training plans] Get Football training plans failure');
+
+export const deleteFootballTrainingPlan = createAction(
+    '[Football training plans] Delete Football training plan',
+    props<{ planId: TrainingPlanId }>()
+);
+
+export const deleteFootballTrainingPlanSuccess = createAction(
+    '[Football training plans] Delete Football training plan',
+    props<{ planId: TrainingPlanId }>()
+);
+
+export const deleteFootballTrainingPlanFailed = createAction('[Football training plans] Delete Football training plan');

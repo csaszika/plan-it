@@ -50,7 +50,7 @@ export class FootballPlanEditorComponent implements OnInit {
     }
 
     deletePlan(): void {
-        this.trainingPlansService.deletePlan(this.selectedTrainingPlanId);
+        this.trainingPlansService.deletePlan$(this.selectedTrainingPlanId);
     }
 
     updatePlan(): void {

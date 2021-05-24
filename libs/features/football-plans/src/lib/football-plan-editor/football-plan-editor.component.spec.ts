@@ -138,7 +138,7 @@ describe('FootballPlanFormComponent', () => {
             });
 
             it('should call service to save', () => {
-                expect(mockTrainingPlansService.deletePlan).toHaveBeenCalledWith('have to come from ngrx');
+                expect(mockTrainingPlansService.deletePlan$).toHaveBeenCalledWith('have to come from ngrx');
             });
         });
 

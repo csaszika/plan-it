@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference, Query } from '@angular/fire/firestore';
@@ -29,8 +29,8 @@ export class TrainingPlansService {
         }) as Promise<DocumentReference<TrainingPlan>>;
     }
 
-    deletePlan(id: TrainingPlanId): Promise<void> {
-        return this.afs.collection(this.COLLECTION_KEY).doc(id).delete();
+    deletePlan$(id: TrainingPlanId): Observable<void> {
+        return from(this.afs.collection(this.COLLECTION_KEY).doc(id).delete());
     }
 
     updatePlan(id: TrainingPlanId, updatedPlan: Partial<TrainingPlan>): Promise<void> {

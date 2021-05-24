@@ -2,9 +2,10 @@ import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 import { TrainingPlan, TrainingPlanId } from '@plan-it/types/training-plan';
 import {
+    deleteFootballTrainingPlanSuccess,
     getFootballTrainingPlans,
     loadFootballTrainingPlans,
-    loadFootballTrainingPlansFailure,
+    loadFootballTrainingPlansFailed,
 } from '@plan-it/ngrx-actions/football-training-plans';
 
 export interface FootballTrainingPlansState extends EntityState<TrainingPlan> {
@@ -36,12 +37,18 @@ export const footballTrainingPlansReducer = createReducer(
         }
     ),
     on(
-        loadFootballTrainingPlansFailure,
+        loadFootballTrainingPlansFailed,
         (state: FootballTrainingPlansState): FootballTrainingPlansState => ({
             ...state,
             error: true,
             loading: false,
         })
+    ),
+    on(
+        deleteFootballTrainingPlanSuccess,
+        (state: FootballTrainingPlansState, { planId }: { planId: TrainingPlanId }): FootballTrainingPlansState => {
+            return adapter.removeOne(planId, state);
+        }
     )
 );
 

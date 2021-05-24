@@ -7,6 +7,7 @@ import { angularFirestoreStub } from '@plan-it/test-util';
 
 import { TrainingPlan } from '../../../types/training-plan/src/lib/training-plan.types';
 import { TrainingPlansService } from './training-plans.service';
+import { EMPTY } from 'rxjs';
 
 describe('TrainingPlansService', () => {
     let service: TrainingPlansService;
@@ -95,7 +96,7 @@ describe('TrainingPlansService', () => {
             });
         });
 
-        describe('#deletePlan', () => {
+        describe('#deletePlan$', () => {
             let spyDelete: jasmine.Spy;
             let spyDoc: jasmine.Spy;
 
@@ -106,11 +107,11 @@ describe('TrainingPlansService', () => {
                     update: (): void => {},
                 });
                 /* eslint-enable */
-                spyDelete = spyOn(firestore.collection('').doc(''), 'delete').and.callThrough();
+                spyDelete = spyOn(firestore.collection('').doc(''), 'delete').and.returnValue(EMPTY);
             });
 
             beforeEach(() => {
-                service.deletePlan(mockPlan.id);
+                service.deletePlan$(mockPlan.id);
             });
 
             it('should called firestore with appropriate params', () => {
